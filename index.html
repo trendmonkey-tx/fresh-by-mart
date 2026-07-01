@@ -70,18 +70,14 @@
     .quote-btn { display: inline-block; background: #1a1a1a; color: #fff; font-weight: 700; font-size: 0.82rem; padding: 0.4rem 0.9rem; border-radius: 4px; margin-top: 0.7rem; cursor: pointer; border: none; font-family: 'Barlow', sans-serif; transition: background 0.2s; }
     .quote-btn:hover { background: #D30000; }
 
-    /* BEFORE/AFTER SLIDERS */
-    .ba-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    /* BEFORE/AFTER PHOTO PAIRS */
+    .ba-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
     .ba-card { border-radius: 10px; overflow: hidden; background: #1a1a1a; }
-    .ba-slider-wrap { position: relative; aspect-ratio: 1; overflow: hidden; cursor: col-resize; user-select: none; }
-    .ba-after { position: absolute; inset: 0; overflow: hidden; }
-    .ba-after img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
-    .ba-before img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .ba-divider { position: absolute; top: 0; bottom: 0; width: 3px; background: #fff; left: 50%; transform: translateX(-50%); z-index: 3; pointer-events: none; }
-    .ba-handle { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 36px; height: 36px; background: #fff; border-radius: 50%; z-index: 4; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.3); pointer-events: none; font-size: 0.55rem; color: #333; letter-spacing: -1px; }
-    .ba-labels { display: flex; justify-content: space-between; padding: 0; position: absolute; top: 0.5rem; left: 0.5rem; right: 0.5rem; z-index: 5; pointer-events: none; }
-    .ba-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; padding: 0.15rem 0.45rem; border-radius: 3px; }
-    .ba-label.before { background: #1a1a1a; color: #fff; }
+    .ba-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+    .ba-photo-wrap { position: relative; aspect-ratio: 1; overflow: hidden; }
+    .ba-photo-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .ba-label { position: absolute; top: 0.4rem; left: 0.4rem; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em; padding: 0.15rem 0.45rem; border-radius: 3px; }
+    .ba-label.before { background: rgba(0,0,0,0.75); color: #fff; }
     .ba-label.after { background: #D30000; color: #fff; }
     .ba-caption { padding: 0.75rem; text-align: center; }
     .ba-caption h4 { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; color: #fff; letter-spacing: 0.06em; }
@@ -204,12 +200,14 @@
 
     /* RESPONSIVE */
     @media (max-width: 768px) {
-      .hero-headline { font-size: 3rem; }
+      .hero-headline { font-size: 2.4rem; }
       .hero-video-wrap { inset: 0; left: -80%; right: -80%; }
+      .hero-inner { padding-top: 6rem; padding-bottom: 1.5rem; }
       nav { padding: 0.5rem 1rem; }
       .nav-links { display: none; }
       .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
       .ba-grid { grid-template-columns: 1fr; }
+      .ba-photos { grid-template-columns: 1fr 1fr; }
       .mf-row { grid-template-columns: 1fr; }
       .bf-row { grid-template-columns: 1fr; }
       .plan-options { grid-template-columns: 1fr; }
@@ -306,19 +304,17 @@
     <p class="section-sub">Drag the slider to reveal the transformation</p>
     <div class="ba-grid">
 
-      <!-- Black Bin: before=maggots, after=clean -->
+      <!-- Black Bin -->
       <div class="ba-card">
-        <div class="ba-slider-wrap" data-slider>
-          <div class="ba-labels">
+        <div class="ba-photos">
+          <div class="ba-photo-wrap">
+            <img src="https://i.ibb.co/6SN9BrS/5-F22-AAC1-0924-444-E-9536-854857440999.jpg" alt="Black bin before — maggots">
             <span class="ba-label before">BEFORE</span>
+          </div>
+          <div class="ba-photo-wrap">
+            <img src="https://i.ibb.co/Rks8DVDh/78-A5826-C-8-ED9-4-FFB-B131-D2-B7635-F0851.jpg" alt="Black bin after cleaning">
             <span class="ba-label after">AFTER</span>
           </div>
-          <img class="ba-before" src="https://i.ibb.co/6SN9BrS/5-F22-AAC1-0924-444-E-9536-854857440999.jpg" alt="Dirty black bin before cleaning">
-          <div class="ba-after" style="width:50%">
-            <img src="https://i.ibb.co/Rks8DVDh/78-A5826-C-8-ED9-4-FFB-B131-D2-B7635-F0851.jpg" alt="Clean black bin after service">
-          </div>
-          <div class="ba-divider"></div>
-          <div class="ba-handle">◀ ▶</div>
         </div>
         <div class="ba-caption">
           <h4>Black Bin</h4>
@@ -326,19 +322,17 @@
         </div>
       </div>
 
-      <!-- Green Bin: before=dirty, after=clean -->
+      <!-- Green Bin -->
       <div class="ba-card">
-        <div class="ba-slider-wrap" data-slider>
-          <div class="ba-labels">
+        <div class="ba-photos">
+          <div class="ba-photo-wrap">
+            <img src="https://i.ibb.co/HL2mnWLt/5-DBD6259-32-D9-4-C9-A-86-E5-CA56-F89-FD1-DD.jpg" alt="Green bin before cleaning">
             <span class="ba-label before">BEFORE</span>
+          </div>
+          <div class="ba-photo-wrap">
+            <img src="https://i.ibb.co/gbR0JzgZ/690-D2-C6-A-3187-44-E3-A9-CD-D74-C5-F32-F3-D3.jpg" alt="Green bin after cleaning">
             <span class="ba-label after">AFTER</span>
           </div>
-          <img class="ba-before" src="https://i.ibb.co/HL2mnWLt/5-DBD6259-32-D9-4-C9-A-86-E5-CA56-F89-FD1-DD.jpg" alt="Dirty green bin before cleaning">
-          <div class="ba-after" style="width:50%">
-            <img src="https://i.ibb.co/gbR0JzgZ/690-D2-C6-A-3187-44-E3-A9-CD-D74-C5-F32-F3-D3.jpg" alt="Clean green bin after service">
-          </div>
-          <div class="ba-divider"></div>
-          <div class="ba-handle">◀ ▶</div>
         </div>
         <div class="ba-caption">
           <h4>Green Bin</h4>
@@ -346,19 +340,17 @@
         </div>
       </div>
 
-      <!-- Full Detail: single split photo -->
+      <!-- Full Detail -->
       <div class="ba-card">
-        <div class="ba-slider-wrap" data-slider>
-          <div class="ba-labels">
+        <div class="ba-photos">
+          <div class="ba-photo-wrap">
+            <img src="https://i.ibb.co/RpBgMsks/29352-EB6-4727-4-C4-E-BD09-650-F7-ADFA0-AF.jpg" alt="Inside bin before full detail clean">
             <span class="ba-label before">BEFORE</span>
+          </div>
+          <div class="ba-photo-wrap">
+            <img src="https://i.ibb.co/RGK3Nq01/IMG-9597.jpg" alt="Inside bin after full detail clean">
             <span class="ba-label after">AFTER</span>
           </div>
-          <img class="ba-before" src="https://i.ibb.co/RGK3Nq01/IMG-9597.jpg" alt="Before and after full detail clean">
-          <div class="ba-after" style="width:50%">
-            <img src="https://i.ibb.co/RGK3Nq01/IMG-9597.jpg" alt="Full detail clean result">
-          </div>
-          <div class="ba-divider"></div>
-          <div class="ba-handle">◀ ▶</div>
         </div>
         <div class="ba-caption">
           <h4>Full Detail Clean</h4>
