@@ -22,8 +22,8 @@
     .nav-book { background: #D30000 !important; color: #fff !important; padding: 0.5rem 1.25rem; border-radius: 5px; opacity: 1 !important; }
 
     /* HERO — video 20% larger, tight padding */
-    .hero { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #0e0e0e; }
-    .hero-video-wrap { position: absolute; inset: -80px; z-index: 0; pointer-events: none; }
+    .hero { position: relative; min-height: 65vh; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #0e0e0e; }
+    .hero-video-wrap { position: absolute; inset: -30px; z-index: 0; pointer-events: none; }
     .hero-video-wrap iframe { width: 100%; height: 100%; border: none; }
     .hero-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.65); z-index: 1; }
     .hero-overlay::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 5px; background: #D30000; }
@@ -271,21 +271,21 @@
         <div class="service-icon">🗑️</div>
         <h3>One-Time Clean</h3>
         <p>Full-size residential bin pressure washed &amp; sanitized inside and out</p>
-        <span class="price-tag">$20</span>
+        <span class="price-tag">$20 / bin</span>
       </div>
       <div class="service-card featured">
         <span class="featured-badge">⭐ Most Popular</span>
         <div class="service-icon">📅</div>
         <h3>Monthly Plan</h3>
         <p>Recurring monthly service — we reach out to schedule each visit</p>
-        <span class="price-tag">$15/mo</span>
+        <span class="price-tag">$15 / bin / mo</span>
         <span class="price-save">Save $5 vs. one-time</span>
       </div>
       <div class="service-card">
         <div class="service-icon">🗓️</div>
         <h3>Quarterly Plan</h3>
         <p>Deep clean every 3 months — we'll contact you to set each appointment</p>
-        <span class="price-tag">$15/quarter</span>
+        <span class="price-tag">$15 / bin / qtr</span>
         <span class="price-save">Best for light use</span>
       </div>
       <div class="service-card">
@@ -406,17 +406,17 @@
           <div class="plan-opt" onclick="selectPlan(this,'one-time','$20')">
             <div class="plan-name">One-Time</div>
             <div class="plan-price">$20</div>
-            <div class="plan-freq">per visit</div>
+            <div class="plan-freq">per bin</div>
           </div>
           <div class="plan-opt" onclick="selectPlan(this,'monthly','$15/mo')">
             <div class="plan-name">Monthly</div>
             <div class="plan-price">$15</div>
-            <div class="plan-freq">per month</div>
+            <div class="plan-freq">per bin / mo</div>
           </div>
           <div class="plan-opt" onclick="selectPlan(this,'quarterly','$15/qtr')">
             <div class="plan-name">Quarterly</div>
             <div class="plan-price">$15</div>
-            <div class="plan-freq">per quarter</div>
+            <div class="plan-freq">per bin / qtr</div>
           </div>
         </div>
         <button class="bf-submit" onclick="submitBooking()">Continue to Payment →</button>
