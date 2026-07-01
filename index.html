@@ -13,206 +13,300 @@
     html { scroll-behavior: smooth; }
     body { font-family: 'Barlow', sans-serif; background: #fff; color: #1a1a1a; }
 
-    /* ── HERO ── */
-    .hero {
-      position: relative;
-      min-height: 480px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      overflow: hidden;
-      padding: 3rem 1.5rem 2.5rem;
-      background: #0e0e0e;
-    }
-    .hero-video-wrap {
-      position: absolute;
-      inset: -60px;
-      z-index: 0;
-      pointer-events: none;
-    }
-    .hero-video-wrap iframe { width: 100%; height: 100%; border: none; }
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.62);
-      z-index: 1;
-    }
-    .hero-overlay::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 5px;
-      background: #D30000;
-    }
-    .hero-content { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; }
-    .hero-logo { width: 190px; height: 190px; object-fit: contain; filter: drop-shadow(0 4px 24px rgba(211,0,0,0.55)); }
-    .hero-tagline { color: #fff; font-size: 1.25rem; font-weight: 800; letter-spacing: 0.07em; margin-top: 0.75rem; text-transform: uppercase; text-shadow: 0 2px 10px rgba(0,0,0,0.7); }
-    .hero-sub { color: #ddd; font-size: 0.92rem; margin-top: 0.4rem; text-shadow: 0 1px 5px rgba(0,0,0,0.6); }
-    .hero-badges { display: flex; gap: 0.5rem; margin-top: 1.1rem; flex-wrap: wrap; justify-content: center; }
-    .hero-badge { background: rgba(211,0,0,0.2); border: 1px solid rgba(211,0,0,0.85); color: #fff; font-size: 0.78rem; padding: 0.3rem 0.8rem; border-radius: 4px; font-weight: 600; letter-spacing: 0.04em; }
+    /* NAV */
+    nav { position: absolute; top: 0; left: 0; right: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; padding: 1rem 2rem; }
+    .nav-logo img { height: 60px; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5)); }
+    .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+    .nav-links a { color: #fff; text-decoration: none; font-weight: 600; font-size: 0.88rem; letter-spacing: 0.04em; text-transform: uppercase; opacity: 0.85; transition: opacity 0.2s; }
+    .nav-links a:hover { opacity: 1; }
+    .nav-book { background: #D30000 !important; color: #fff !important; padding: 0.5rem 1.25rem; border-radius: 5px; opacity: 1 !important; }
 
-    /* ── STORY BANNER ── */
-    .story-banner {
-      background: #D30000;
-      padding: 1rem 1.5rem;
-      text-align: center;
-    }
-    .story-banner p {
-      color: #fff;
-      font-size: 0.95rem;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-    }
+    /* HERO */
+    .hero { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #0e0e0e; }
+    .hero-video-wrap { position: absolute; inset: -60px; z-index: 0; pointer-events: none; }
+    .hero-video-wrap iframe { width: 100%; height: 100%; border: none; }
+    .hero-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.68); z-index: 1; }
+    .hero-overlay::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 5px; background: #D30000; }
+    .hero-inner { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 420px; gap: 3rem; align-items: center; width: 100%; max-width: 1100px; padding: 6rem 2rem 3rem; }
+    .hero-eyebrow { color: #D30000; font-weight: 800; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.75rem; }
+    .hero-headline { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 7vw, 5.5rem); color: #fff; line-height: 0.95; letter-spacing: 0.02em; text-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+    .hero-headline span { color: #D30000; }
+    .hero-sub { color: #ccc; font-size: 1rem; margin-top: 1rem; line-height: 1.6; max-width: 480px; }
+    .hero-badges { display: flex; gap: 0.5rem; margin-top: 1.25rem; flex-wrap: wrap; }
+    .hero-badge { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.25); color: #fff; font-size: 0.75rem; padding: 0.3rem 0.7rem; border-radius: 4px; font-weight: 600; }
+
+    /* BOOKING FORM */
+    .book-form-card { background: #fff; border-radius: 12px; padding: 1.75rem 1.5rem; box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+    .book-form-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: #1a1a1a; letter-spacing: 0.04em; margin-bottom: 0.15rem; }
+    .book-form-card .form-sub { font-size: 0.8rem; color: #888; margin-bottom: 1.1rem; }
+    .bf-group { display: flex; flex-direction: column; gap: 0.3rem; margin-bottom: 0.75rem; }
+    .bf-group label { font-size: 0.75rem; font-weight: 700; color: #444; letter-spacing: 0.04em; text-transform: uppercase; }
+    .bf-group input, .bf-group select { border: 1.5px solid #e0e0e0; border-radius: 6px; padding: 0.6rem 0.75rem; font-size: 0.9rem; font-family: 'Barlow', sans-serif; color: #1a1a1a; outline: none; transition: border 0.2s; }
+    .bf-group input:focus, .bf-group select:focus { border-color: #D30000; }
+    .bf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+    .plan-options { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.5rem; margin-bottom: 0.75rem; }
+    .plan-opt { border: 2px solid #e0e0e0; border-radius: 8px; padding: 0.6rem 0.5rem; text-align: center; cursor: pointer; transition: all 0.2s; }
+    .plan-opt:hover { border-color: #D30000; }
+    .plan-opt.selected { border-color: #D30000; background: #fff5f5; }
+    .plan-opt .plan-name { font-weight: 700; font-size: 0.78rem; color: #1a1a1a; }
+    .plan-opt .plan-price { font-size: 1rem; font-weight: 800; color: #D30000; }
+    .plan-opt .plan-freq { font-size: 0.65rem; color: #888; }
+    .bf-submit { width: 100%; background: #D30000; color: #fff; border: none; border-radius: 6px; padding: 0.85rem; font-family: 'Barlow', sans-serif; font-weight: 800; font-size: 1rem; cursor: pointer; transition: opacity 0.2s; letter-spacing: 0.04em; margin-top: 0.25rem; }
+    .bf-submit:hover { opacity: 0.88; }
+    .bf-note { text-align: center; font-size: 0.72rem; color: #aaa; margin-top: 0.5rem; }
+
+    /* PAYMENT STEP */
+    .pay-page { display: none; }
+    .pay-page.active { display: block; }
+    .pay-page h4 { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: #1a1a1a; letter-spacing: 0.04em; margin-bottom: 0.5rem; }
+    .pay-summary { background: #f7f7f7; border-radius: 8px; padding: 0.75rem 1rem; margin-bottom: 1rem; font-size: 0.85rem; color: #555; }
+    .pay-summary strong { color: #1a1a1a; display: block; font-size: 0.95rem; margin-bottom: 0.25rem; }
+    .pay-method { border: 1.5px solid #e0e0e0; border-radius: 8px; padding: 0.85rem 1rem; margin-bottom: 0.6rem; }
+    .pay-method h5 { font-weight: 700; font-size: 0.88rem; margin-bottom: 0.2rem; display: flex; align-items: center; gap: 0.4rem; }
+    .pay-method p { font-size: 0.82rem; color: #666; line-height: 1.5; }
+    .pay-method a { color: #D30000; font-weight: 700; text-decoration: none; }
+    .pay-primary { border-color: #D30000; background: #fff8f8; }
+    .pay-tag { background: #D30000; color: #fff; font-size: 0.6rem; font-weight: 700; padding: 0.1rem 0.4rem; border-radius: 2px; }
+    .back-link { background: none; border: none; color: #888; font-size: 0.8rem; cursor: pointer; margin-top: 0.5rem; text-decoration: underline; font-family: 'Barlow', sans-serif; }
+
+    /* STORY BANNER */
+    .story-banner { background: #D30000; padding: 0.9rem 1.5rem; text-align: center; }
+    .story-banner p { color: #fff; font-size: 0.92rem; font-weight: 600; }
     .story-banner span { font-style: italic; font-weight: 400; opacity: 0.9; }
 
-    /* ── CTA BAR ── */
-    .cta-bar { background: #1a1a1a; padding: 1.1rem 1.5rem; text-align: center; display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; }
-    .cta-bar a { display: inline-block; background: #D30000; color: #fff; font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 1rem; padding: 0.65rem 1.75rem; border-radius: 5px; text-decoration: none; letter-spacing: 0.04em; transition: opacity 0.2s; }
-    .cta-bar a:hover { opacity: 0.88; }
-    .cta-bar a.secondary { background: transparent; color: #fff; border: 2px solid #fff; }
-
-    /* ── SECTIONS ── */
-    section { padding: 2.5rem 1.5rem; }
+    /* SECTIONS */
+    section { padding: 3rem 1.5rem; }
     section.dark { background: #f7f7f7; }
     .section-title { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; color: #D30000; letter-spacing: 0.05em; margin-bottom: 0.2rem; }
     .section-sub { font-size: 0.9rem; color: #666; margin-bottom: 1.5rem; }
+    .inner { max-width: 1000px; margin: 0 auto; }
 
-    /* ── SERVICES ── */
+    /* SERVICES */
     .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; }
     .service-card { background: #fff; border: 1.5px solid #e5e5e5; border-radius: 10px; padding: 1.4rem 1rem; text-align: center; border-top: 4px solid #D30000; position: relative; }
     .service-card.featured { border: 2px solid #D30000; background: #fff8f8; }
-    .featured-badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: #D30000; color: #fff; font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.8rem; border-radius: 3px; white-space: nowrap; letter-spacing: 0.05em; }
+    .featured-badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: #D30000; color: #fff; font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.8rem; border-radius: 3px; white-space: nowrap; }
     .service-icon { font-size: 2rem; margin-bottom: 0.6rem; }
     .service-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.35rem; letter-spacing: 0.04em; color: #1a1a1a; margin-bottom: 0.4rem; }
     .service-card p { font-size: 0.84rem; color: #555; line-height: 1.55; }
     .price-tag { display: inline-block; background: #D30000; color: #fff; font-weight: 700; font-size: 0.95rem; padding: 0.25rem 0.7rem; border-radius: 4px; margin-top: 0.7rem; }
     .price-save { display: block; background: #1a1a1a; color: #fff; font-size: 0.72rem; font-weight: 600; padding: 0.15rem 0.55rem; border-radius: 3px; margin-top: 0.35rem; width: fit-content; margin-left: auto; margin-right: auto; }
+    .quote-btn { display: inline-block; background: #1a1a1a; color: #fff; font-weight: 700; font-size: 0.82rem; padding: 0.4rem 0.9rem; border-radius: 4px; margin-top: 0.7rem; cursor: pointer; border: none; font-family: 'Barlow', sans-serif; }
+    .quote-btn:hover { background: #D30000; }
 
-    /* ── PHOTOS ── */
-    .photos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
-    .photo-slot { border-radius: 10px; aspect-ratio: 1; overflow: hidden; position: relative; }
-    .photo-slot img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s; }
-    .photo-slot:hover img { transform: scale(1.04); }
-    .photo-label { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.65); color: #fff; font-size: 0.72rem; font-weight: 700; text-align: center; padding: 0.3rem; letter-spacing: 0.05em; text-transform: uppercase; }
-    .photo-label.after { background: rgba(211,0,0,0.8); }
+    /* BEFORE/AFTER SLIDER */
+    .ba-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .ba-card { border-radius: 10px; overflow: hidden; background: #1a1a1a; }
+    .ba-slider-wrap { position: relative; aspect-ratio: 1; overflow: hidden; cursor: col-resize; user-select: none; }
+    .ba-after { position: absolute; inset: 0; overflow: hidden; }
+    .ba-after img { position: absolute; top: 0; right: 0; bottom: 0; width: 100%; height: 100%; object-fit: cover; }
+    .ba-before img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .ba-divider { position: absolute; top: 0; bottom: 0; width: 3px; background: #fff; left: 50%; transform: translateX(-50%); z-index: 3; pointer-events: none; }
+    .ba-handle { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 36px; height: 36px; background: #fff; border-radius: 50%; z-index: 4; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.3); pointer-events: none; }
+    .ba-handle::before { content: '◀ ▶'; font-size: 0.55rem; color: #333; letter-spacing: -1px; }
+    .ba-labels { display: flex; justify-content: space-between; padding: 0.3rem 0.5rem; position: absolute; top: 0.5rem; left: 0; right: 0; z-index: 5; pointer-events: none; }
+    .ba-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; padding: 0.15rem 0.45rem; border-radius: 3px; }
+    .ba-label.before { background: #1a1a1a; color: #fff; }
+    .ba-label.after { background: #D30000; color: #fff; }
+    .ba-caption { padding: 0.6rem 0.75rem; text-align: center; }
+    .ba-caption h4 { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; color: #fff; letter-spacing: 0.06em; }
+    .ba-caption p { font-size: 0.75rem; color: #aaa; margin-top: 0.15rem; line-height: 1.4; }
 
-    /* ── MAGGOT CALLOUT ── */
-    .gross-callout { background: #1a1a1a; border-radius: 10px; padding: 1.25rem 1.5rem; margin-top: 1.25rem; display: flex; align-items: center; gap: 1rem; }
-    .gross-callout .emoji { font-size: 2rem; flex-shrink: 0; }
-    .gross-callout p { color: #ccc; font-size: 0.88rem; line-height: 1.55; }
-    .gross-callout strong { color: #fff; }
-
-    /* ── STORY SECTION ── */
-    .story-section { background: #1a1a1a; padding: 2.5rem 1.5rem; }
+    /* STORY SECTION */
+    .story-section { background: #1a1a1a; padding: 3rem 1.5rem; }
     .story-inner { max-width: 600px; margin: 0 auto; text-align: center; }
     .story-section .section-title { color: #D30000; }
     .story-section .section-sub { color: #aaa; }
-    .story-quote { font-size: 1.1rem; font-weight: 700; color: #fff; line-height: 1.6; margin: 1rem 0; font-style: italic; }
+    .story-quote { font-size: 1.15rem; font-weight: 700; color: #fff; line-height: 1.6; margin: 1rem 0; font-style: italic; }
     .story-quote span { color: #D30000; }
     .story-detail { font-size: 0.88rem; color: #aaa; line-height: 1.7; }
-    .story-stats { display: flex; justify-content: center; gap: 1.5rem; margin-top: 1.5rem; flex-wrap: wrap; }
-    .stat { text-align: center; }
-    .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; color: #D30000; letter-spacing: 0.05em; line-height: 1; }
+    .story-stats { display: flex; justify-content: center; gap: 2rem; margin-top: 1.5rem; flex-wrap: wrap; }
+    .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; color: #D30000; line-height: 1; }
     .stat-label { font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 0.05em; }
 
-    /* ── SERVICE AREA ── */
+    /* HOW IT WORKS */
+    .how-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; }
+    .step { text-align: center; padding: 1rem 0.75rem; }
+    .step-num { width: 44px; height: 44px; border-radius: 50%; background: #D30000; color: #fff; font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.75rem; }
+    .step h3 { font-weight: 700; font-size: 0.94rem; margin-bottom: 0.35rem; }
+    .step p { font-size: 0.82rem; color: #666; line-height: 1.55; }
+
+    /* SERVICE AREA */
     .area-box { background: #1a1a1a; border-radius: 10px; padding: 1.5rem; color: #fff; }
     .area-box h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: #D30000; letter-spacing: 0.04em; margin-bottom: 0.4rem; }
     .area-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.6rem; }
     .area-tag { background: #2a2a2a; border: 1px solid #D30000; color: #fff; font-size: 0.84rem; padding: 0.35rem 0.85rem; border-radius: 5px; font-weight: 600; }
 
-    /* ── HOW IT WORKS ── */
-    .how-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; }
-    .step { text-align: center; padding: 1.1rem 0.75rem; }
-    .step-num { width: 44px; height: 44px; border-radius: 50%; background: #D30000; color: #fff; font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.75rem; }
-    .step h3 { font-weight: 700; font-size: 0.94rem; margin-bottom: 0.35rem; color: #1a1a1a; }
-    .step p { font-size: 0.82rem; color: #666; line-height: 1.55; }
-
-    /* ── BOOK & PAY ── */
-    .book-box { background: #1a1a1a; border-radius: 12px; padding: 2rem 1.5rem; text-align: center; color: #fff; border: 2px solid #D30000; }
-    .book-box h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 0.05em; margin-bottom: 0.4rem; color: #D30000; }
-    .book-box p { font-size: 0.9rem; color: #aaa; margin-bottom: 1.4rem; }
-    .book-btn { display: inline-block; background: #D30000; color: #fff; font-weight: 700; font-size: 1rem; padding: 0.8rem 1.9rem; border-radius: 6px; text-decoration: none; margin: 0.35rem; transition: opacity 0.2s; }
-    .book-btn:hover { opacity: 0.88; }
-    .book-btn.outline { background: transparent; border: 2px solid #fff; color: #fff; }
-    .book-btn.dark { background: #2a2a2a; }
-
-    /* ── PAYMENT ALTERNATIVES ── */
-    .pay-alts { background: #f7f7f7; border-radius: 10px; padding: 1.25rem 1.5rem; margin-top: 1rem; }
-    .pay-alts h4 { font-weight: 700; font-size: 0.9rem; margin-bottom: 0.75rem; color: #1a1a1a; }
-    .pay-options { display: flex; flex-wrap: wrap; gap: 0.75rem; }
-    .pay-option { background: #fff; border: 1.5px solid #e5e5e5; border-radius: 8px; padding: 0.75rem 1rem; flex: 1; min-width: 140px; }
-    .pay-option h5 { font-weight: 700; font-size: 0.88rem; margin-bottom: 0.2rem; }
-    .pay-option p { font-size: 0.8rem; color: #666; }
-    .pay-option .tag { display: inline-block; background: #D30000; color: #fff; font-size: 0.65rem; font-weight: 700; padding: 0.1rem 0.4rem; border-radius: 2px; margin-bottom: 0.3rem; }
-
-    /* ── QUOTE FORM ── */
-    .quote-form { background: #fff; border: 1.5px solid #e5e5e5; border-radius: 12px; padding: 1.75rem 1.5rem; margin-top: 1.5rem; }
-    .quote-form h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: #D30000; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
-    .quote-form p { font-size: 0.85rem; color: #666; margin-bottom: 1.25rem; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem; }
-    .form-group { display: flex; flex-direction: column; gap: 0.3rem; }
-    .form-group label { font-size: 0.8rem; font-weight: 700; color: #1a1a1a; letter-spacing: 0.03em; }
-    .form-group input, .form-group select, .form-group textarea {
-      border: 1.5px solid #ddd; border-radius: 6px; padding: 0.6rem 0.75rem; font-size: 0.88rem; font-family: 'Barlow', sans-serif; color: #1a1a1a; outline: none; transition: border 0.2s;
-    }
-    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: #D30000; }
-    .form-group textarea { resize: vertical; min-height: 80px; }
-    .form-full { grid-column: 1 / -1; }
-    .submit-btn { width: 100%; background: #D30000; color: #fff; border: none; border-radius: 6px; padding: 0.85rem; font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 1rem; cursor: pointer; margin-top: 0.5rem; transition: opacity 0.2s; letter-spacing: 0.04em; }
-    .submit-btn:hover { opacity: 0.88; }
-    .form-success { display: none; text-align: center; padding: 1.5rem; }
-    .form-success .check { font-size: 2.5rem; }
-    .form-success h4 { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: #D30000; margin: 0.5rem 0 0.25rem; letter-spacing: 0.05em; }
-    .form-success p { font-size: 0.88rem; color: #666; }
-
-    /* ── CONTACT ── */
+    /* CONTACT */
     .contact-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1rem; }
     .contact-chip { display: flex; align-items: center; gap: 0.5rem; background: #f2f2f2; border-radius: 6px; padding: 0.5rem 0.9rem; font-size: 0.88rem; color: #1a1a1a; text-decoration: none; transition: background 0.2s; }
     .contact-chip:hover { background: #e8e8e8; }
     .contact-chip svg { width: 18px; height: 18px; stroke: #D30000; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
 
-    /* ── FOOTER ── */
-    footer { background: #1a1a1a; color: #777; text-align: center; padding: 1.75rem 1.5rem; border-top: 4px solid #D30000; }
-    .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: #D30000; letter-spacing: 0.06em; }
-    .footer-tagline { font-size: 0.8rem; color: #555; margin-top: 0.25rem; font-style: italic; }
-    footer p { margin-top: 0.35rem; font-size: 0.82rem; }
-    footer .copy { margin-top: 0.65rem; font-size: 0.72rem; opacity: 0.45; }
+    /* CTA STRIP */
+    .cta-strip { background: #1a1a1a; padding: 3rem 1.5rem; text-align: center; }
+    .cta-strip h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 5vw, 3.5rem); color: #fff; letter-spacing: 0.05em; line-height: 1; margin-bottom: 0.5rem; }
+    .cta-strip h2 span { color: #D30000; }
+    .cta-strip p { color: #888; font-size: 0.92rem; margin-bottom: 1.5rem; }
+    .cta-strip a { display: inline-block; background: #D30000; color: #fff; font-weight: 700; font-size: 1.05rem; padding: 0.9rem 2.5rem; border-radius: 6px; text-decoration: none; transition: opacity 0.2s; }
+    .cta-strip a:hover { opacity: 0.88; }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 600px) {
-      .hero { min-height: 400px; }
-      .hero-logo { width: 150px; height: 150px; }
+    /* FOOTER */
+    footer { background: #111; color: #666; padding: 2.5rem 2rem 1.5rem; border-top: 4px solid #D30000; }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 2rem; max-width: 1000px; margin: 0 auto 2rem; }
+    .footer-brand img { height: 70px; margin-bottom: 0.5rem; }
+    .footer-brand p { font-size: 0.82rem; color: #555; line-height: 1.6; }
+    .footer-col h4 { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; color: #D30000; letter-spacing: 0.08em; margin-bottom: 0.75rem; }
+    .footer-col a { display: block; color: #666; text-decoration: none; font-size: 0.84rem; margin-bottom: 0.4rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #fff; }
+    .footer-col p { font-size: 0.84rem; color: #666; margin-bottom: 0.35rem; }
+    .footer-social { display: flex; gap: 0.75rem; margin-top: 0.5rem; }
+    .footer-social a { color: #666; font-size: 0.82rem; text-decoration: none; display: flex; align-items: center; gap: 0.3rem; }
+    .footer-social a:hover { color: #D30000; }
+    .footer-bottom { border-top: 1px solid #222; padding-top: 1.25rem; text-align: center; font-size: 0.75rem; color: #444; max-width: 1000px; margin: 0 auto; }
+    .footer-bottom a { color: #555; text-decoration: none; margin: 0 0.5rem; }
+    .footer-bottom a:hover { color: #D30000; }
+
+    /* MODAL */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 1000; align-items: center; justify-content: center; padding: 1rem; }
+    .modal-overlay.active { display: flex; }
+    .modal { background: #fff; border-radius: 12px; padding: 2rem; max-width: 620px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; }
+    .modal-close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #888; }
+    .modal-close:hover { color: #D30000; }
+    .modal h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: #D30000; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+    .modal p.sub { font-size: 0.85rem; color: #666; margin-bottom: 1.25rem; }
+    .mf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem; }
+    .mf-group { display: flex; flex-direction: column; gap: 0.3rem; }
+    .mf-group label { font-size: 0.78rem; font-weight: 700; color: #333; }
+    .mf-group input, .mf-group select, .mf-group textarea { border: 1.5px solid #ddd; border-radius: 6px; padding: 0.6rem 0.75rem; font-size: 0.88rem; font-family: 'Barlow', sans-serif; color: #1a1a1a; outline: none; transition: border 0.2s; }
+    .mf-group input:focus, .mf-group select:focus, .mf-group textarea:focus { border-color: #D30000; }
+    .mf-group textarea { resize: vertical; min-height: 80px; }
+    .mf-full { grid-column: 1 / -1; }
+    .modal-submit { width: 100%; background: #D30000; color: #fff; border: none; border-radius: 6px; padding: 0.85rem; font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 1rem; cursor: pointer; margin-top: 0.5rem; }
+    .modal-submit:hover { opacity: 0.88; }
+    .modal-success { display: none; text-align: center; padding: 1.5rem 0; }
+    .modal-success .check { font-size: 2.5rem; }
+    .modal-success h4 { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: #D30000; margin: 0.5rem 0 0.25rem; letter-spacing: 0.05em; }
+    .modal-success p { font-size: 0.88rem; color: #666; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr; padding-top: 5rem; }
+      .hero-headline { font-size: 3rem; }
       .hero-video-wrap { inset: 0; left: -80%; right: -80%; }
-      .photos-grid { grid-template-columns: 1fr 1fr; }
-      .form-row { grid-template-columns: 1fr; }
-      .story-stats { gap: 1rem; }
+      nav { padding: 0.75rem 1rem; }
+      .nav-links { display: none; }
+      .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .ba-grid { grid-template-columns: 1fr; }
+      .mf-row { grid-template-columns: 1fr; }
+      .bf-row { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
+<!-- NAV -->
+<nav>
+  <div class="nav-logo"><img src="logo.png" alt="Fresh by Mart"></div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#work">Results</a>
+    <a href="#how">How It Works</a>
+    <a href="#area">Service Area</a>
+    <a href="#book" class="nav-book">Book Now</a>
+  </div>
+</nav>
+
 <!-- HERO -->
-<header class="hero">
+<header class="hero" id="book">
   <div class="hero-video-wrap" aria-hidden="true">
-    <iframe
-      src="https://www.youtube.com/embed/CUmxFdBpedE?autoplay=1&mute=1&loop=1&playlist=CUmxFdBpedE&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&disablekb=1&iv_load_policy=3"
-      allow="autoplay; encrypted-media"
-      allowfullscreen
-      title="Fresh by Mart background video"
-    ></iframe>
+    <iframe src="https://www.youtube.com/embed/CUmxFdBpedE?autoplay=1&mute=1&loop=1&playlist=CUmxFdBpedE&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&disablekb=1&iv_load_policy=3"
+      allow="autoplay; encrypted-media" allowfullscreen title="Fresh by Mart video"></iframe>
   </div>
   <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <img class="hero-logo" src="logo.png" alt="Fresh by Mart HTX Logo">
-    <p class="hero-tagline">Pearland's Trash Can Cleaning Specialist</p>
-    <p class="hero-sub">We come to you — leave your bins fresh, sanitized &amp; odor-free</p>
-    <div class="hero-badges">
-      <span class="hero-badge">🫧 Pressure Washed</span>
-      <span class="hero-badge">✋ Hand Cleaned</span>
-      <span class="hero-badge">📍 Pearland &amp; Manvel</span>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <p class="hero-eyebrow">Pearland &amp; Manvel, TX</p>
+      <h1 class="hero-headline">Dirty Bins?<br>Get Them<br><span>Fresh by Mart.</span></h1>
+      <p class="hero-sub">Pressure washed, hand cleaned, and deodorized at your curb — while you're at work.</p>
+      <div class="hero-badges">
+        <span class="hero-badge">🫧 Pressure Washed</span>
+        <span class="hero-badge">✋ Hand Cleaned</span>
+        <span class="hero-badge">📍 Pearland &amp; Manvel</span>
+      </div>
+    </div>
+
+    <!-- BOOKING FORM -->
+    <div class="book-form-card">
+      <div id="bookFormStep">
+        <h3>Book Your Cleaning</h3>
+        <p class="form-sub">We'll confirm your appointment by text</p>
+        <div class="bf-row">
+          <div class="bf-group"><label>First Name *</label><input type="text" id="bf-fname" placeholder="Jane"></div>
+          <div class="bf-group"><label>Last Name *</label><input type="text" id="bf-lname" placeholder="Smith"></div>
+        </div>
+        <div class="bf-row">
+          <div class="bf-group"><label>Phone *</label><input type="tel" id="bf-phone" placeholder="(713) 555-0000"></div>
+          <div class="bf-group"><label>Email</label><input type="email" id="bf-email" placeholder="you@email.com"></div>
+        </div>
+        <div class="bf-group"><label>Service Address *</label><input type="text" id="bf-address" placeholder="123 Main St, Pearland TX"></div>
+        <div class="bf-row">
+          <div class="bf-group">
+            <label>Trash Pickup Day *</label>
+            <select id="bf-day">
+              <option value="">Select day...</option>
+              <option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option>
+            </select>
+          </div>
+          <div class="bf-group">
+            <label>Number of Bins *</label>
+            <select id="bf-bins">
+              <option value="">Select...</option>
+              <option>1 bin</option><option>2 bins</option><option>3 bins</option><option>4+ bins</option>
+            </select>
+          </div>
+        </div>
+        <div class="bf-group"><label>Select Your Plan *</label></div>
+        <div class="plan-options">
+          <div class="plan-opt" onclick="selectPlan(this,'One-Time','$20')">
+            <div class="plan-name">One-Time</div>
+            <div class="plan-price">$20</div>
+            <div class="plan-freq">per visit</div>
+          </div>
+          <div class="plan-opt" onclick="selectPlan(this,'Monthly','$15/mo')">
+            <div class="plan-name">Monthly</div>
+            <div class="plan-price">$15</div>
+            <div class="plan-freq">per month</div>
+          </div>
+          <div class="plan-opt" onclick="selectPlan(this,'Quarterly','$15/qtr')">
+            <div class="plan-name">Quarterly</div>
+            <div class="plan-price">$15</div>
+            <div class="plan-freq">per quarter</div>
+          </div>
+        </div>
+        <button class="bf-submit" onclick="submitBooking()">Continue to Payment →</button>
+        <p class="bf-note">We usually reply within 5 minutes to confirm</p>
+      </div>
+
+      <!-- PAYMENT STEP -->
+      <div id="bookPayStep" class="pay-page">
+        <h4>Almost Done! 🎉</h4>
+        <div class="pay-summary">
+          <strong id="pay-summary-text"></strong>
+          <span id="pay-summary-detail"></span>
+        </div>
+        <p style="font-size:0.85rem;font-weight:700;margin-bottom:0.6rem">Choose how to pay:</p>
+        <div class="pay-method pay-primary">
+          <h5><span class="pay-tag">PRIMARY</span> PayPal</h5>
+          <p>PayPal link coming soon — use Zelle below for now</p>
+        </div>
+        <div class="pay-method">
+          <h5>Zelle</h5>
+          <p>Send to: <strong>(713) 504-4700</strong><br>Include your name &amp; address in the memo</p>
+        </div>
+        <p style="font-size:0.8rem;color:#888;margin-top:0.75rem">After paying, text Mart at <strong>(713) 504-4700</strong> with your payment confirmation to lock in your date!</p>
+        <button class="back-link" onclick="goBack()">← Go back and edit</button>
+      </div>
     </div>
   </div>
 </header>
@@ -222,317 +316,353 @@
   <p>🙌 A Pearland teen, a pressure washer, and a whole lot of hustle. <span>Supporting local means supporting Mart.</span></p>
 </div>
 
-<!-- CTA BAR -->
-<div class="cta-bar">
-  <a href="https://calendly.com/freshbymart/30min" target="_blank" rel="noopener">📅 Schedule a Cleaning</a>
-  <a href="#pay" class="secondary">💳 Pay / Get a Quote</a>
-</div>
-
 <!-- SERVICES -->
 <section id="services">
-  <h2 class="section-title">Our Services</h2>
-  <p class="section-sub">Straightforward pricing — no surprises, no gimmicks</p>
-  <div class="services-grid">
-
-    <div class="service-card">
-      <div class="service-icon">🗑️</div>
-      <h3>One-Time Clean</h3>
-      <p>One full-size residential bin, pressure washed &amp; sanitized inside and out</p>
-      <span class="price-tag">$20</span>
+  <div class="inner">
+    <h2 class="section-title">Our Services</h2>
+    <p class="section-sub">Straightforward pricing — no surprises, no gimmicks</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🗑️</div>
+        <h3>One-Time Clean</h3>
+        <p>Full-size residential bin pressure washed &amp; sanitized inside and out</p>
+        <span class="price-tag">$20</span>
+      </div>
+      <div class="service-card featured">
+        <span class="featured-badge">⭐ Most Popular</span>
+        <div class="service-icon">📅</div>
+        <h3>Monthly Plan</h3>
+        <p>Recurring monthly service — we reach out to schedule each visit</p>
+        <span class="price-tag">$15/mo</span>
+        <span class="price-save">Save $5 vs. one-time</span>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🗓️</div>
+        <h3>Quarterly Plan</h3>
+        <p>Deep clean every 3 months — we'll contact you to set each appointment</p>
+        <span class="price-tag">$15/quarter</span>
+        <span class="price-save">Best for light use</span>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🏢</div>
+        <h3>Commercial</h3>
+        <p>Dumpsters &amp; commercial bins — get a custom quote</p>
+        <button class="quote-btn" onclick="openModal()">Get a Quote →</button>
+      </div>
     </div>
-
-    <div class="service-card featured">
-      <span class="featured-badge">⭐ Most Popular</span>
-      <div class="service-icon">📅</div>
-      <h3>Monthly Plan</h3>
-      <p>Recurring monthly service — we reach out to schedule each visit</p>
-      <span class="price-tag">$15/mo</span>
-      <span class="price-save">Save $5 vs. one-time</span>
-    </div>
-
-    <div class="service-card">
-      <div class="service-icon">🗓️</div>
-      <h3>Quarterly Plan</h3>
-      <p>Deep clean every 3 months — we'll contact you to set each appointment</p>
-      <span class="price-tag">$15/quarter</span>
-      <span class="price-save">Best for light use</span>
-    </div>
-
-    <div class="service-card">
-      <div class="service-icon">🏢</div>
-      <h3>Commercial</h3>
-      <p>Dumpsters &amp; commercial bins — fill out our quick quote form below</p>
-      <span class="price-tag">Custom Quote</span>
-    </div>
-
+    <p style="font-size:0.8rem;color:#999;margin-top:1rem">* Monthly &amp; Quarterly: we'll reach out after booking to confirm your schedule. No auto-charges.</p>
   </div>
-  <p style="font-size:0.8rem;color:#999;margin-top:1rem">* Monthly &amp; Quarterly plans: we'll reach out after booking to confirm your schedule. No auto-charges.</p>
 </section>
 
-<!-- OUR WORK -->
+<!-- OUR WORK - BEFORE/AFTER SLIDERS -->
 <section class="dark" id="work">
-  <h2 class="section-title">Our Work</h2>
-  <p class="section-sub">The before &amp; afters don't lie — see what a difference we make</p>
-  <div class="photos-grid">
-    <div class="photo-slot">
-      <img src="before-after-1.jpg" alt="Before and after trash can cleaning">
-      <span class="photo-label">Before &amp; After</span>
-    </div>
-    <div class="photo-slot">
-      <img src="before-maggots.jpg" alt="Dirty trash can before cleaning">
-      <span class="photo-label">Before</span>
-    </div>
-    <div class="photo-slot">
-      <img src="after-black.jpg" alt="Clean trash can after service">
-      <span class="photo-label after">After ✨</span>
-    </div>
-  </div>
+  <div class="inner">
+    <h2 class="section-title">Our Work</h2>
+    <p class="section-sub">Drag the slider to reveal the transformation</p>
+    <div class="ba-grid">
 
-  <div class="gross-callout">
-    <div class="emoji">😱</div>
-    <p><strong>Yes, those are maggots.</strong> We've seen it all — and we clean it all. No judgment, no extra charge. If your bin is bad enough to be embarrassing, that's exactly why we exist. Book a cleaning today before trash day hits again.</p>
+      <div class="ba-card">
+        <div class="ba-slider-wrap" data-slider>
+          <div class="ba-labels">
+            <span class="ba-label before">BEFORE</span>
+            <span class="ba-label after">AFTER</span>
+          </div>
+          <img class="ba-before" src="https://i.ibb.co/HL2mnWLt/5-DBD6259-32-D9-4-C9-A-86-E5-CA56-F89-FD1-DD.jpg" alt="Before cleaning - black bin">
+          <div class="ba-after" style="width:50%">
+            <img src="https://i.ibb.co/6JRtn2xh/IMG-2314.jpg" alt="After cleaning - black bin">
+          </div>
+          <div class="ba-divider"></div>
+          <div class="ba-handle"></div>
+        </div>
+        <div class="ba-caption">
+          <h4>Black Bin</h4>
+          <p>Yes, those are maggots on the left.<br>Zero judgment — we clean it all.</p>
+        </div>
+      </div>
+
+      <div class="ba-card">
+        <div class="ba-slider-wrap" data-slider>
+          <div class="ba-labels">
+            <span class="ba-label before">BEFORE</span>
+            <span class="ba-label after">AFTER</span>
+          </div>
+          <img class="ba-before" src="https://i.ibb.co/Rks8DVDh/78-A5826-C-8-ED9-4-FFB-B131-D2-B7635-F0851.jpg" alt="Before cleaning - green bin">
+          <div class="ba-after" style="width:50%">
+            <img src="https://i.ibb.co/wNdRt5H9/IMG-2313.jpg" alt="After cleaning - green bin">
+          </div>
+          <div class="ba-divider"></div>
+          <div class="ba-handle"></div>
+        </div>
+        <div class="ba-caption">
+          <h4>Green Bin</h4>
+          <p>Built-up grime, gone in one visit.<br>Smells fresh too.</p>
+        </div>
+      </div>
+
+      <div class="ba-card">
+        <div class="ba-slider-wrap" data-slider>
+          <div class="ba-labels">
+            <span class="ba-label before">BEFORE</span>
+            <span class="ba-label after">AFTER</span>
+          </div>
+          <img class="ba-before" src="https://i.ibb.co/6SN9BrS/5-F22-AAC1-0924-444-E-9536-854857440999.jpg" alt="Before cleaning">
+          <div class="ba-after" style="width:50%">
+            <img src="https://i.ibb.co/RGK3Nq01/IMG-9597.jpg" alt="After cleaning">
+          </div>
+          <div class="ba-divider"></div>
+          <div class="ba-handle"></div>
+        </div>
+        <div class="ba-caption">
+          <h4>Full Detail Clean</h4>
+          <p>Inside, outside, top to bottom.<br>Pressure washed &amp; hand cleaned.</p>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
 
-<!-- STORY SECTION -->
+<!-- WHO IS MART -->
 <div class="story-section">
   <div class="story-inner">
     <h2 class="section-title">Who Is Mart?</h2>
     <p class="section-sub">The story behind Fresh by Mart HTX</p>
     <p class="story-quote">"Just a 17-year-old Pearland kid with a pressure washer, <span>a dream</span>, and the drive to make it happen."</p>
-    <p class="story-detail">
-      Mart launched Fresh by Mart the summer before his senior year of high school — building his own client base, managing his own schedule, and delivering results one clean bin at a time. When you book with Fresh by Mart, you're not calling a franchise. You're supporting a local teen who's betting on himself.
-    </p>
+    <p class="story-detail">Mart launched Fresh by Mart the summer before his senior year of high school — building his own client base, managing his own schedule, and delivering results one clean bin at a time. When you book with Fresh by Mart, you're not calling a franchise. You're supporting a local teen who's betting on himself.</p>
     <div class="story-stats">
-      <div class="stat">
-        <div class="stat-num">17</div>
-        <div class="stat-label">Years Old</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">100%</div>
-        <div class="stat-label">Local &amp; Independent</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">0</div>
-        <div class="stat-label">Excuses Made</div>
-      </div>
+      <div class="stat"><div class="stat-num">17</div><div class="stat-label">Years Old</div></div>
+      <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Local &amp; Independent</div></div>
+      <div class="stat"><div class="stat-num">0</div><div class="stat-label">Excuses Made</div></div>
     </div>
   </div>
 </div>
 
-<!-- SERVICE AREA -->
-<section id="area">
-  <h2 class="section-title">Service Area</h2>
-  <p class="section-sub">Locally owned &amp; operated — right here in your community</p>
-  <div class="area-box">
-    <h3>Pearland &amp; Manvel, TX</h3>
-    <p style="font-size:0.85rem;color:#aaa;margin-bottom:0.4rem">Serving your neighborhood with pride</p>
-    <div class="area-tags">
-      <span class="area-tag">📍 Pearland</span>
-      <span class="area-tag">📍 Manvel</span>
-    </div>
-    <p style="font-size:0.8rem;color:#666;margin-top:0.9rem">Don't see your street? Text us — we may be able to help!</p>
-  </div>
-</section>
-
 <!-- HOW IT WORKS -->
 <section class="dark" id="how">
-  <h2 class="section-title">How It Works</h2>
-  <p class="section-sub">Simple, fast, and done while you're at work</p>
-  <div class="how-steps">
-    <div class="step">
-      <div class="step-num">1</div>
-      <h3>Book Online</h3>
-      <p>Pick your service and schedule a date — takes 2 minutes</p>
-    </div>
-    <div class="step">
-      <div class="step-num">2</div>
-      <h3>Leave Your Bins Out</h3>
-      <p>Just leave them at the curb on your scheduled cleaning day</p>
-    </div>
-    <div class="step">
-      <div class="step-num">3</div>
-      <h3>We Clean &amp; Sanitize</h3>
-      <p>Pressure washed and cleaned by hand for a thorough cleaning and deodorizing service</p>
-    </div>
-    <div class="step">
-      <div class="step-num">4</div>
-      <h3>Fresh Bins, Done</h3>
-      <p>Returned clean and smelling great — you'll notice the difference</p>
+  <div class="inner">
+    <h2 class="section-title">How It Works</h2>
+    <p class="section-sub">Simple, fast, and done while you're at work</p>
+    <div class="how-steps">
+      <div class="step"><div class="step-num">1</div><h3>Book Online</h3><p>Fill out the form above — takes under 2 minutes</p></div>
+      <div class="step"><div class="step-num">2</div><h3>Leave Your Bins Out</h3><p>Just leave them at the curb on your scheduled cleaning day</p></div>
+      <div class="step"><div class="step-num">3</div><h3>We Clean &amp; Sanitize</h3><p>Pressure washed and cleaned by hand for a thorough cleaning and deodorizing service</p></div>
+      <div class="step"><div class="step-num">4</div><h3>Fresh Bins, Done</h3><p>Returned clean and smelling great — you'll notice the difference</p></div>
     </div>
   </div>
 </section>
 
-<!-- BOOK & PAY -->
-<section id="pay">
-  <h2 class="section-title">Book &amp; Pay</h2>
-  <p class="section-sub">Ready to get fresh? Schedule your cleaning today</p>
-
-  <div class="book-box">
-    <h3>Schedule a Cleaning</h3>
-    <p>Pick a time that works for you — Mart will take it from there</p>
-    <a href="https://calendly.com/freshbymart/30min" target="_blank" rel="noopener" class="book-btn">📅 Book Now on Calendly</a>
-  </div>
-
-  <!-- PAYMENT OPTIONS -->
-  <div class="pay-alts" id="payment">
-    <h4>💳 How to Pay</h4>
-    <div class="pay-options">
-      <div class="pay-option">
-        <span class="tag">PRIMARY</span>
-        <h5>PayPal</h5>
-        <!-- ✏️ Replace with Mart's actual PayPal.me link once set up -->
-        <p>Fast &amp; secure — link coming soon</p>
+<!-- SERVICE AREA -->
+<section id="area">
+  <div class="inner">
+    <h2 class="section-title">Service Area</h2>
+    <p class="section-sub">Locally owned &amp; operated — right here in your community</p>
+    <div class="area-box">
+      <h3>Pearland &amp; Manvel, TX</h3>
+      <p style="font-size:0.85rem;color:#aaa;margin-bottom:0.4rem">Serving your neighborhood with pride</p>
+      <div class="area-tags">
+        <span class="area-tag">📍 Pearland</span>
+        <span class="area-tag">📍 Manvel</span>
       </div>
-      <div class="pay-option">
-        <span class="tag">ALTERNATIVE</span>
-        <h5>Zelle</h5>
-        <p>Send to: <strong>(713) 504-4700</strong></p>
-      </div>
+      <p style="font-size:0.8rem;color:#666;margin-top:0.9rem">Don't see your street? Text us — we may be able to help!</p>
     </div>
-  </div>
-
-  <!-- COMMERCIAL QUOTE FORM -->
-  <div class="quote-form" id="quote">
-    <h3>🏢 Commercial Quote Request</h3>
-    <p>Need service for a dumpster or multiple bins? Fill this out and Mart will get back to you within 24 hours.</p>
-    <div id="quoteFormWrap">
-      <div class="form-row">
-        <div class="form-group">
-          <label>First Name *</label>
-          <input type="text" id="fname" placeholder="John" required>
-        </div>
-        <div class="form-group">
-          <label>Last Name *</label>
-          <input type="text" id="lname" placeholder="Smith" required>
-        </div>
+    <div style="margin-top:1.75rem">
+      <p style="font-weight:600;margin-bottom:0.6rem">Reach out directly:</p>
+      <div class="contact-row">
+        <a href="tel:+17135044700" class="contact-chip">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 10.81 19.79 19.79 0 01.07 2.18 2 2 0 012.06 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          (713) 504-4700
+        </a>
+        <a href="mailto:info@freshbymart.com" class="contact-chip">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          info@freshbymart.com
+        </a>
+        <a href="sms:+17135044700" class="contact-chip">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          Text Us
+        </a>
+        <a href="https://instagram.com/freshbymarthtx" class="contact-chip" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          @freshbymarthtx
+        </a>
       </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Phone Number *</label>
-          <input type="tel" id="phone" placeholder="(713) 555-0000" required>
-        </div>
-        <div class="form-group">
-          <label>Email Address</label>
-          <input type="email" id="email" placeholder="john@company.com">
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Business / Property Name</label>
-          <input type="text" id="business" placeholder="Acme Properties">
-        </div>
-        <div class="form-group">
-          <label>Number of Bins / Dumpsters *</label>
-          <select id="bincount">
-            <option value="">Select...</option>
-            <option>1-2 bins</option>
-            <option>3-5 bins</option>
-            <option>6-10 bins</option>
-            <option>1 dumpster</option>
-            <option>Multiple dumpsters</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group form-full">
-          <label>Service Frequency Needed</label>
-          <select id="frequency">
-            <option value="">Select...</option>
-            <option>One-time</option>
-            <option>Monthly</option>
-            <option>Quarterly</option>
-            <option>Other / Not sure</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group form-full">
-          <label>Additional Details</label>
-          <textarea id="details" placeholder="Tell us about the location, type of bins, any special considerations..."></textarea>
-        </div>
-      </div>
-      <button class="submit-btn" onclick="submitQuote()">Send Quote Request →</button>
-    </div>
-    <div class="form-success" id="formSuccess">
-      <div class="check">✅</div>
-      <h4>Quote Request Sent!</h4>
-      <p>Thanks! Mart will reach out to <span id="confirmContact"></span> within 24 hours to discuss your service needs.</p>
-    </div>
-  </div>
-
-  <!-- CONTACT -->
-  <div style="margin-top:1.75rem">
-    <p style="font-weight:600;margin-bottom:0.6rem">Or reach out directly:</p>
-    <div class="contact-row">
-      <a href="tel:+17135044700" class="contact-chip">
-        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 10.81 19.79 19.79 0 01.07 2.18 2 2 0 012.06 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-        (713) 504-4700
-      </a>
-      <a href="mailto:info@freshbymart.com" class="contact-chip">
-        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        info@freshbymart.com
-      </a>
-      <a href="sms:+17135044700" class="contact-chip">
-        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-        Text Us
-      </a>
-      <a href="https://instagram.com/freshbymarthtx" class="contact-chip" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-        @freshbymarthtx
-      </a>
     </div>
   </div>
 </section>
+
+<!-- CTA STRIP -->
+<div class="cta-strip">
+  <h2>Clean bins.<br><span>One booking away.</span></h2>
+  <p>Less than 2 minutes to book. Your bins get cleaned this week.</p>
+  <a href="#book">Book My Clean →</a>
+</div>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">Fresh by Mart HTX</div>
-  <div class="footer-tagline">A Pearland teen. A pressure washer. A dream.</div>
-  <p>Trash Can Cleaning · Pearland &amp; Manvel, TX</p>
-  <p class="copy">© 2025 Fresh by Mart. All rights reserved.</p>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <img src="logo.png" alt="Fresh by Mart">
+      <p>Pearland's trash can cleaning specialist. A local teen, a pressure washer, and a dream.</p>
+      <div class="footer-social" style="margin-top:0.75rem">
+        <a href="https://instagram.com/freshbymarthtx" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          Instagram
+        </a>
+        <a href="https://tiktok.com/@freshbymart_" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>
+          TikTok
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <a href="#services">Services &amp; Pricing</a>
+      <a href="#work">Our Work</a>
+      <a href="#how">How It Works</a>
+      <a href="#area">Service Area</a>
+      <a href="#book">Book Now</a>
+    </div>
+    <div class="footer-col">
+      <h4>Get In Touch</h4>
+      <p>Pearland &amp; Manvel, TX</p>
+      <a href="tel:+17135044700">(713) 504-4700</a>
+      <a href="mailto:info@freshbymart.com">info@freshbymart.com</a>
+      <a href="https://instagram.com/freshbymarthtx" target="_blank">@freshbymarthtx</a>
+      <a href="https://tiktok.com/@freshbymart_" target="_blank">@freshbymart_ on TikTok</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2025 Fresh by Mart HTX. All rights reserved. · Proudly serving Pearland &amp; Manvel, TX
+    <br style="margin-top:0.4rem">
+    <a href="terms.html">Terms of Service</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="disclaimer.html">Disclaimer</a>
+  </div>
 </footer>
 
-<script>
-function submitQuote() {
-  const fname = document.getElementById('fname').value.trim();
-  const lname = document.getElementById('lname').value.trim();
-  const phone = document.getElementById('phone').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const bincount = document.getElementById('bincount').value;
+<!-- COMMERCIAL QUOTE MODAL -->
+<div class="modal-overlay" id="quoteModal" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modalFormWrap">
+      <h3>Commercial Quote Request</h3>
+      <p class="sub">Need service for a dumpster or multiple bins? Fill this out and Mart will get back to you within 24 hours.</p>
+      <div class="mf-row">
+        <div class="mf-group"><label>First Name *</label><input type="text" id="mf-fname" placeholder="John"></div>
+        <div class="mf-group"><label>Last Name *</label><input type="text" id="mf-lname" placeholder="Smith"></div>
+      </div>
+      <div class="mf-row">
+        <div class="mf-group"><label>Phone *</label><input type="tel" id="mf-phone" placeholder="(713) 555-0000"></div>
+        <div class="mf-group"><label>Email</label><input type="email" id="mf-email" placeholder="john@company.com"></div>
+      </div>
+      <div class="mf-row">
+        <div class="mf-group"><label>Business / Property Name</label><input type="text" id="mf-business" placeholder="Acme Properties"></div>
+        <div class="mf-group"><label>Number of Bins / Dumpsters *</label>
+          <select id="mf-bins">
+            <option value="">Select...</option>
+            <option>1-2 bins</option><option>3-5 bins</option><option>6-10 bins</option>
+            <option>1 dumpster</option><option>Multiple dumpsters</option>
+          </select>
+        </div>
+      </div>
+      <div class="mf-row">
+        <div class="mf-group mf-full"><label>Service Frequency</label>
+          <select id="mf-freq">
+            <option value="">Select...</option>
+            <option>One-time</option><option>Monthly</option><option>Quarterly</option><option>Other / Not sure</option>
+          </select>
+        </div>
+      </div>
+      <div class="mf-row">
+        <div class="mf-group mf-full"><label>Additional Details</label>
+          <textarea id="mf-details" placeholder="Tell us about the location, type of bins, any special considerations..."></textarea>
+        </div>
+      </div>
+      <button class="modal-submit" onclick="submitQuote()">Send Quote Request →</button>
+    </div>
+    <div class="modal-success" id="modalSuccess">
+      <div class="check">✅</div>
+      <h4>Quote Request Sent!</h4>
+      <p>Thanks! Mart will reach out within 24 hours to discuss your service needs.</p>
+    </div>
+  </div>
+</div>
 
-  if (!fname || !lname || !phone || !bincount) {
-    alert('Please fill in all required fields (marked with *)');
-    return;
+<script>
+  // ── BEFORE/AFTER SLIDER ──
+  document.querySelectorAll('[data-slider]').forEach(wrap => {
+    const after = wrap.querySelector('.ba-after');
+    const divider = wrap.querySelector('.ba-divider');
+    const handle = wrap.querySelector('.ba-handle');
+    let dragging = false;
+
+    function setPos(x) {
+      const rect = wrap.getBoundingClientRect();
+      let pct = Math.min(Math.max((x - rect.left) / rect.width, 0.02), 0.98);
+      after.style.width = (pct * 100) + '%';
+      divider.style.left = (pct * 100) + '%';
+      handle.style.left = (pct * 100) + '%';
+    }
+
+    wrap.addEventListener('mousedown', e => { dragging = true; setPos(e.clientX); e.preventDefault(); });
+    window.addEventListener('mousemove', e => { if (dragging) setPos(e.clientX); });
+    window.addEventListener('mouseup', () => dragging = false);
+
+    wrap.addEventListener('touchstart', e => { dragging = true; setPos(e.touches[0].clientX); }, {passive:true});
+    window.addEventListener('touchmove', e => { if (dragging) setPos(e.touches[0].clientX); }, {passive:true});
+    window.addEventListener('touchend', () => dragging = false);
+  });
+
+  // ── BOOKING FORM ──
+  let selectedPlan = '', selectedPrice = '';
+  function selectPlan(el, plan, price) {
+    document.querySelectorAll('.plan-opt').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    selectedPlan = plan; selectedPrice = price;
   }
 
-  // Build mailto link to send quote request to info@freshbymart.com
-  const business = document.getElementById('business').value.trim();
-  const frequency = document.getElementById('frequency').value;
-  const details = document.getElementById('details').value.trim();
+  function submitBooking() {
+    const fname = document.getElementById('bf-fname').value.trim();
+    const lname = document.getElementById('bf-lname').value.trim();
+    const phone = document.getElementById('bf-phone').value.trim();
+    const address = document.getElementById('bf-address').value.trim();
+    const day = document.getElementById('bf-day').value;
+    const bins = document.getElementById('bf-bins').value;
+    if (!fname || !lname || !phone || !address || !day || !bins || !selectedPlan) {
+      alert('Please fill in all required fields and select a plan.');
+      return;
+    }
+    const subject = encodeURIComponent('New Booking Request — Fresh by Mart');
+    const body = encodeURIComponent('NEW BOOKING REQUEST\n===================\nName: ' + fname + ' ' + lname + '\nPhone: ' + phone + '\nEmail: ' + (document.getElementById('bf-email').value||'N/A') + '\nAddress: ' + address + '\nTrash Day: ' + day + '\nBins: ' + bins + '\nPlan: ' + selectedPlan + ' (' + selectedPrice + ')');
+    window.open('mailto:info@freshbymart.com?subject=' + subject + '&body=' + body);
+    document.getElementById('pay-summary-text').textContent = fname + ' ' + lname + ' — ' + selectedPlan + ' plan (' + selectedPrice + ')';
+    document.getElementById('pay-summary-detail').textContent = address + ' · ' + bins + ' · Trash day: ' + day;
+    document.getElementById('bookFormStep').style.display = 'none';
+    document.getElementById('bookPayStep').classList.add('active');
+  }
 
-  const subject = encodeURIComponent('Commercial Quote Request — Fresh by Mart');
-  const body = encodeURIComponent(
-    'COMMERCIAL QUOTE REQUEST\n' +
-    '========================\n' +
-    'Name: ' + fname + ' ' + lname + '\n' +
-    'Phone: ' + phone + '\n' +
-    'Email: ' + (email || 'Not provided') + '\n' +
-    'Business: ' + (business || 'Not provided') + '\n' +
-    'Bins/Dumpsters: ' + bincount + '\n' +
-    'Frequency: ' + (frequency || 'Not specified') + '\n\n' +
-    'Additional Details:\n' + (details || 'None provided')
-  );
+  function goBack() {
+    document.getElementById('bookFormStep').style.display = 'block';
+    document.getElementById('bookPayStep').classList.remove('active');
+  }
 
-  window.location.href = 'mailto:info@freshbymart.com?subject=' + subject + '&body=' + body;
+  // ── MODAL ──
+  function openModal() { document.getElementById('quoteModal').classList.add('active'); document.body.style.overflow = 'hidden'; }
+  function closeModal() { document.getElementById('quoteModal').classList.remove('active'); document.body.style.overflow = ''; }
+  function closeModalOutside(e) { if (e.target === document.getElementById('quoteModal')) closeModal(); }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-  // Show success message
-  document.getElementById('quoteFormWrap').style.display = 'none';
-  const success = document.getElementById('formSuccess');
-  success.style.display = 'block';
-  document.getElementById('confirmContact').textContent = phone + (email ? ' / ' + email : '');
-}
+  function submitQuote() {
+    const fname = document.getElementById('mf-fname').value.trim();
+    const lname = document.getElementById('mf-lname').value.trim();
+    const phone = document.getElementById('mf-phone').value.trim();
+    const bins = document.getElementById('mf-bins').value;
+    if (!fname || !lname || !phone || !bins) { alert('Please fill in all required fields.'); return; }
+    const subject = encodeURIComponent('Commercial Quote Request — Fresh by Mart');
+    const body = encodeURIComponent('COMMERCIAL QUOTE REQUEST\n========================\nName: ' + fname + ' ' + lname + '\nPhone: ' + phone + '\nEmail: ' + (document.getElementById('mf-email').value||'N/A') + '\nBusiness: ' + (document.getElementById('mf-business').value||'N/A') + '\nBins: ' + bins + '\nFrequency: ' + (document.getElementById('mf-freq').value||'N/A') + '\n\nDetails:\n' + (document.getElementById('mf-details').value||'None'));
+    window.open('mailto:info@freshbymart.com?subject=' + subject + '&body=' + body);
+    document.getElementById('modalFormWrap').style.display = 'none';
+    document.getElementById('modalSuccess').style.display = 'block';
+  }
 </script>
-
 </body>
 </html>
