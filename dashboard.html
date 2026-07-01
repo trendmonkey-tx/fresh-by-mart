@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fresh by Mart — Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{--red:#D30000;--dark:#1a1a1a;--bg:#f4f4f5;--card:#fff;--border:#e5e5e5;--text:#1a1a1a;--muted:#888}
+    body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+
+    /* LOGIN */
+    .login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--dark)}
+    .login-card{background:#fff;border-radius:12px;padding:2.5rem 2rem;width:100%;max-width:380px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.4)}
+    .login-logo{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--red);letter-spacing:0.08em;margin-bottom:0.25rem}
+    .login-sub{font-size:0.82rem;color:var(--muted);margin-bottom:1.75rem}
+    .login-card input{width:100%;border:1.5px solid var(--border);border-radius:6px;padding:0.7rem 1rem;font-size:0.95rem;font-family:'Barlow',sans-serif;margin-bottom:0.75rem;outline:none}
+    .login-card input:focus{border-color:var(--red)}
+    .login-btn{width:100%;background:var(--red);color:#fff;border:none;border-radius:6px;padding:0.8rem;font-family:'Barlow',sans-serif;font-weight:700;font-size:1rem;cursor:pointer}
+    .login-btn:hover{opacity:0.88}
+    .login-err{color:var(--red);font-size:0.82rem;margin-top:0.5rem;display:none}
+
+    /* APP SHELL */
+    .app{display:none}
+    .app.active{display:flex;min-height:100vh}
+
+    /* SIDEBAR */
+    .sidebar{width:220px;background:var(--dark);flex-shrink:0;display:flex;flex-direction:column;position:fixed;top:0;bottom:0;left:0;z-index:100}
+    .sidebar-logo{padding:1.25rem 1.5rem;border-bottom:1px solid #2a2a2a}
+    .sidebar-logo .brand{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:var(--red);letter-spacing:0.06em;line-height:1}
+    .sidebar-logo .sub{font-size:0.7rem;color:#555;letter-spacing:0.05em;text-transform:uppercase}
+    .sidebar-user{padding:0.75rem 1.5rem;border-bottom:1px solid #2a2a2a}
+    .sidebar-user p{font-size:0.78rem;color:#888}
+    .sidebar-user strong{color:#fff;font-size:0.85rem}
+    nav.sidebar-nav{padding:1rem 0;flex:1}
+    .nav-item{display:flex;align-items:center;gap:0.75rem;padding:0.75rem 1.5rem;color:#888;text-decoration:none;font-size:0.88rem;font-weight:600;letter-spacing:0.02em;cursor:pointer;border:none;background:none;width:100%;text-align:left;transition:all 0.15s}
+    .nav-item:hover{color:#fff;background:rgba(255,255,255,0.05)}
+    .nav-item.active{color:#fff;background:rgba(211,0,0,0.15);border-left:3px solid var(--red)}
+    .nav-item .icon{font-size:1.1rem;width:20px;text-align:center}
+    .nav-badge{margin-left:auto;background:var(--red);color:#fff;font-size:0.65rem;font-weight:700;padding:0.1rem 0.45rem;border-radius:10px}
+    .sidebar-footer{padding:1rem 1.5rem;border-top:1px solid #2a2a2a}
+    .logout-btn{color:#666;font-size:0.8rem;background:none;border:none;cursor:pointer;font-family:'Barlow',sans-serif}
+    .logout-btn:hover{color:#fff}
+
+    /* MAIN */
+    .main{margin-left:220px;flex:1;padding:2rem;min-height:100vh}
+    .page-header{margin-bottom:1.75rem}
+    .page-header h1{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--dark);letter-spacing:0.04em}
+    .page-header p{font-size:0.88rem;color:var(--muted);margin-top:0.2rem}
+
+    /* VIEWS */
+    .view{display:none}
+    .view.active{display:block}
+
+    /* SUMMARY CARDS */
+    .summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-bottom:2rem}
+    .summary-card{background:var(--card);border-radius:10px;padding:1.25rem 1.5rem;border:1.5px solid var(--border);border-top:4px solid var(--red)}
+    .summary-card.green{border-top-color:#22c55e}
+    .summary-card.blue{border-top-color:#3b82f6}
+    .summary-card.orange{border-top-color:#f97316}
+    .summary-num{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--dark);line-height:1}
+    .summary-label{font-size:0.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;margin-top:0.25rem}
+
+    /* TABLES */
+    .card{background:var(--card);border-radius:10px;border:1.5px solid var(--border);overflow:hidden;margin-bottom:1.5rem}
+    .card-header{padding:1rem 1.5rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+    .card-header h3{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:0.04em;color:var(--dark)}
+    .card-header .count{font-size:0.78rem;color:var(--muted)}
+    table{width:100%;border-collapse:collapse;font-size:0.85rem}
+    th{padding:0.6rem 1rem;text-align:left;font-size:0.72rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);background:#fafafa;border-bottom:1px solid var(--border)}
+    td{padding:0.75rem 1rem;border-bottom:1px solid var(--border);vertical-align:middle}
+    tr:last-child td{border-bottom:none}
+    tr:hover td{background:#fafafa}
+    .badge{display:inline-block;font-size:0.68rem;font-weight:700;padding:0.15rem 0.5rem;border-radius:3px;letter-spacing:0.04em;text-transform:uppercase}
+    .badge-new{background:#fef3c7;color:#92400e}
+    .badge-confirmed{background:#dcfce7;color:#15803d}
+    .badge-completed{background:#dbeafe;color:#1d4ed8}
+    .badge-pending{background:#fee2e2;color:#991b1b}
+    .badge-monthly{background:#ede9fe;color:#7c3aed}
+    .badge-quarterly{background:#e0f2fe;color:#0369a1}
+    .badge-one-time{background:#f3f4f6;color:#374151}
+    .action-btn{background:none;border:1.5px solid var(--border);border-radius:5px;padding:0.3rem 0.7rem;font-size:0.75rem;font-family:'Barlow',sans-serif;font-weight:600;cursor:pointer;color:var(--text);transition:all 0.15s}
+    .action-btn:hover{border-color:var(--red);color:var(--red)}
+    .action-btn.primary{background:var(--red);color:#fff;border-color:var(--red)}
+    .action-btn.primary:hover{opacity:0.88}
+    .action-btn.success{background:#22c55e;color:#fff;border-color:#22c55e}
+    .empty-state{text-align:center;padding:3rem;color:var(--muted);font-size:0.9rem}
+
+    /* TABS */
+    .tabs{display:flex;gap:0.5rem;margin-bottom:1.25rem}
+    .tab{padding:0.5rem 1.1rem;border-radius:6px;font-size:0.85rem;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:var(--card);color:var(--muted);transition:all 0.15s}
+    .tab.active{background:var(--red);color:#fff;border-color:var(--red)}
+
+    /* FORM */
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem}
+    .form-group{display:flex;flex-direction:column;gap:0.3rem}
+    .form-group label{font-size:0.75rem;font-weight:700;color:#444;letter-spacing:0.03em;text-transform:uppercase}
+    .form-group input,.form-group select,.form-group textarea{border:1.5px solid var(--border);border-radius:6px;padding:0.6rem 0.75rem;font-size:0.9rem;font-family:'Barlow',sans-serif;outline:none;transition:border 0.2s}
+    .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--red)}
+    .form-group textarea{resize:vertical;min-height:80px}
+    .form-full{grid-column:1/-1}
+    .form-submit{background:var(--red);color:#fff;border:none;border-radius:6px;padding:0.8rem 2rem;font-family:'Barlow',sans-serif;font-weight:700;font-size:0.95rem;cursor:pointer;margin-top:0.5rem}
+    .form-submit:hover{opacity:0.88}
+    .success-msg{display:none;background:#dcfce7;border:1px solid #86efac;color:#15803d;padding:0.75rem 1rem;border-radius:6px;font-size:0.88rem;margin-top:0.75rem}
+
+    /* QR */
+    .qr-wrap{text-align:center;padding:2rem}
+    .qr-wrap canvas{border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,0.1)}
+    .qr-url{font-size:0.85rem;color:var(--muted);margin-top:0.75rem}
+    .qr-print{margin-top:1rem}
+
+    /* SCHEDULE CALENDAR */
+    .week-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0.75rem;margin-bottom:1.5rem}
+    .day-col{background:var(--card);border-radius:10px;border:1.5px solid var(--border);overflow:hidden}
+    .day-header{padding:0.6rem 0.75rem;background:#fafafa;border-bottom:1px solid var(--border);font-weight:700;font-size:0.82rem;text-align:center}
+    .day-header.today{background:var(--red);color:#fff}
+    .day-jobs{padding:0.5rem}
+    .job-chip{background:#fff5f5;border:1px solid #fecaca;border-radius:6px;padding:0.5rem 0.6rem;margin-bottom:0.4rem;font-size:0.78rem}
+    .job-chip strong{display:block;color:var(--dark)}
+    .job-chip span{color:var(--muted)}
+
+    @media(max-width:768px){
+      .sidebar{width:100%;height:60px;bottom:auto;flex-direction:row;align-items:center;overflow-x:auto}
+      .sidebar-logo,.sidebar-user,.sidebar-footer{display:none}
+      nav.sidebar-nav{display:flex;flex-direction:row;padding:0;gap:0}
+      .nav-item{padding:0.5rem 1rem;flex-direction:column;gap:0.15rem;font-size:0.65rem;border-left:none;border-bottom:2px solid transparent}
+      .nav-item.active{border-bottom-color:var(--red);border-left:none;background:none}
+      .main{margin-left:0;margin-top:60px;padding:1rem}
+      .form-grid{grid-template-columns:1fr}
+      .week-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login-wrap" id="loginWrap">
+  <div class="login-card">
+    <div class="login-logo">Fresh by Mart</div>
+    <p class="login-sub">Dashboard · Pearland & Manvel TX</p>
+    <input type="text" id="loginUser" placeholder="Username" autocomplete="username">
+    <input type="password" id="loginPass" placeholder="Password" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="login-btn" onclick="doLogin()">Sign In</button>
+    <p class="login-err" id="loginErr">Invalid username or password</p>
+  </div>
+</div>
+
+<!-- APP -->
+<div class="app" id="app">
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-logo">
+      <div class="brand">Fresh by Mart</div>
+      <div class="sub">Dashboard</div>
+    </div>
+    <div class="sidebar-user">
+      <p>Signed in as</p>
+      <strong id="sidebarUser">—</strong>
+    </div>
+    <nav class="sidebar-nav">
+      <button class="nav-item active" onclick="showView('inbox')" id="nav-inbox">
+        <span class="icon">📥</span> Inbox
+        <span class="nav-badge" id="badge-inbox" style="display:none">0</span>
+      </button>
+      <button class="nav-item" onclick="showView('followups')" id="nav-followups">
+        <span class="icon">📞</span> Follow-Ups
+        <span class="nav-badge" id="badge-followups" style="display:none">0</span>
+      </button>
+      <button class="nav-item" onclick="showView('schedule')" id="nav-schedule">
+        <span class="icon">📅</span> Schedule
+      </button>
+      <button class="nav-item" onclick="showView('customers')" id="nav-customers">
+        <span class="icon">👥</span> Customers
+      </button>
+      <button class="nav-item" onclick="showView('add-customer')" id="nav-add-customer">
+        <span class="icon">➕</span> Add Customer
+      </button>
+      <button class="nav-item" onclick="showView('qr')" id="nav-qr">
+        <span class="icon">📱</span> QR Code
+      </button>
+    </nav>
+    <div class="sidebar-footer">
+      <button class="logout-btn" onclick="logout()">Sign Out</button>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- INBOX -->
+    <div class="view active" id="view-inbox">
+      <div class="page-header">
+        <h1>Inbox</h1>
+        <p>New bookings and quote requests</p>
+      </div>
+      <div class="summary-grid" id="summaryCards">
+        <div class="summary-card"><div class="summary-num" id="sum-bookings">—</div><div class="summary-label">New Bookings</div></div>
+        <div class="summary-card orange"><div class="summary-num" id="sum-quotes">—</div><div class="summary-label">New Quotes</div></div>
+        <div class="summary-card blue"><div class="summary-num" id="sum-followups">—</div><div class="summary-label">Follow-Ups Due</div></div>
+        <div class="summary-card green"><div class="summary-num" id="sum-customers">—</div><div class="summary-label">Total Customers</div></div>
+      </div>
+      <div class="tabs">
+        <div class="tab active" onclick="switchTab('bookings-tab','quotes-tab',this)">Bookings</div>
+        <div class="tab" onclick="switchTab('quotes-tab','bookings-tab',this)">Quote Requests</div>
+      </div>
+      <div id="bookings-tab">
+        <div class="card">
+          <div class="card-header"><h3>Booking Requests</h3><span class="count" id="booking-count"></span></div>
+          <div id="bookings-table"><div class="empty-state">Loading...</div></div>
+        </div>
+      </div>
+      <div id="quotes-tab" style="display:none">
+        <div class="card">
+          <div class="card-header"><h3>Custom Quote Requests</h3></div>
+          <div id="quotes-table"><div class="empty-state">Loading...</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOLLOW-UPS -->
+    <div class="view" id="view-followups">
+      <div class="page-header">
+        <h1>Follow-Up Queue</h1>
+        <p>Customers to contact this week for scheduling & payment</p>
+      </div>
+      <div class="card">
+        <div class="card-header"><h3>Due This Week</h3></div>
+        <div id="followups-table"><div class="empty-state">Loading...</div></div>
+      </div>
+    </div>
+
+    <!-- SCHEDULE -->
+    <div class="view" id="view-schedule">
+      <div class="page-header">
+        <h1>Schedule</h1>
+        <p>Confirmed jobs by date</p>
+      </div>
+      <div class="card">
+        <div class="card-header"><h3>Upcoming Jobs</h3></div>
+        <div id="schedule-table"><div class="empty-state">Loading...</div></div>
+      </div>
+    </div>
+
+    <!-- CUSTOMERS -->
+    <div class="view" id="view-customers">
+      <div class="page-header">
+        <h1>Customers</h1>
+        <p>All customers and their service plans</p>
+      </div>
+      <div style="margin-bottom:1rem">
+        <input type="text" id="customer-search" placeholder="Search by name, phone, address..." style="width:100%;max-width:400px;border:1.5px solid var(--border);border-radius:6px;padding:0.6rem 1rem;font-size:0.88rem;font-family:Barlow,sans-serif;outline:none" oninput="filterCustomers(this.value)">
+      </div>
+      <div class="card">
+        <div class="card-header"><h3>All Customers</h3><span class="count" id="customer-count"></span></div>
+        <div id="customers-table"><div class="empty-state">Loading...</div></div>
+      </div>
+    </div>
+
+    <!-- ADD CUSTOMER -->
+    <div class="view" id="view-add-customer">
+      <div class="page-header">
+        <h1>Add Customer</h1>
+        <p>Manual entry for walk-up or door-to-door sales</p>
+      </div>
+      <div class="card" style="padding:1.75rem">
+        <div class="form-grid">
+          <div class="form-group"><label>First Name *</label><input type="text" id="ac-fname" placeholder="Jane"></div>
+          <div class="form-group"><label>Last Name *</label><input type="text" id="ac-lname" placeholder="Smith"></div>
+          <div class="form-group"><label>Phone *</label><input type="tel" id="ac-phone" placeholder="(713) 555-0000"></div>
+          <div class="form-group"><label>Email</label><input type="email" id="ac-email" placeholder="jane@email.com"></div>
+          <div class="form-group form-full"><label>Service Address *</label><input type="text" id="ac-address" placeholder="123 Main St, Pearland TX 77581"></div>
+          <div class="form-group"><label>Trash Pickup Day</label>
+            <select id="ac-day">
+              <option value="">Select...</option>
+              <option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Number of Bins</label>
+            <select id="ac-bins">
+              <option value="">Select...</option>
+              <option>1 bin</option><option>2 bins</option><option>3 bins</option><option>4+ bins</option>
+            </select>
+          </div>
+          <div class="form-group form-full"><label>Plan *</label>
+            <select id="ac-plan">
+              <option value="">Select plan...</option>
+              <option value="one-time">One-Time ($20)</option>
+              <option value="monthly">Monthly ($15/mo)</option>
+              <option value="quarterly">Quarterly ($15/quarter)</option>
+            </select>
+          </div>
+          <div class="form-group form-full"><label>Notes</label><textarea id="ac-notes" placeholder="Any notes about this customer or their bins..."></textarea></div>
+        </div>
+        <button class="form-submit" onclick="addCustomer()">Save Customer & Send to System →</button>
+        <div class="success-msg" id="ac-success">✅ Customer added! They'll appear in the Inbox and Customers list.</div>
+      </div>
+    </div>
+
+    <!-- QR CODE -->
+    <div class="view" id="view-qr">
+      <div class="page-header">
+        <h1>QR Code</h1>
+        <p>Show customers this code — they scan and book instantly</p>
+      </div>
+      <div class="card">
+        <div class="qr-wrap">
+          <canvas id="qrCanvas"></canvas>
+          <p class="qr-url">freshbymart.com/book</p>
+          <p style="font-size:0.82rem;color:var(--muted);margin-top:0.5rem">Points to the mobile booking page</p>
+          <div class="qr-print">
+            <button class="action-btn primary" onclick="window.print()">🖨️ Print QR Code</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /main -->
+</div><!-- /app -->
+
+<script>
+const API = 'https://trendmonkey-production-production.up.railway.app/api/fbm';
+let token = localStorage.getItem('fbm_token');
+let allCustomers = [];
+
+// ── AUTH ──
+async function doLogin() {
+  const username = document.getElementById('loginUser').value.trim();
+  const password = document.getElementById('loginPass').value;
+  try {
+    const r = await fetch(API + '/auth/login', {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({username, password})
+    });
+    const d = await r.json();
+    if (!r.ok) { document.getElementById('loginErr').style.display='block'; return; }
+    token = d.token;
+    localStorage.setItem('fbm_token', token);
+    localStorage.setItem('fbm_user', d.user.full_name);
+    startApp(d.user.full_name);
+  } catch(e) { document.getElementById('loginErr').style.display='block'; }
+}
+
+function startApp(name) {
+  document.getElementById('loginWrap').style.display = 'none';
+  document.getElementById('app').classList.add('active');
+  document.getElementById('sidebarUser').textContent = name || localStorage.getItem('fbm_user') || '—';
+  loadSummary();
+  loadInbox();
+  generateQR();
+}
+
+function logout() {
+  localStorage.removeItem('fbm_token');
+  localStorage.removeItem('fbm_user');
+  location.reload();
+}
+
+// Auto-login if token exists
+if (token) startApp(localStorage.getItem('fbm_user'));
+
+// ── NAVIGATION ──
+function showView(name) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('view-' + name).classList.add('active');
+  document.getElementById('nav-' + name).classList.add('active');
+  if (name === 'followups') loadFollowups();
+  if (name === 'schedule') loadSchedule();
+  if (name === 'customers') loadCustomers();
+}
+
+function switchTab(showId, hideId, el) {
+  document.getElementById(showId).style.display = 'block';
+  document.getElementById(hideId).style.display = 'none';
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// ── HELPERS ──
+function headers() { return {'Authorization':'Bearer '+token,'Content-Type':'application/json'}; }
+function planBadge(p) {
+  const map = {'one-time':'badge-one-time','monthly':'badge-monthly','quarterly':'badge-quarterly'};
+  const label = {'one-time':'One-Time','monthly':'Monthly','quarterly':'Quarterly'};
+  return `<span class="badge ${map[p]||'badge-one-time'}">${label[p]||p}</span>`;
+}
+function statusBadge(s) {
+  const map = {'new':'badge-new','confirmed':'badge-confirmed','completed':'badge-completed','pending':'badge-pending'};
+  return `<span class="badge ${map[s]||'badge-new'}">${s}</span>`;
+}
+function fmtDate(d) { return d ? new Date(d).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '—'; }
+function fmtTime(d) { return d ? new Date(d).toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}) : '—'; }
+
+// ── SUMMARY ──
+async function loadSummary() {
+  try {
+    const r = await fetch(API+'/dashboard/summary', {headers:headers()});
+    const d = await r.json();
+    document.getElementById('sum-bookings').textContent = d.new_bookings;
+    document.getElementById('sum-quotes').textContent = d.new_quotes;
+    document.getElementById('sum-followups').textContent = d.followups_this_week;
+    document.getElementById('sum-customers').textContent = d.total_customers;
+    if (d.new_bookings > 0) { document.getElementById('badge-inbox').style.display='inline'; document.getElementById('badge-inbox').textContent=d.new_bookings+d.new_quotes; }
+    if (d.followups_this_week > 0) { document.getElementById('badge-followups').style.display='inline'; document.getElementById('badge-followups').textContent=d.followups_this_week; }
+  } catch(e) { console.error(e); }
+}
+
+// ── INBOX ──
+async function loadInbox() {
+  try {
+    const r = await fetch(API+'/inbox', {headers:headers()});
+    const d = await r.json();
+    renderBookings(d.bookings);
+    renderQuotes(d.quotes);
+    document.getElementById('booking-count').textContent = d.bookings.length + ' total';
+  } catch(e) { console.error(e); }
+}
+
+function renderBookings(items) {
+  if (!items.length) { document.getElementById('bookings-table').innerHTML='<div class="empty-state">No bookings yet — they\'ll show up here when someone books online.</div>'; return; }
+  document.getElementById('bookings-table').innerHTML = `
+    <table>
+      <thead><tr><th>Customer</th><th>Phone</th><th>Address</th><th>Plan</th><th>Status</th><th>Received</th><th>Actions</th></tr></thead>
+      <tbody>${items.map(b => `
+        <tr>
+          <td><strong>${b.first_name} ${b.last_name}</strong></td>
+          <td><a href="tel:${b.phone}" style="color:var(--red)">${b.phone}</a></td>
+          <td style="font-size:0.8rem;color:var(--muted)">${b.address}</td>
+          <td>${planBadge(b.plan)}</td>
+          <td>${statusBadge(b.status)}</td>
+          <td style="font-size:0.8rem;color:var(--muted)">${fmtTime(b.created_at)}</td>
+          <td>
+            ${b.status==='new' ? `<button class="action-btn primary" onclick="updateBooking(${b.id},'confirmed')">Confirm</button>` : ''}
+            ${b.status==='confirmed' ? `<button class="action-btn success" onclick="updateBooking(${b.id},'completed')">Done ✓</button>` : ''}
+          </td>
+        </tr>`).join('')}
+      </tbody>
+    </table>`;
+}
+
+function renderQuotes(items) {
+  if (!items.length) { document.getElementById('quotes-table').innerHTML='<div class="empty-state">No quote requests yet.</div>'; return; }
+  document.getElementById('quotes-table').innerHTML = `
+    <table>
+      <thead><tr><th>Name</th><th>Phone</th><th>Business</th><th>Bins</th><th>Frequency</th><th>Status</th><th>Received</th><th>Actions</th></tr></thead>
+      <tbody>${items.map(q => `
+        <tr>
+          <td><strong>${q.first_name} ${q.last_name}</strong></td>
+          <td><a href="tel:${q.phone}" style="color:var(--red)">${q.phone}</a></td>
+          <td>${q.business_name||'—'}</td>
+          <td>${q.bin_count||'—'}</td>
+          <td>${q.frequency||'—'}</td>
+          <td>${statusBadge(q.status)}</td>
+          <td style="font-size:0.8rem;color:var(--muted)">${fmtTime(q.created_at)}</td>
+          <td>${q.status==='new' ? `<button class="action-btn primary" onclick="updateQuote(${q.id},'in-progress')">In Progress</button>` : ''}</td>
+        </tr>`).join('')}
+      </tbody>
+    </table>`;
+}
+
+async function updateBooking(id, status) {
+  await fetch(API+'/bookings/'+id+'/status', {method:'PATCH',headers:headers(),body:JSON.stringify({status})});
+  loadInbox(); loadSummary();
+}
+async function updateQuote(id, status) {
+  await fetch(API+'/quotes/'+id+'/status', {method:'PATCH',headers:headers(),body:JSON.stringify({status})});
+  loadInbox(); loadSummary();
+}
+
+// ── FOLLOW-UPS ──
+async function loadFollowups() {
+  try {
+    const r = await fetch(API+'/followups', {headers:headers()});
+    const items = await r.json();
+    if (!items.length) { document.getElementById('followups-table').innerHTML='<div class="empty-state">🎉 No follow-ups due! Check back later.</div>'; return; }
+    document.getElementById('followups-table').innerHTML = `
+      <table>
+        <thead><tr><th>Customer</th><th>Phone</th><th>Plan</th><th>Type</th><th>Due</th><th>Action</th></tr></thead>
+        <tbody>${items.map(f => `
+          <tr>
+            <td><strong>${f.first_name} ${f.last_name}</strong><br><span style="font-size:0.78rem;color:var(--muted)">${f.address}</span></td>
+            <td><a href="tel:${f.phone}" style="color:var(--red)">${f.phone}</a><br>${f.email ? `<a href="mailto:${f.email}" style="font-size:0.75rem;color:var(--muted)">${f.email}</a>` : ''}</td>
+            <td>${planBadge(f.plan)}</td>
+            <td style="font-size:0.82rem">${f.type.replace(/_/g,' ')}</td>
+            <td style="font-size:0.82rem;color:${new Date(f.due_date)<new Date()?'var(--red)':'var(--text)'};font-weight:${new Date(f.due_date)<new Date()?'700':'400'}">${fmtDate(f.due_date)}</td>
+            <td><button class="action-btn success" onclick="completeFollowup(${f.id})">✓ Done</button></td>
+          </tr>`).join('')}
+        </tbody>
+      </table>`;
+  } catch(e) { console.error(e); }
+}
+
+async function completeFollowup(id) {
+  await fetch(API+'/followups/'+id+'/complete', {method:'PATCH',headers:headers()});
+  loadFollowups(); loadSummary();
+}
+
+// ── SCHEDULE ──
+async function loadSchedule() {
+  try {
+    const r = await fetch(API+'/schedule', {headers:headers()});
+    const items = await r.json();
+    if (!items.length) { document.getElementById('schedule-table').innerHTML='<div class="empty-state">No confirmed jobs scheduled yet. Confirm bookings from the Inbox to add them here.</div>'; return; }
+    document.getElementById('schedule-table').innerHTML = `
+      <table>
+        <thead><tr><th>Date</th><th>Customer</th><th>Phone</th><th>Address</th><th>Bins</th><th>Plan</th><th>Status</th></tr></thead>
+        <tbody>${items.map(j => `
+          <tr>
+            <td><strong>${fmtDate(j.service_date)}</strong></td>
+            <td>${j.first_name} ${j.last_name}</td>
+            <td><a href="tel:${j.phone}" style="color:var(--red)">${j.phone}</a></td>
+            <td style="font-size:0.8rem;color:var(--muted)">${j.address}</td>
+            <td>${j.bin_count||'—'}</td>
+            <td>${planBadge(j.plan)}</td>
+            <td>${statusBadge(j.status)}</td>
+          </tr>`).join('')}
+        </tbody>
+      </table>`;
+  } catch(e) { console.error(e); }
+}
+
+// ── CUSTOMERS ──
+async function loadCustomers() {
+  try {
+    const r = await fetch(API+'/customers', {headers:headers()});
+    allCustomers = await r.json();
+    document.getElementById('customer-count').textContent = allCustomers.length + ' total';
+    renderCustomers(allCustomers);
+  } catch(e) { console.error(e); }
+}
+
+function renderCustomers(items) {
+  if (!items.length) { document.getElementById('customers-table').innerHTML='<div class="empty-state">No customers yet.</div>'; return; }
+  document.getElementById('customers-table').innerHTML = `
+    <table>
+      <thead><tr><th>Name</th><th>Phone</th><th>Address</th><th>Plan</th><th>Bookings</th><th>Source</th><th>Since</th></tr></thead>
+      <tbody>${items.map(c => `
+        <tr>
+          <td><strong>${c.first_name} ${c.last_name}</strong></td>
+          <td><a href="tel:${c.phone}" style="color:var(--red)">${c.phone}</a></td>
+          <td style="font-size:0.8rem;color:var(--muted)">${c.address}</td>
+          <td>${planBadge(c.plan)}</td>
+          <td style="text-align:center">${c.booking_count||0}</td>
+          <td style="font-size:0.78rem;color:var(--muted)">${c.source||'website'}</td>
+          <td style="font-size:0.78rem;color:var(--muted)">${fmtDate(c.created_at)}</td>
+        </tr>`).join('')}
+      </tbody>
+    </table>`;
+}
+
+function filterCustomers(q) {
+  if (!q) { renderCustomers(allCustomers); return; }
+  const filtered = allCustomers.filter(c =>
+    (c.first_name+' '+c.last_name+c.phone+c.address).toLowerCase().includes(q.toLowerCase())
+  );
+  renderCustomers(filtered);
+}
+
+// ── ADD CUSTOMER ──
+async function addCustomer() {
+  const data = {
+    first_name: document.getElementById('ac-fname').value.trim(),
+    last_name: document.getElementById('ac-lname').value.trim(),
+    phone: document.getElementById('ac-phone').value.trim(),
+    email: document.getElementById('ac-email').value.trim(),
+    address: document.getElementById('ac-address').value.trim(),
+    trash_day: document.getElementById('ac-day').value,
+    bin_count: document.getElementById('ac-bins').value,
+    plan: document.getElementById('ac-plan').value,
+    notes: document.getElementById('ac-notes').value.trim()
+  };
+  if (!data.first_name || !data.last_name || !data.phone || !data.address || !data.plan) {
+    alert('Please fill in all required fields.'); return;
+  }
+  try {
+    const r = await fetch(API+'/customers', {method:'POST',headers:headers(),body:JSON.stringify(data)});
+    if (!r.ok) throw new Error('Failed');
+    document.getElementById('ac-success').style.display = 'block';
+    ['ac-fname','ac-lname','ac-phone','ac-email','ac-address','ac-notes'].forEach(id => document.getElementById(id).value='');
+    document.getElementById('ac-day').value='';
+    document.getElementById('ac-bins').value='';
+    document.getElementById('ac-plan').value='';
+    loadSummary();
+    setTimeout(() => document.getElementById('ac-success').style.display='none', 4000);
+  } catch(e) { alert('Error saving customer. Please try again.'); }
+}
+
+// ── QR CODE ──
+function generateQR() {
+  QRCode.toCanvas(document.getElementById('qrCanvas'), 'https://freshbymart.com/book', {
+    width: 280, margin: 2,
+    color: { dark: '#1a1a1a', light: '#ffffff' }
+  });
+}
+</script>
+</body>
+</html>
