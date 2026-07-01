@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Book your Fresh by Mart trash can cleaning — Pearland & Manvel TX">
+  <title>Book a Cleaning | Fresh by Mart</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Barlow',sans-serif;background:#f4f4f5;min-height:100vh;display:flex;flex-direction:column}
+    .top{background:#1a1a1a;border-bottom:4px solid #D30000;padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between}
+    .top img{height:50px}
+    .top a{color:#aaa;font-size:0.82rem;text-decoration:none}
+    .top a:hover{color:#fff}
+    .wrap{flex:1;display:flex;align-items:center;justify-content:center;padding:1.5rem}
+    .card{background:#fff;border-radius:14px;padding:2rem 1.75rem;width:100%;max-width:460px;box-shadow:0 10px 40px rgba(0,0,0,0.1)}
+    h2{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:#1a1a1a;letter-spacing:0.04em;margin-bottom:0.2rem}
+    .sub{font-size:0.82rem;color:#888;margin-bottom:1.5rem}
+    .fg{display:flex;flex-direction:column;gap:0.3rem;margin-bottom:0.75rem}
+    .fg label{font-size:0.72rem;font-weight:700;color:#444;letter-spacing:0.04em;text-transform:uppercase}
+    .fg input,.fg select{border:1.5px solid #e0e0e0;border-radius:6px;padding:0.65rem 0.85rem;font-size:0.95rem;font-family:'Barlow',sans-serif;color:#1a1a1a;outline:none;transition:border 0.2s;-webkit-appearance:none}
+    .fg input:focus,.fg select:focus{border-color:#D30000}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:0.6rem}
+    .plans{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.5rem;margin-bottom:0.75rem}
+    .plan{border:2px solid #e0e0e0;border-radius:8px;padding:0.75rem 0.5rem;text-align:center;cursor:pointer;transition:all 0.2s}
+    .plan:hover{border-color:#D30000}
+    .plan.selected{border-color:#D30000;background:#fff5f5}
+    .plan-name{font-weight:700;font-size:0.8rem;color:#1a1a1a}
+    .plan-price{font-size:1.1rem;font-weight:800;color:#D30000}
+    .plan-freq{font-size:0.65rem;color:#888}
+    .btn{width:100%;background:#D30000;color:#fff;border:none;border-radius:8px;padding:0.9rem;font-family:'Barlow',sans-serif;font-weight:800;font-size:1rem;cursor:pointer;letter-spacing:0.04em;transition:opacity 0.2s}
+    .btn:hover{opacity:0.88}
+    .pay-step{display:none}
+    .pay-step.active{display:block}
+    .pay-summary{background:#f7f7f7;border-left:4px solid #D30000;border-radius:6px;padding:0.85rem 1rem;margin-bottom:1.25rem;font-size:0.88rem;color:#555}
+    .pay-summary strong{display:block;font-size:0.95rem;color:#1a1a1a;margin-bottom:0.3rem}
+    .pay-method{border:1.5px solid #e5e5e5;border-radius:8px;padding:0.85rem 1rem;margin-bottom:0.6rem}
+    .pay-method.primary{border-color:#D30000;background:#fff8f8}
+    .pay-method h5{font-weight:700;font-size:0.9rem;margin-bottom:0.2rem}
+    .pay-method p{font-size:0.82rem;color:#666;line-height:1.55}
+    .pay-tag{background:#D30000;color:#fff;font-size:0.6rem;font-weight:700;padding:0.1rem 0.4rem;border-radius:2px;margin-right:0.3rem}
+    .back{background:none;border:none;color:#888;font-size:0.8rem;cursor:pointer;text-decoration:underline;font-family:'Barlow',sans-serif;margin-top:0.5rem}
+    .success{display:none;text-align:center;padding:1rem 0}
+    .success h3{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:#D30000;letter-spacing:0.05em;margin:0.75rem 0 0.5rem}
+    .success p{font-size:0.88rem;color:#666;line-height:1.6}
+    footer{background:#1a1a1a;padding:1rem;text-align:center;font-size:0.75rem;color:#555;border-top:3px solid #D30000}
+  </style>
+</head>
+<body>
+<div class="top">
+  <img src="logo.png" alt="Fresh by Mart">
+  <a href="index.html">← Back to site</a>
+</div>
+<div class="wrap">
+  <div class="card">
+
+    <!-- FORM STEP -->
+    <div id="formStep">
+      <h2>Book Your Cleaning</h2>
+      <p class="sub">Fill this out — Mart will confirm your date by text</p>
+      <div class="row">
+        <div class="fg"><label>First Name *</label><input type="text" id="b-fname" placeholder="Jane"></div>
+        <div class="fg"><label>Last Name *</label><input type="text" id="b-lname" placeholder="Smith"></div>
+      </div>
+      <div class="row">
+        <div class="fg"><label>Phone *</label><input type="tel" id="b-phone" placeholder="(713) 555-0000"></div>
+        <div class="fg"><label>Email</label><input type="email" id="b-email" placeholder="you@email.com"></div>
+      </div>
+      <div class="fg"><label>Service Address *</label><input type="text" id="b-address" placeholder="123 Main St, Pearland TX"></div>
+      <div class="row">
+        <div class="fg"><label>Trash Pickup Day *</label>
+          <select id="b-day">
+            <option value="">Select...</option>
+            <option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option>
+          </select>
+        </div>
+        <div class="fg"><label>Number of Bins *</label>
+          <select id="b-bins">
+            <option value="">Select...</option>
+            <option>1 bin</option><option>2 bins</option><option>3 bins</option><option>4+ bins</option>
+          </select>
+        </div>
+      </div>
+      <div class="fg"><label>Select Your Plan *</label></div>
+      <div class="plans">
+        <div class="plan" onclick="pick(this,'one-time','$20')"><div class="plan-name">One-Time</div><div class="plan-price">$20</div><div class="plan-freq">per visit</div></div>
+        <div class="plan" onclick="pick(this,'monthly','$15/mo')"><div class="plan-name">Monthly</div><div class="plan-price">$15</div><div class="plan-freq">per month</div></div>
+        <div class="plan" onclick="pick(this,'quarterly','$15/qtr')"><div class="plan-name">Quarterly</div><div class="plan-price">$15</div><div class="plan-freq">per quarter</div></div>
+      </div>
+      <button class="btn" onclick="submitForm()">Continue to Payment →</button>
+    </div>
+
+    <!-- PAY STEP -->
+    <div class="pay-step" id="payStep">
+      <h2>Almost Done! 🎉</h2>
+      <p class="sub">Your booking is saved — now send payment to confirm</p>
+      <div class="pay-summary">
+        <strong id="ps-name"></strong>
+        <span id="ps-detail"></span>
+      </div>
+      <div class="pay-method primary">
+        <h5><span class="pay-tag">PRIMARY</span>PayPal</h5>
+        <p>PayPal link coming soon — use Zelle below for now</p>
+      </div>
+      <div class="pay-method">
+        <h5>Zelle</h5>
+        <p>Send to <strong>(713) 504-4700</strong><br>Include your name & address in the memo</p>
+      </div>
+      <p style="font-size:0.8rem;color:#888;margin-top:0.75rem">After paying, text Mart at <strong>(713) 504-4700</strong> with your confirmation!</p>
+      <button class="back" onclick="goBack()">← Go back and edit</button>
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="success" id="successStep">
+      <div style="font-size:2.5rem">✅</div>
+      <h3>You're Booked!</h3>
+      <p>Mart will text you at <span id="su-phone"></span> to confirm your cleaning date.<br><br>Check your email for a confirmation from info@freshbymart.com</p>
+    </div>
+
+  </div>
+</div>
+<footer>© 2025 Fresh by Mart HTX · <a href="tel:+17135044700" style="color:#888">(713) 504-4700</a> · Pearland & Manvel TX</footer>
+
+<script>
+const API = 'https://trendmonkey-production-production.up.railway.app/api/fbm';
+let selPlan='', selPrice='';
+
+function pick(el, plan, price) {
+  document.querySelectorAll('.plan').forEach(p => p.classList.remove('selected'));
+  el.classList.add('selected');
+  selPlan=plan; selPrice=price;
+}
+
+async function submitForm() {
+  const fname=document.getElementById('b-fname').value.trim();
+  const lname=document.getElementById('b-lname').value.trim();
+  const phone=document.getElementById('b-phone').value.trim();
+  const email=document.getElementById('b-email').value.trim();
+  const address=document.getElementById('b-address').value.trim();
+  const day=document.getElementById('b-day').value;
+  const bins=document.getElementById('b-bins').value;
+  if (!fname||!lname||!phone||!address||!day||!bins||!selPlan) {
+    alert('Please fill in all required fields and select a plan.'); return;
+  }
+  try {
+    const r = await fetch(API+'/booking', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({first_name:fname,last_name:lname,phone,email,address,trash_day:day,bin_count:bins,plan:selPlan})
+    });
+    if (!r.ok) throw new Error('Submit failed');
+    document.getElementById('ps-name').textContent = fname+' '+lname+' — '+selPlan+' ('+selPrice+')';
+    document.getElementById('ps-detail').textContent = address+' · '+bins+' · Trash day: '+day;
+    document.getElementById('su-phone').textContent = phone;
+    document.getElementById('formStep').style.display='none';
+    document.getElementById('payStep').classList.add('active');
+  } catch(e) { alert('Something went wrong. Please try again or text us at (713) 504-4700.'); }
+}
+
+function goBack() {
+  document.getElementById('formStep').style.display='block';
+  document.getElementById('payStep').classList.remove('active');
+}
+</script>
+</body>
+</html>
