@@ -8,7 +8,7 @@
   <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
-    :root{--red:#D30000;--dark:#1a1a1a;--bg:#f4f4f5;--card:#fff;--border:#e5e5e5;--text:#1a1a1a;--muted:#888}
+    :root{--red:#D30000;--dark:#1a1a1a;--bg:#f4f4f5;--card:#fff;--border:#e5e5e5;--text:#1a1a1a;--muted:#888;--green:#22c55e;--blue:#3b82f6;--orange:#f97316}
     body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
 
     /* LOGIN */
@@ -19,7 +19,6 @@
     .login-card input{width:100%;border:1.5px solid var(--border);border-radius:6px;padding:0.7rem 1rem;font-size:0.95rem;font-family:'Barlow',sans-serif;margin-bottom:0.75rem;outline:none;color:var(--text)}
     .login-card input:focus{border-color:var(--red)}
     .login-btn{width:100%;background:var(--red);color:#fff;border:none;border-radius:6px;padding:0.8rem;font-family:'Barlow',sans-serif;font-weight:700;font-size:1rem;cursor:pointer}
-    .login-btn:hover{opacity:0.88}
     .login-err{color:var(--red);font-size:0.82rem;margin-top:0.5rem;display:none}
 
     /* APP */
@@ -30,12 +29,12 @@
     .sidebar{width:220px;background:var(--dark);flex-shrink:0;display:flex;flex-direction:column;position:fixed;top:0;bottom:0;left:0;z-index:100;overflow-y:auto}
     .sidebar-logo{padding:1.25rem 1.5rem;border-bottom:1px solid #2a2a2a}
     .sidebar-logo .brand{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:var(--red);letter-spacing:0.06em;line-height:1}
-    .sidebar-logo .sub{font-size:0.7rem;color:#555;letter-spacing:0.05em;text-transform:uppercase}
+    .sidebar-logo .sub{font-size:0.7rem;color:#555;text-transform:uppercase;letter-spacing:0.05em}
     .sidebar-user{padding:0.75rem 1.5rem;border-bottom:1px solid #2a2a2a}
     .sidebar-user p{font-size:0.78rem;color:#888}
     .sidebar-user strong{color:#fff;font-size:0.85rem}
     nav.sidebar-nav{padding:1rem 0;flex:1}
-    .nav-item{display:flex;align-items:center;gap:0.75rem;padding:0.75rem 1.5rem;color:#888;text-decoration:none;font-size:0.88rem;font-weight:600;letter-spacing:0.02em;cursor:pointer;border:none;background:none;width:100%;text-align:left;transition:all 0.15s;border-left:3px solid transparent}
+    .nav-item{display:flex;align-items:center;gap:0.75rem;padding:0.75rem 1.5rem;color:#888;font-size:0.88rem;font-weight:600;cursor:pointer;border:none;background:none;width:100%;text-align:left;transition:all 0.15s;border-left:3px solid transparent}
     .nav-item:hover{color:#fff;background:rgba(255,255,255,0.05)}
     .nav-item.active{color:#fff;background:rgba(211,0,0,0.15);border-left-color:var(--red)}
     .nav-item .icon{font-size:1.1rem;width:20px;text-align:center;flex-shrink:0}
@@ -46,26 +45,26 @@
 
     /* MAIN */
     .main{margin-left:220px;flex:1;padding:2rem;min-height:100vh}
-    .page-header{margin-bottom:1.75rem}
-    .page-header h1{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--dark);letter-spacing:0.04em}
-    .page-header p{font-size:0.88rem;color:var(--muted);margin-top:0.2rem}
+    .page-header{margin-bottom:1.75rem;display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+    .page-header-text h1{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--dark);letter-spacing:0.04em}
+    .page-header-text p{font-size:0.88rem;color:var(--muted);margin-top:0.2rem}
 
     /* VIEWS */
     .view{display:none}
     .view.active{display:block}
 
-    /* SUMMARY CARDS */
+    /* SUMMARY */
     .summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-bottom:2rem}
     .summary-card{background:var(--card);border-radius:10px;padding:1.25rem 1.5rem;border:1.5px solid var(--border);border-top:4px solid var(--red)}
-    .summary-card.green{border-top-color:#22c55e}
-    .summary-card.blue{border-top-color:#3b82f6}
-    .summary-card.orange{border-top-color:#f97316}
+    .summary-card.green{border-top-color:var(--green)}
+    .summary-card.blue{border-top-color:var(--blue)}
+    .summary-card.orange{border-top-color:var(--orange)}
     .summary-num{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--dark);line-height:1}
     .summary-label{font-size:0.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;margin-top:0.25rem}
 
-    /* CARDS & TABLES */
+    /* CARDS */
     .card{background:var(--card);border-radius:10px;border:1.5px solid var(--border);overflow:hidden;margin-bottom:1.5rem}
-    .card-header{padding:1rem 1.5rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:1rem}
+    .card-header{padding:1rem 1.5rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
     .card-header h3{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:0.04em;color:var(--dark)}
     .card-header .count{font-size:0.78rem;color:var(--muted)}
     .table-wrap{overflow-x:auto}
@@ -74,7 +73,7 @@
     td{padding:0.75rem 1rem;border-bottom:1px solid var(--border);vertical-align:middle}
     tr:last-child td{border-bottom:none}
     tr:hover td{background:#fafafa}
-    .badge{display:inline-block;font-size:0.68rem;font-weight:700;padding:0.15rem 0.5rem;border-radius:3px;letter-spacing:0.04em;text-transform:uppercase;white-space:nowrap}
+    .badge{display:inline-block;font-size:0.68rem;font-weight:700;padding:0.15rem 0.5rem;border-radius:3px;text-transform:uppercase;white-space:nowrap}
     .badge-new{background:#fef3c7;color:#92400e}
     .badge-confirmed{background:#dcfce7;color:#15803d}
     .badge-completed{background:#dbeafe;color:#1d4ed8}
@@ -86,8 +85,9 @@
     .action-btn{background:none;border:1.5px solid var(--border);border-radius:5px;padding:0.3rem 0.7rem;font-size:0.75rem;font-family:'Barlow',sans-serif;font-weight:600;cursor:pointer;color:var(--text);transition:all 0.15s;white-space:nowrap}
     .action-btn:hover{border-color:var(--red);color:var(--red)}
     .action-btn.primary{background:var(--red);color:#fff;border-color:var(--red)}
-    .action-btn.primary:hover{opacity:0.88}
-    .action-btn.success{background:#22c55e;color:#fff;border-color:#22c55e}
+    .action-btn.green{background:var(--green);color:#fff;border-color:var(--green)}
+    .action-btn.blue{background:var(--blue);color:#fff;border-color:var(--blue)}
+    .action-btn.orange{background:var(--orange);color:#fff;border-color:var(--orange)}
     .empty-state{text-align:center;padding:3rem;color:var(--muted);font-size:0.9rem}
     .error-state{text-align:center;padding:2rem;color:var(--red);font-size:0.88rem}
 
@@ -100,7 +100,7 @@
     .form-card{background:var(--card);border-radius:10px;border:1.5px solid var(--border);padding:1.75rem}
     .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem}
     .form-group{display:flex;flex-direction:column;gap:0.3rem}
-    .form-group label{font-size:0.75rem;font-weight:700;color:#444;letter-spacing:0.03em;text-transform:uppercase}
+    .form-group label{font-size:0.75rem;font-weight:700;color:#444;text-transform:uppercase;letter-spacing:0.03em}
     .form-group input,.form-group select,.form-group textarea{border:1.5px solid var(--border);border-radius:6px;padding:0.6rem 0.75rem;font-size:0.9rem;font-family:'Barlow',sans-serif;outline:none;transition:border 0.2s;color:var(--text);background:#fff}
     .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--red)}
     .form-group textarea{resize:vertical;min-height:80px}
@@ -110,25 +110,57 @@
     .success-msg{display:none;background:#dcfce7;border:1px solid #86efac;color:#15803d;padding:0.75rem 1rem;border-radius:6px;font-size:0.88rem;margin-top:0.75rem}
     .error-msg{display:none;background:#fee2e2;border:1px solid #fca5a5;color:#991b1b;padding:0.75rem 1rem;border-radius:6px;font-size:0.88rem;margin-top:0.75rem}
     .form-section-title{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--dark);letter-spacing:0.04em;margin:1.25rem 0 0.75rem;padding-top:1.25rem;border-top:1px solid var(--border);grid-column:1/-1}
+    .checkbox-row{display:flex;align-items:center;gap:0.5rem;grid-column:1/-1}
+    .checkbox-row input[type=checkbox]{width:16px;height:16px;accent-color:var(--red);cursor:pointer}
+    .checkbox-row label{font-size:0.88rem;font-weight:600;color:var(--text);cursor:pointer;text-transform:none;letter-spacing:0}
+
+    /* MODAL */
+    .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:500;align-items:center;justify-content:center;padding:1rem}
+    .modal-overlay.active{display:flex}
+    .modal{background:#fff;border-radius:12px;padding:2rem;max-width:520px;width:100%;max-height:90vh;overflow-y:auto;position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.3)}
+    .modal-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--dark);letter-spacing:0.04em;margin-bottom:0.25rem}
+    .modal-sub{font-size:0.82rem;color:var(--muted);margin-bottom:1.5rem}
+    .modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--muted);line-height:1}
+    .modal-close:hover{color:var(--red)}
+    .modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem}
+    .modal-full{grid-column:1/-1}
+    .modal-group{display:flex;flex-direction:column;gap:0.3rem}
+    .modal-group label{font-size:0.75rem;font-weight:700;color:#444;text-transform:uppercase;letter-spacing:0.03em}
+    .modal-group input,.modal-group select,.modal-group textarea{border:1.5px solid var(--border);border-radius:6px;padding:0.6rem 0.75rem;font-size:0.9rem;font-family:'Barlow',sans-serif;outline:none;transition:border 0.2s;color:var(--text)}
+    .modal-group input:focus,.modal-group select:focus,.modal-group textarea:focus{border-color:var(--red)}
+    .modal-group textarea{resize:vertical;min-height:70px}
+    .modal-divider{grid-column:1/-1;border:none;border-top:1px solid var(--border);margin:0.5rem 0}
+    .modal-section{grid-column:1/-1;font-family:'Bebas Neue',sans-serif;font-size:1rem;color:var(--dark);letter-spacing:0.04em;margin-top:0.25rem}
+    .modal-checkbox{display:flex;align-items:center;gap:0.5rem;grid-column:1/-1}
+    .modal-checkbox input{width:16px;height:16px;accent-color:var(--red);cursor:pointer}
+    .modal-checkbox label{font-size:0.88rem;font-weight:600;cursor:pointer}
+    .modal-footer{display:flex;gap:0.75rem;justify-content:flex-end;margin-top:1.25rem;grid-column:1/-1;flex-wrap:wrap}
+    .followup-fields{display:none;grid-column:1/-1}
+    .followup-fields.visible{display:contents}
+
+    /* REMINDER SEND BOX */
+    .reminder-box{background:var(--dark);border-radius:10px;padding:1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem}
+    .reminder-box p{color:#ccc;font-size:0.88rem;line-height:1.6}
+    .reminder-box strong{color:#fff}
 
     /* QR */
     .qr-wrap{text-align:center;padding:2rem}
-    .qr-wrap canvas{border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,0.1)}
-    .qr-url{font-size:0.85rem;color:var(--muted);margin-top:0.75rem}
-
-    /* OVERDUE highlight */
     .overdue{color:var(--red);font-weight:700}
+
+    /* FOLLOW-UP OUTCOME BUTTONS */
+    .outcome-btns{display:flex;gap:0.4rem;flex-wrap:wrap}
 
     @media(max-width:768px){
       .sidebar{width:100%;height:56px;bottom:auto;flex-direction:row;overflow-x:auto;overflow-y:hidden}
       .sidebar-logo,.sidebar-user,.sidebar-footer{display:none}
-      nav.sidebar-nav{display:flex;flex-direction:row;padding:0;overflow-x:auto}
+      nav.sidebar-nav{display:flex;flex-direction:row;padding:0;overflow-x:auto;width:100%}
       .nav-item{padding:0.4rem 0.75rem;flex-direction:column;gap:0.1rem;font-size:0.6rem;border-left:none;border-bottom:2px solid transparent;white-space:nowrap;min-width:60px;justify-content:center;align-items:center}
       .nav-item.active{border-bottom-color:var(--red);border-left:none;background:rgba(211,0,0,0.1)}
-      .nav-item .icon{font-size:1.2rem}
       .main{margin-left:0;margin-top:56px;padding:1rem}
-      .form-grid{grid-template-columns:1fr}
-      .summary-grid{grid-template-columns:1fr 1fr}
+      .form-grid,.modal-grid{grid-template-columns:1fr}
+      .form-full,.modal-full{grid-column:1}
+      .modal-footer{justify-content:stretch}
+      .modal-footer button{flex:1}
     }
   </style>
 </head>
@@ -166,8 +198,8 @@
         <span class="icon">📞</span> Follow-Ups
         <span class="nav-badge" id="badge-followups">0</span>
       </button>
-      <button class="nav-item" onclick="showView('schedule')" id="nav-schedule">
-        <span class="icon">📅</span> Schedule
+      <button class="nav-item" onclick="showView('cleaning')" id="nav-cleaning">
+        <span class="icon">🗑️</span> Cleaning Schedule
       </button>
       <button class="nav-item" onclick="showView('customers')" id="nav-customers">
         <span class="icon">👥</span> Customers
@@ -189,8 +221,7 @@
     <!-- INBOX -->
     <div class="view active" id="view-inbox">
       <div class="page-header">
-        <h1>Inbox</h1>
-        <p>New bookings and quote requests</p>
+        <div class="page-header-text"><h1>Inbox</h1><p>New bookings and quote requests</p></div>
       </div>
       <div class="summary-grid">
         <div class="summary-card"><div class="summary-num" id="sum-bookings">—</div><div class="summary-label">New Bookings</div></div>
@@ -219,8 +250,8 @@
     <!-- FOLLOW-UPS -->
     <div class="view" id="view-followups">
       <div class="page-header">
-        <h1>Follow-Up Queue</h1>
-        <p>Customers to contact for scheduling & payment</p>
+        <div class="page-header-text"><h1>Follow-Up Queue</h1><p>Customers to contact for scheduling & payment</p></div>
+        <button class="action-btn primary" onclick="sendReminders()">📧 Send This Week's Reminders</button>
       </div>
       <div class="card">
         <div class="card-header"><h3>Due This Week</h3></div>
@@ -228,23 +259,21 @@
       </div>
     </div>
 
-    <!-- SCHEDULE -->
-    <div class="view" id="view-schedule">
+    <!-- CLEANING SCHEDULE -->
+    <div class="view" id="view-cleaning">
       <div class="page-header">
-        <h1>Schedule</h1>
-        <p>Confirmed jobs by date</p>
+        <div class="page-header-text"><h1>Cleaning Schedule</h1><p>Confirmed jobs sorted by zip then address — Mart's daily route list</p></div>
       </div>
       <div class="card">
-        <div class="card-header"><h3>Upcoming Jobs</h3></div>
-        <div class="table-wrap" id="schedule-table"><div class="empty-state">Loading...</div></div>
+        <div class="card-header"><h3>Upcoming Cleanings</h3><span class="count" id="cleaning-count"></span></div>
+        <div class="table-wrap" id="cleaning-table"><div class="empty-state">Loading...</div></div>
       </div>
     </div>
 
     <!-- CUSTOMERS -->
     <div class="view" id="view-customers">
       <div class="page-header">
-        <h1>Customers</h1>
-        <p>All customers and their service plans</p>
+        <div class="page-header-text"><h1>Customers</h1><p>All customers and their service plans</p></div>
       </div>
       <div style="margin-bottom:1rem">
         <input type="text" id="customer-search" placeholder="Search by name, phone, or address..."
@@ -260,8 +289,7 @@
     <!-- ADD CUSTOMER -->
     <div class="view" id="view-add-customer">
       <div class="page-header">
-        <h1>Add Customer</h1>
-        <p>Manual entry for walk-up or door-to-door sales</p>
+        <div class="page-header-text"><h1>Add Customer</h1><p>Manual entry for walk-up or door-to-door sales</p></div>
       </div>
       <div class="form-card">
         <div class="form-grid">
@@ -283,19 +311,15 @@
             </select>
           </div>
           <div class="form-group form-full"><label>Plan *</label>
-            <select id="ac-plan" onchange="updateFollowupOptions()">
+            <select id="ac-plan" onchange="updateFollowupType()">
               <option value="">Select plan...</option>
               <option value="one-time">One-Time ($20/bin)</option>
               <option value="monthly">Monthly ($15/bin/mo)</option>
               <option value="quarterly">Quarterly ($15/bin/qtr)</option>
             </select>
           </div>
-
-          <!-- FOLLOW-UP SCHEDULE SECTION -->
           <div class="form-section-title">Follow-Up Schedule</div>
-          <div class="form-group"><label>First Follow-Up Date *</label>
-            <input type="date" id="ac-followup-date">
-          </div>
+          <div class="form-group"><label>First Follow-Up Date *</label><input type="date" id="ac-followup-date"></div>
           <div class="form-group"><label>Follow-Up Type</label>
             <select id="ac-followup-type">
               <option value="confirm_schedule">Confirm Schedule</option>
@@ -304,37 +328,154 @@
             </select>
           </div>
           <div class="form-group form-full"><label>Follow-Up Notes</label>
-            <input type="text" id="ac-followup-notes" placeholder="e.g. Customer prefers Tuesday mornings">
+            <input type="text" id="ac-followup-notes" placeholder="e.g. Prefers Tuesday mornings, call don't text">
           </div>
-
-          <div class="form-group form-full"><label>Notes</label>
+          <div class="form-group form-full"><label>General Notes</label>
             <textarea id="ac-notes" placeholder="Any notes about this customer or their bins..."></textarea>
           </div>
         </div>
         <button class="form-submit" onclick="addCustomer()">Save Customer & Add to Follow-Up Queue →</button>
         <div class="success-msg" id="ac-success">✅ Customer added and scheduled for follow-up!</div>
-        <div class="error-msg" id="ac-error">❌ Error saving customer. Please try again.</div>
+        <div class="error-msg" id="ac-error"></div>
       </div>
     </div>
 
     <!-- QR CODE -->
     <div class="view" id="view-qr">
       <div class="page-header">
-        <h1>QR Code</h1>
-        <p>Show this to customers — they scan and book instantly</p>
+        <div class="page-header-text"><h1>QR Code</h1><p>Show this to customers — they scan and book instantly</p></div>
       </div>
       <div class="card">
         <div class="qr-wrap">
           <canvas id="qrCanvas"></canvas>
-          <p class="qr-url">freshbymart.com/book.html</p>
-          <p style="font-size:0.82rem;color:var(--muted);margin-top:0.5rem">Points to the mobile booking page</p>
-          <div style="margin-top:1rem">
-            <button class="action-btn primary" onclick="window.print()">🖨️ Print QR Code</button>
-          </div>
+          <p class="qr-url" style="margin-top:0.75rem;font-size:0.85rem;color:var(--muted)">freshbymart.com/book.html</p>
+          <div style="margin-top:1rem"><button class="action-btn primary" onclick="window.print()">🖨️ Print QR Code</button></div>
         </div>
       </div>
     </div>
 
+  </div><!-- /main -->
+</div><!-- /app -->
+
+<!-- CONFIRM BOOKING MODAL -->
+<div class="modal-overlay" id="confirmModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('confirmModal')">✕</button>
+    <div class="modal-title">Confirm Booking</div>
+    <p class="modal-sub" id="confirm-customer-name">Setting service date and sending confirmation email</p>
+    <div class="modal-grid">
+      <div class="modal-group">
+        <label>Service Date *</label>
+        <input type="date" id="confirm-date">
+      </div>
+      <div class="modal-group">
+        <label>Estimated Time Window</label>
+        <select id="confirm-time">
+          <option value="Late morning to afternoon">Late morning to afternoon</option>
+          <option value="Morning (before noon)">Morning (before noon)</option>
+          <option value="Afternoon (noon–5pm)">Afternoon (noon–5pm)</option>
+          <option value="Evening (5–7pm)">Evening (5–7pm)</option>
+        </select>
+      </div>
+      <div class="modal-group modal-full">
+        <label>Notes (internal only)</label>
+        <textarea id="confirm-notes" placeholder="Internal notes about this booking..."></textarea>
+      </div>
+      <hr class="modal-divider">
+      <div class="modal-section">Follow-Up Schedule</div>
+      <div class="modal-checkbox">
+        <input type="checkbox" id="confirm-followup-check" onchange="toggleConfirmFollowup()">
+        <label for="confirm-followup-check">Schedule a follow-up after this cleaning</label>
+      </div>
+      <div class="followup-fields" id="confirm-followup-fields">
+        <div class="modal-group">
+          <label>Follow-Up Date</label>
+          <input type="date" id="confirm-followup-date">
+        </div>
+        <div class="modal-group">
+          <label>Follow-Up Type</label>
+          <select id="confirm-followup-type">
+            <option value="recurring_schedule">Schedule Next Service</option>
+            <option value="collect_payment">Collect Payment</option>
+            <option value="confirm_schedule">Confirm Schedule</option>
+          </select>
+        </div>
+        <div class="modal-group modal-full">
+          <label>Follow-Up Notes</label>
+          <input type="text" id="confirm-followup-notes" placeholder="Remind to ask about additional bins, etc.">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="action-btn" onclick="closeModal('confirmModal')">Cancel</button>
+        <button class="action-btn primary" onclick="submitConfirm()">✓ Confirm & Send Email</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOLLOW-UP OUTCOME MODAL -->
+<div class="modal-overlay" id="outcomeModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('outcomeModal')">✕</button>
+    <div class="modal-title" id="outcome-title">Log Follow-Up Outcome</div>
+    <p class="modal-sub" id="outcome-customer"></p>
+    <div class="modal-grid">
+      <div class="modal-group modal-full">
+        <label>What happened?</label>
+        <select id="outcome-result" onchange="toggleOutcomeFields()">
+          <option value="">Select outcome...</option>
+          <option value="confirmed">✅ Confirmed — set cleaning date</option>
+          <option value="declined">❌ Declined — reschedule follow-up</option>
+          <option value="no_answer">📵 No Answer — reschedule follow-up</option>
+          <option value="left_message">💬 Left Message — reschedule follow-up</option>
+        </select>
+      </div>
+      <div class="modal-group modal-full">
+        <label>Notes</label>
+        <textarea id="outcome-notes" placeholder="What did they say? Any special requests?"></textarea>
+      </div>
+
+      <!-- Confirmed fields -->
+      <div id="outcome-confirmed-fields" style="display:none;grid-column:1/-1">
+        <div class="modal-grid">
+          <div class="modal-group">
+            <label>Cleaning Date *</label>
+            <input type="date" id="outcome-cleaning-date">
+          </div>
+          <div class="modal-group">
+            <label>Time Window</label>
+            <select id="outcome-time">
+              <option value="Late morning to afternoon">Late morning to afternoon</option>
+              <option value="Morning (before noon)">Morning (before noon)</option>
+              <option value="Afternoon (noon–5pm)">Afternoon (noon–5pm)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reschedule fields -->
+      <div id="outcome-reschedule-fields" style="display:none;grid-column:1/-1">
+        <div class="modal-grid">
+          <div class="modal-group">
+            <label>Next Follow-Up Date *</label>
+            <input type="date" id="outcome-next-date">
+          </div>
+          <div class="modal-group">
+            <label>Follow-Up Type</label>
+            <select id="outcome-next-type">
+              <option value="recurring_schedule">Schedule Next Service</option>
+              <option value="collect_payment">Collect Payment</option>
+              <option value="confirm_schedule">Confirm Schedule</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="action-btn" onclick="closeModal('outcomeModal')">Cancel</button>
+        <button class="action-btn primary" onclick="submitOutcome()">Save Outcome →</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -342,262 +483,346 @@
 const API = 'https://trendmonkey-production-production.up.railway.app/api/fbm';
 let authToken = null;
 let allCustomers = [];
+let currentBookingId = null;
+let currentFollowupId = null;
+let currentFollowupCustomer = null;
 
 // ── HELPERS ──
-function hdr() {
-  return { 'Authorization': 'Bearer ' + authToken, 'Content-Type': 'application/json' };
-}
+function hdr() { return {'Authorization':'Bearer '+authToken,'Content-Type':'application/json'}; }
 function planBadge(p) {
-  const m = {'one-time':'badge-one-time One-Time','monthly':'badge-monthly Monthly','quarterly':'badge-quarterly Quarterly'};
-  const s = (m[p]||'badge-one-time '+p).split(' ');
-  return `<span class="badge ${s[0]}">${s[1]||p}</span>`;
+  const m = {'one-time':'badge-one-time','monthly':'badge-monthly','quarterly':'badge-quarterly'};
+  const l = {'one-time':'One-Time','monthly':'Monthly','quarterly':'Quarterly'};
+  return `<span class="badge ${m[p]||'badge-one-time'}">${l[p]||p}</span>`;
 }
 function statusBadge(s) {
-  const m = {'new':'badge-new New','confirmed':'badge-confirmed Confirmed','completed':'badge-completed Completed','pending':'badge-pending Pending','done':'badge-done Done','in-progress':'badge-confirmed In Progress'};
-  const parts = (m[s]||'badge-new '+s).split(' ');
-  return `<span class="badge ${parts[0]}">${parts.slice(1).join(' ')||s}</span>`;
+  const m = {'new':'badge-new','confirmed':'badge-confirmed','completed':'badge-completed','pending':'badge-pending','done':'badge-done','in-progress':'badge-confirmed'};
+  const l = {'new':'New','confirmed':'Confirmed','completed':'Completed','pending':'Pending','done':'Done','in-progress':'In Progress'};
+  return `<span class="badge ${m[s]||'badge-new'}">${l[s]||s}</span>`;
 }
 function fmtDate(d) { return d ? new Date(d).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '—'; }
 function fmtTime(d) { return d ? new Date(d).toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}) : '—'; }
-function isOverdue(dateStr) { return dateStr && new Date(dateStr) < new Date(); }
+function isOverdue(d) { return d && new Date(d) < new Date(); }
+function daysFromNow(n) { const d=new Date(); d.setDate(d.getDate()+n); return d.toISOString().split('T')[0]; }
 
 // ── AUTH ──
-document.getElementById('loginPass').addEventListener('keydown', e => {
-  if (e.key === 'Enter') doLogin();
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('loginPass').addEventListener('keydown', e => { if(e.key==='Enter') doLogin(); });
+  const t = sessionStorage.getItem('fbm_token');
+  if (t) { authToken=t; startApp(sessionStorage.getItem('fbm_name')||'—'); }
+  setDefaultDates();
 });
 
 async function doLogin() {
-  const username = document.getElementById('loginUser').value.trim();
-  const password = document.getElementById('loginPass').value;
-  const errEl = document.getElementById('loginErr');
-  errEl.style.display = 'none';
-  if (!username || !password) { errEl.textContent = 'Please enter username and password.'; errEl.style.display = 'block'; return; }
+  const u = document.getElementById('loginUser').value.trim();
+  const p = document.getElementById('loginPass').value;
+  const err = document.getElementById('loginErr');
+  err.style.display='none';
   try {
-    const r = await fetch(API + '/auth/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password })
-    });
+    const r = await fetch(API+'/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:u,password:p})});
     const d = await r.json();
-    if (!r.ok || !d.token) { errEl.textContent = d.error || 'Invalid credentials'; errEl.style.display = 'block'; return; }
-    authToken = d.token;
-    sessionStorage.setItem('fbm_token', d.token);
-    sessionStorage.setItem('fbm_name', d.user.full_name);
+    if (!r.ok||!d.token) { err.textContent=d.error||'Invalid credentials'; err.style.display='block'; return; }
+    authToken=d.token;
+    sessionStorage.setItem('fbm_token',d.token);
+    sessionStorage.setItem('fbm_name',d.user.full_name);
     startApp(d.user.full_name);
-  } catch(e) {
-    errEl.textContent = 'Connection error. Please try again.';
-    errEl.style.display = 'block';
-  }
+  } catch(e) { err.textContent='Connection error. Try again.'; err.style.display='block'; }
 }
 
 function startApp(name) {
-  document.getElementById('loginWrap').style.display = 'none';
+  document.getElementById('loginWrap').style.display='none';
   document.getElementById('app').classList.add('active');
-  document.getElementById('sidebarUser').textContent = name || '—';
-  setDefaultFollowupDate();
-  loadSummary();
-  loadInbox();
-  generateQR();
+  document.getElementById('sidebarUser').textContent=name||'—';
+  loadSummary(); loadInbox(); generateQR();
 }
 
-function logout() {
-  authToken = null;
-  sessionStorage.clear();
-  location.reload();
-}
-
-// Check session on load
-window.addEventListener('DOMContentLoaded', () => {
-  const savedToken = sessionStorage.getItem('fbm_token');
-  const savedName = sessionStorage.getItem('fbm_name');
-  if (savedToken) {
-    authToken = savedToken;
-    startApp(savedName || '—');
-  }
-});
+function logout() { authToken=null; sessionStorage.clear(); location.reload(); }
 
 // ── NAVIGATION ──
 function showView(name) {
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  document.getElementById('view-' + name).classList.add('active');
-  document.getElementById('nav-' + name).classList.add('active');
-  if (name === 'followups') loadFollowups();
-  if (name === 'schedule') loadSchedule();
-  if (name === 'customers') loadCustomers();
-  if (name === 'qr') setTimeout(generateQR, 100);
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('view-'+name).classList.add('active');
+  document.getElementById('nav-'+name).classList.add('active');
+  if(name==='followups') loadFollowups();
+  if(name==='cleaning') loadCleaning();
+  if(name==='customers') loadCustomers();
+  if(name==='qr') setTimeout(generateQR,100);
 }
 
-function switchTab(showId, hideId, el) {
-  document.getElementById(showId).style.display = 'block';
-  document.getElementById(hideId).style.display = 'none';
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+function switchTab(showId,hideId,el) {
+  document.getElementById(showId).style.display='block';
+  document.getElementById(hideId).style.display='none';
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   el.classList.add('active');
 }
+
+// ── MODALS ──
+function openModal(id) { document.getElementById(id).classList.add('active'); document.body.style.overflow='hidden'; }
+function closeModal(id) { document.getElementById(id).classList.remove('active'); document.body.style.overflow=''; }
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') { closeModal('confirmModal'); closeModal('outcomeModal'); } });
 
 // ── SUMMARY ──
 async function loadSummary() {
   try {
-    const r = await fetch(API + '/dashboard/summary', { headers: hdr() });
-    if (!r.ok) throw new Error('Auth failed');
+    const r = await fetch(API+'/dashboard/summary',{headers:hdr()});
     const d = await r.json();
-    document.getElementById('sum-bookings').textContent = d.new_bookings ?? 0;
-    document.getElementById('sum-quotes').textContent = d.new_quotes ?? 0;
-    document.getElementById('sum-followups').textContent = d.followups_this_week ?? 0;
-    document.getElementById('sum-customers').textContent = d.total_customers ?? 0;
-    if ((d.new_bookings + d.new_quotes) > 0) {
-      const b = document.getElementById('badge-inbox');
-      b.textContent = d.new_bookings + d.new_quotes;
-      b.style.display = 'inline';
-    }
-    if (d.followups_this_week > 0) {
-      const b = document.getElementById('badge-followups');
-      b.textContent = d.followups_this_week;
-      b.style.display = 'inline';
-    }
-  } catch(e) { console.error('Summary error:', e); }
+    document.getElementById('sum-bookings').textContent=d.new_bookings??0;
+    document.getElementById('sum-quotes').textContent=d.new_quotes??0;
+    document.getElementById('sum-followups').textContent=d.followups_this_week??0;
+    document.getElementById('sum-customers').textContent=d.total_customers??0;
+    const total = (d.new_bookings||0)+(d.new_quotes||0);
+    if(total>0){const b=document.getElementById('badge-inbox');b.textContent=total;b.style.display='inline';}
+    if(d.followups_this_week>0){const b=document.getElementById('badge-followups');b.textContent=d.followups_this_week;b.style.display='inline';}
+  } catch(e){console.error(e);}
 }
 
 // ── INBOX ──
 async function loadInbox() {
   try {
-    const r = await fetch(API + '/inbox', { headers: hdr() });
-    if (!r.ok) throw new Error('Failed ' + r.status);
+    const r = await fetch(API+'/inbox',{headers:hdr()});
+    if(!r.ok) throw new Error('Failed '+r.status);
     const d = await r.json();
-    renderBookings(d.bookings || []);
-    renderQuotes(d.quotes || []);
-    document.getElementById('booking-count').textContent = (d.bookings||[]).length + ' total';
+    renderBookings(d.bookings||[]);
+    renderQuotes(d.quotes||[]);
+    document.getElementById('booking-count').textContent=(d.bookings||[]).length+' total';
   } catch(e) {
-    document.getElementById('bookings-table').innerHTML = `<div class="error-state">Error loading data: ${e.message}<br><small>Check that you are logged in and Railway is running.</small></div>`;
+    document.getElementById('bookings-table').innerHTML=`<div class="error-state">Error: ${e.message}</div>`;
   }
 }
 
 function renderBookings(items) {
   const el = document.getElementById('bookings-table');
-  if (!items.length) { el.innerHTML = '<div class="empty-state">No bookings yet — they\'ll appear here when someone books online or you add them manually.</div>'; return; }
-  el.innerHTML = `<table>
+  if(!items.length){el.innerHTML='<div class="empty-state">No bookings yet — they\'ll appear here when someone books online.</div>';return;}
+  el.innerHTML=`<table>
     <thead><tr><th>Customer</th><th>Phone</th><th>Address</th><th>Trash Day</th><th>Bins</th><th>Plan</th><th>Status</th><th>Received</th><th>Actions</th></tr></thead>
-    <tbody>${items.map(b => `<tr>
+    <tbody>${items.map(b=>`<tr>
       <td><strong>${b.first_name} ${b.last_name}</strong></td>
       <td><a href="tel:${b.phone}" style="color:var(--red);text-decoration:none">${b.phone}</a></td>
-      <td style="font-size:0.78rem;color:var(--muted);max-width:150px">${b.address}</td>
+      <td style="font-size:0.78rem;color:var(--muted);max-width:160px">${b.address}</td>
       <td>${b.trash_day||'—'}</td>
       <td>${b.bin_count||'—'}</td>
       <td>${planBadge(b.plan)}</td>
       <td>${statusBadge(b.status)}</td>
       <td style="font-size:0.78rem;color:var(--muted);white-space:nowrap">${fmtTime(b.created_at)}</td>
       <td style="white-space:nowrap">
-        ${b.status==='new'?`<button class="action-btn primary" onclick="updateBooking(${b.id},'confirmed')">✓ Confirm</button>`:''}
-        ${b.status==='confirmed'?`<button class="action-btn success" onclick="updateBooking(${b.id},'completed')">✓ Done</button>`:''}
+        ${b.status==='new'?`<button class="action-btn primary" onclick="openConfirmModal(${b.id},'${b.first_name} ${b.last_name}','${b.plan}')">✓ Confirm</button>`:''}
+        ${b.status==='confirmed'?`<button class="action-btn green" onclick="markDone(${b.id})">✓ Done</button>`:''}
       </td>
     </tr>`).join('')}</tbody></table>`;
 }
 
 function renderQuotes(items) {
   const el = document.getElementById('quotes-table');
-  if (!items.length) { el.innerHTML = '<div class="empty-state">No quote requests yet.</div>'; return; }
-  el.innerHTML = `<table>
-    <thead><tr><th>Name</th><th>Phone</th><th>Business</th><th>Bins</th><th>Frequency</th><th>Details</th><th>Status</th><th>Received</th><th>Actions</th></tr></thead>
-    <tbody>${items.map(q => `<tr>
+  if(!items.length){el.innerHTML='<div class="empty-state">No quote requests yet.</div>';return;}
+  el.innerHTML=`<table>
+    <thead><tr><th>Name</th><th>Phone</th><th>Business</th><th>Bins</th><th>Frequency</th><th>Status</th><th>Received</th><th>Actions</th></tr></thead>
+    <tbody>${items.map(q=>`<tr>
       <td><strong>${q.first_name} ${q.last_name}</strong></td>
       <td><a href="tel:${q.phone}" style="color:var(--red);text-decoration:none">${q.phone}</a></td>
       <td>${q.business_name||'—'}</td>
       <td>${q.bin_count||'—'}</td>
       <td>${q.frequency||'—'}</td>
-      <td style="font-size:0.78rem;color:var(--muted);max-width:150px">${q.details||'—'}</td>
       <td>${statusBadge(q.status)}</td>
       <td style="font-size:0.78rem;color:var(--muted);white-space:nowrap">${fmtTime(q.created_at)}</td>
       <td>${q.status==='new'?`<button class="action-btn primary" onclick="updateQuote(${q.id},'in-progress')">In Progress</button>`:''}
-          ${q.status==='in-progress'?`<button class="action-btn success" onclick="updateQuote(${q.id},'completed')">Done</button>`:''}
+          ${q.status==='in-progress'?`<button class="action-btn green" onclick="updateQuote(${q.id},'completed')">✓ Done</button>`:''}
       </td>
     </tr>`).join('')}</tbody></table>`;
 }
 
-async function updateBooking(id, status) {
-  await fetch(API+'/bookings/'+id+'/status', {method:'PATCH',headers:hdr(),body:JSON.stringify({status})});
+// ── CONFIRM MODAL ──
+function openConfirmModal(id, name, plan) {
+  currentBookingId = id;
+  document.getElementById('confirm-customer-name').textContent = name + ' — ' + plan + ' plan';
+  // Auto-set follow-up date based on plan
+  const days = plan==='monthly'?30:plan==='quarterly'?90:14;
+  document.getElementById('confirm-followup-date').value = daysFromNow(days);
+  document.getElementById('confirm-followup-type').value = plan==='one-time'?'collect_payment':'recurring_schedule';
+  document.getElementById('confirm-followup-check').checked = false;
+  document.getElementById('confirm-followup-fields').classList.remove('visible');
+  document.getElementById('confirm-notes').value = '';
+  document.getElementById('confirm-date').value = '';
+  openModal('confirmModal');
+}
+
+function toggleConfirmFollowup() {
+  const checked = document.getElementById('confirm-followup-check').checked;
+  document.getElementById('confirm-followup-fields').classList.toggle('visible', checked);
+}
+
+async function submitConfirm() {
+  const date = document.getElementById('confirm-date').value;
+  if(!date){alert('Please select a service date.');return;}
+  const notes = document.getElementById('confirm-notes').value.trim();
+  const hasFollowup = document.getElementById('confirm-followup-check').checked;
+  const followupDate = document.getElementById('confirm-followup-date').value;
+  const followupType = document.getElementById('confirm-followup-type').value;
+  const followupNotes = document.getElementById('confirm-followup-notes').value.trim();
+
+  try {
+    await fetch(API+'/bookings/'+currentBookingId+'/status',{
+      method:'PATCH', headers:hdr(),
+      body:JSON.stringify({
+        status:'confirmed', service_date:date, notes,
+        send_confirmation:true,
+        followup_date: hasFollowup?followupDate:null,
+        followup_type: hasFollowup?followupType:null,
+        followup_notes: hasFollowup?followupNotes:null
+      })
+    });
+    closeModal('confirmModal');
+    loadInbox(); loadSummary();
+  } catch(e){alert('Error confirming. Try again.');}
+}
+
+async function markDone(id) {
+  await fetch(API+'/bookings/'+id+'/status',{method:'PATCH',headers:hdr(),body:JSON.stringify({status:'completed'})});
   loadInbox(); loadSummary();
 }
-async function updateQuote(id, status) {
-  await fetch(API+'/quotes/'+id+'/status', {method:'PATCH',headers:hdr(),body:JSON.stringify({status})});
+
+async function updateQuote(id,status) {
+  await fetch(API+'/quotes/'+id+'/status',{method:'PATCH',headers:hdr(),body:JSON.stringify({status})});
   loadInbox(); loadSummary();
 }
 
 // ── FOLLOW-UPS ──
 async function loadFollowups() {
   try {
-    const r = await fetch(API+'/followups', {headers:hdr()});
-    if (!r.ok) throw new Error('Failed ' + r.status);
+    const r = await fetch(API+'/followups',{headers:hdr()});
+    if(!r.ok) throw new Error('Failed '+r.status);
     const items = await r.json();
     const el = document.getElementById('followups-table');
-    if (!items.length) { el.innerHTML='<div class="empty-state">🎉 No follow-ups due! Check back later.</div>'; return; }
-    el.innerHTML = `<table>
-      <thead><tr><th>Customer</th><th>Phone</th><th>Email</th><th>Plan</th><th>Type</th><th>Due Date</th><th>Notes</th><th>Action</th></tr></thead>
-      <tbody>${items.map(f => `<tr>
+    if(!items.length){el.innerHTML='<div class="empty-state">🎉 No follow-ups due! Check back later.</div>';return;}
+    el.innerHTML=`<table>
+      <thead><tr><th>Customer</th><th>Phone</th><th>Plan</th><th>Type</th><th>Due Date</th><th>Notes</th><th>Outcome</th></tr></thead>
+      <tbody>${items.map(f=>`<tr>
         <td><strong>${f.first_name} ${f.last_name}</strong><br><span style="font-size:0.75rem;color:var(--muted)">${f.address||''}</span></td>
-        <td><a href="tel:${f.phone}" style="color:var(--red);text-decoration:none">${f.phone}</a></td>
-        <td>${f.email?`<a href="mailto:${f.email}" style="color:var(--muted);font-size:0.78rem;text-decoration:none">${f.email}</a>`:'—'}</td>
+        <td><a href="tel:${f.phone}" style="color:var(--red);text-decoration:none">${f.phone}</a>${f.email?`<br><a href="mailto:${f.email}" style="font-size:0.75rem;color:var(--muted);text-decoration:none">${f.email}</a>`:''}</td>
         <td>${planBadge(f.plan)}</td>
         <td style="font-size:0.82rem">${(f.type||'').replace(/_/g,' ')}</td>
         <td class="${isOverdue(f.due_date)?'overdue':''}" style="white-space:nowrap">${fmtDate(f.due_date)}${isOverdue(f.due_date)?' ⚠️':''}</td>
-        <td style="font-size:0.78rem;color:var(--muted)">${f.notes||'—'}</td>
-        <td><button class="action-btn success" onclick="completeFollowup(${f.id})">✓ Done</button></td>
+        <td style="font-size:0.78rem;color:var(--muted);max-width:150px">${f.notes||'—'}</td>
+        <td>
+          <div class="outcome-btns">
+            <button class="action-btn green" onclick="openOutcomeModal(${f.id},'${f.first_name} ${f.last_name}','${f.customer_id}','${f.plan}')">Log Outcome</button>
+          </div>
+        </td>
       </tr>`).join('')}</tbody></table>`;
-  } catch(e) {
-    document.getElementById('followups-table').innerHTML = `<div class="error-state">Error loading follow-ups: ${e.message}</div>`;
-  }
+  } catch(e){document.getElementById('followups-table').innerHTML=`<div class="error-state">Error: ${e.message}</div>`;}
 }
 
-async function completeFollowup(id) {
-  await fetch(API+'/followups/'+id+'/complete', {method:'PATCH',headers:hdr()});
-  loadFollowups(); loadSummary();
+// ── OUTCOME MODAL ──
+function openOutcomeModal(id, name, customerId, plan) {
+  currentFollowupId = id;
+  currentFollowupCustomer = {id:customerId, name, plan};
+  document.getElementById('outcome-title').textContent = 'Log Outcome — ' + name;
+  document.getElementById('outcome-customer').textContent = plan + ' plan';
+  document.getElementById('outcome-result').value = '';
+  document.getElementById('outcome-notes').value = '';
+  document.getElementById('outcome-cleaning-date').value = '';
+  document.getElementById('outcome-next-date').value = daysFromNow(7);
+  document.getElementById('outcome-confirmed-fields').style.display='none';
+  document.getElementById('outcome-reschedule-fields').style.display='none';
+  openModal('outcomeModal');
 }
 
-// ── SCHEDULE ──
-async function loadSchedule() {
+function toggleOutcomeFields() {
+  const val = document.getElementById('outcome-result').value;
+  document.getElementById('outcome-confirmed-fields').style.display = val==='confirmed'?'block':'none';
+  document.getElementById('outcome-reschedule-fields').style.display = (val&&val!=='confirmed')?'block':'none';
+}
+
+async function submitOutcome() {
+  const result = document.getElementById('outcome-result').value;
+  if(!result){alert('Please select an outcome.');return;}
+  const notes = document.getElementById('outcome-notes').value.trim();
+
   try {
-    const r = await fetch(API+'/schedule', {headers:hdr()});
-    if (!r.ok) throw new Error('Failed ' + r.status);
+    // Mark current follow-up done
+    await fetch(API+'/followups/'+currentFollowupId+'/complete',{method:'PATCH',headers:hdr(),body:JSON.stringify({notes,outcome:result})});
+
+    if(result==='confirmed') {
+      const cleaningDate = document.getElementById('outcome-cleaning-date').value;
+      if(!cleaningDate){alert('Please enter the cleaning date.');return;}
+      // Create confirmed booking + send email
+      await fetch(API+'/followups/'+currentFollowupId+'/confirm-cleaning',{
+        method:'POST', headers:hdr(),
+        body:JSON.stringify({cleaning_date:cleaningDate, notes, customer_id:currentFollowupCustomer.id})
+      });
+    } else {
+      // Schedule next follow-up
+      const nextDate = document.getElementById('outcome-next-date').value;
+      const nextType = document.getElementById('outcome-next-type').value;
+      if(!nextDate){alert('Please enter a follow-up date.');return;}
+      await fetch(API+'/followups',{
+        method:'POST', headers:hdr(),
+        body:JSON.stringify({customer_id:currentFollowupCustomer.id, type:nextType, due_date:nextDate, notes:'Rescheduled: '+result})
+      });
+    }
+    closeModal('outcomeModal');
+    loadFollowups(); loadSummary();
+  } catch(e){alert('Error saving outcome. Try again.');}
+}
+
+async function sendReminders() {
+  if(!confirm('Send follow-up reminder emails to all customers due this week?')) return;
+  try {
+    const r = await fetch(API+'/followups/send-reminders',{method:'POST',headers:hdr()});
+    const d = await r.json();
+    alert(`✅ Sent ${d.sent||0} reminder emails!`);
+  } catch(e){alert('Error sending reminders.');}
+}
+
+// ── CLEANING SCHEDULE ──
+async function loadCleaning() {
+  try {
+    const r = await fetch(API+'/schedule',{headers:hdr()});
+    if(!r.ok) throw new Error('Failed '+r.status);
     const items = await r.json();
-    const el = document.getElementById('schedule-table');
-    if (!items.length) { el.innerHTML='<div class="empty-state">No confirmed jobs scheduled yet. Confirm bookings from the Inbox to add them here.</div>'; return; }
-    el.innerHTML = `<table>
-      <thead><tr><th>Date</th><th>Customer</th><th>Phone</th><th>Address</th><th>Bins</th><th>Plan</th><th>Status</th></tr></thead>
+    const el = document.getElementById('cleaning-table');
+    document.getElementById('cleaning-count').textContent=items.length+' jobs';
+    if(!items.length){el.innerHTML='<div class="empty-state">No confirmed cleanings yet. Confirm bookings from the Inbox to add them here.</div>';return;}
+    el.innerHTML=`<table>
+      <thead><tr><th>Date</th><th>Customer</th><th>Phone</th><th>Address</th><th>Zip</th><th>Trash Day</th><th>Bins</th><th>Plan</th><th>Notes</th></tr></thead>
       <tbody>${items.map(j=>`<tr>
-        <td><strong>${fmtDate(j.service_date)}</strong></td>
+        <td style="white-space:nowrap"><strong>${fmtDate(j.service_date)}</strong></td>
         <td>${j.first_name} ${j.last_name}</td>
         <td><a href="tel:${j.phone}" style="color:var(--red);text-decoration:none">${j.phone}</a></td>
-        <td style="font-size:0.78rem;color:var(--muted)">${j.address}</td>
+        <td>${j.address}</td>
+        <td style="font-weight:700">${extractZip(j.address)}</td>
+        <td>${j.trash_day||'—'}</td>
         <td>${j.bin_count||'—'}</td>
         <td>${planBadge(j.plan)}</td>
-        <td>${statusBadge(j.status)}</td>
+        <td style="font-size:0.78rem;color:var(--muted)">${j.notes||'—'}</td>
       </tr>`).join('')}</tbody></table>`;
-  } catch(e) {
-    document.getElementById('schedule-table').innerHTML = `<div class="error-state">Error: ${e.message}</div>`;
-  }
+  } catch(e){document.getElementById('cleaning-table').innerHTML=`<div class="error-state">Error: ${e.message}</div>`;}
+}
+
+function extractZip(address) {
+  const m = address && address.match(/\b\d{5}\b/);
+  return m ? m[0] : '—';
 }
 
 // ── CUSTOMERS ──
 async function loadCustomers() {
   try {
-    const r = await fetch(API+'/customers', {headers:hdr()});
-    if (!r.ok) throw new Error('Failed ' + r.status);
+    const r = await fetch(API+'/customers',{headers:hdr()});
+    if(!r.ok) throw new Error('Failed '+r.status);
     allCustomers = await r.json();
-    document.getElementById('customer-count').textContent = allCustomers.length + ' total';
+    document.getElementById('customer-count').textContent=allCustomers.length+' total';
     renderCustomers(allCustomers);
-  } catch(e) {
-    document.getElementById('customers-table').innerHTML = `<div class="error-state">Error: ${e.message}</div>`;
-  }
+  } catch(e){document.getElementById('customers-table').innerHTML=`<div class="error-state">Error: ${e.message}</div>`;}
 }
 
 function renderCustomers(items) {
   const el = document.getElementById('customers-table');
-  if (!items.length) { el.innerHTML='<div class="empty-state">No customers yet.</div>'; return; }
-  el.innerHTML = `<table>
+  if(!items.length){el.innerHTML='<div class="empty-state">No customers yet.</div>';return;}
+  el.innerHTML=`<table>
     <thead><tr><th>Name</th><th>Phone</th><th>Address</th><th>Trash Day</th><th>Plan</th><th>Source</th><th>Bookings</th><th>Since</th></tr></thead>
     <tbody>${items.map(c=>`<tr>
       <td><strong>${c.first_name} ${c.last_name}</strong></td>
       <td><a href="tel:${c.phone}" style="color:var(--red);text-decoration:none">${c.phone}</a></td>
-      <td style="font-size:0.78rem;color:var(--muted);max-width:150px">${c.address}</td>
+      <td style="font-size:0.78rem;color:var(--muted);max-width:160px">${c.address}</td>
       <td>${c.trash_day||'—'}</td>
       <td>${planBadge(c.plan)}</td>
       <td style="font-size:0.78rem;color:var(--muted)">${c.source||'website'}</td>
@@ -607,99 +832,69 @@ function renderCustomers(items) {
 }
 
 function filterCustomers(q) {
-  if (!q) { renderCustomers(allCustomers); return; }
-  renderCustomers(allCustomers.filter(c =>
-    (c.first_name+' '+c.last_name+c.phone+c.address).toLowerCase().includes(q.toLowerCase())
-  ));
+  if(!q){renderCustomers(allCustomers);return;}
+  renderCustomers(allCustomers.filter(c=>(c.first_name+' '+c.last_name+c.phone+c.address).toLowerCase().includes(q.toLowerCase())));
 }
 
 // ── ADD CUSTOMER ──
-function setDefaultFollowupDate() {
-  const d = new Date();
-  d.setDate(d.getDate() + 7);
+function setDefaultDates() {
   const el = document.getElementById('ac-followup-date');
-  if (el) el.value = d.toISOString().split('T')[0];
+  if(el) el.value = daysFromNow(7);
 }
 
-function updateFollowupOptions() {
+function updateFollowupType() {
   const plan = document.getElementById('ac-plan').value;
+  const days = plan==='monthly'?30:plan==='quarterly'?90:7;
+  document.getElementById('ac-followup-date').value = daysFromNow(days);
   const typeEl = document.getElementById('ac-followup-type');
-  typeEl.innerHTML = '';
-  const options = [
-    {value:'confirm_schedule', label:'Confirm Schedule'},
-    {value:'collect_payment', label:'Collect Payment'},
-  ];
-  if (plan === 'monthly' || plan === 'quarterly') {
-    options.push({value:'recurring_schedule', label:'Schedule Next Service'});
-  }
-  options.forEach(o => {
-    const opt = document.createElement('option');
-    opt.value = o.value; opt.textContent = o.label;
-    typeEl.appendChild(opt);
-  });
+  typeEl.value = plan==='one-time'?'confirm_schedule':'recurring_schedule';
 }
 
 async function addCustomer() {
-  const fname = document.getElementById('ac-fname').value.trim();
-  const lname = document.getElementById('ac-lname').value.trim();
-  const phone = document.getElementById('ac-phone').value.trim();
-  const address = document.getElementById('ac-address').value.trim();
-  const plan = document.getElementById('ac-plan').value;
-  const followupDate = document.getElementById('ac-followup-date').value;
+  const fname=document.getElementById('ac-fname').value.trim();
+  const lname=document.getElementById('ac-lname').value.trim();
+  const phone=document.getElementById('ac-phone').value.trim();
+  const address=document.getElementById('ac-address').value.trim();
+  const plan=document.getElementById('ac-plan').value;
+  const followupDate=document.getElementById('ac-followup-date').value;
+  const successEl=document.getElementById('ac-success');
+  const errorEl=document.getElementById('ac-error');
+  successEl.style.display='none'; errorEl.style.display='none';
 
-  const successEl = document.getElementById('ac-success');
-  const errorEl = document.getElementById('ac-error');
-  successEl.style.display = 'none';
-  errorEl.style.display = 'none';
-
-  if (!fname || !lname || !phone || !address || !plan || !followupDate) {
-    errorEl.textContent = '❌ Please fill in all required fields including the follow-up date.';
-    errorEl.style.display = 'block';
-    return;
+  if(!fname||!lname||!phone||!address||!plan||!followupDate){
+    errorEl.textContent='❌ Please fill in all required fields including the follow-up date.';
+    errorEl.style.display='block'; return;
   }
-
-  const data = {
-    first_name: fname, last_name: lname, phone,
-    email: document.getElementById('ac-email').value.trim(),
-    address,
-    trash_day: document.getElementById('ac-day').value,
-    bin_count: document.getElementById('ac-bins').value,
-    plan,
-    notes: document.getElementById('ac-notes').value.trim(),
-    followup_date: followupDate,
-    followup_type: document.getElementById('ac-followup-type').value,
-    followup_notes: document.getElementById('ac-followup-notes').value.trim()
-  };
-
   try {
-    const r = await fetch(API+'/customers', {method:'POST',headers:hdr(),body:JSON.stringify(data)});
-    if (!r.ok) { const e = await r.json(); throw new Error(e.error||'Failed'); }
-    successEl.style.display = 'block';
-    // Clear form
-    ['ac-fname','ac-lname','ac-phone','ac-email','ac-address','ac-notes','ac-followup-notes'].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.value = '';
-    });
-    document.getElementById('ac-day').value = '';
-    document.getElementById('ac-bins').value = '';
-    document.getElementById('ac-plan').value = '';
-    setDefaultFollowupDate();
+    const r = await fetch(API+'/customers',{method:'POST',headers:hdr(),body:JSON.stringify({
+      first_name:fname,last_name:lname,phone,
+      email:document.getElementById('ac-email').value.trim(),
+      address,
+      trash_day:document.getElementById('ac-day').value,
+      bin_count:document.getElementById('ac-bins').value,
+      plan,
+      notes:document.getElementById('ac-notes').value.trim(),
+      followup_date:followupDate,
+      followup_type:document.getElementById('ac-followup-type').value,
+      followup_notes:document.getElementById('ac-followup-notes').value.trim()
+    })});
+    if(!r.ok){const e=await r.json();throw new Error(e.error||'Failed');}
+    successEl.style.display='block';
+    ['ac-fname','ac-lname','ac-phone','ac-email','ac-address','ac-notes','ac-followup-notes'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+    document.getElementById('ac-day').value='';
+    document.getElementById('ac-bins').value='';
+    document.getElementById('ac-plan').value='';
+    setDefaultDates();
     loadSummary();
-    setTimeout(() => successEl.style.display='none', 5000);
-  } catch(e) {
-    errorEl.textContent = '❌ Error: ' + e.message;
-    errorEl.style.display = 'block';
-  }
+    setTimeout(()=>successEl.style.display='none',5000);
+  } catch(e){errorEl.textContent='❌ Error: '+e.message;errorEl.style.display='block';}
 }
 
-// ── QR CODE ──
+// ── QR ──
 function generateQR() {
-  const canvas = document.getElementById('qrCanvas');
-  if (!canvas) return;
-  QRCode.toCanvas(canvas, 'https://freshbymart.com/book.html', {
-    width: 280, margin: 2,
-    color: { dark: '#1a1a1a', light: '#ffffff' }
-  });
+  const canvas=document.getElementById('qrCanvas');
+  if(!canvas)return;
+  QRCode.toCanvas(canvas,'https://freshbymart.com/book.html',{width:280,margin:2,color:{dark:'#1a1a1a',light:'#ffffff'}});
 }
 </script>
 </body>
