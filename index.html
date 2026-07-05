@@ -385,11 +385,16 @@
         </div>
         <div class="bf-group"><label>Service Address *</label><input type="text" id="bf-address" placeholder="123 Main St, Pearland TX 77581"></div>
         <div class="bf-row">
-          <div class="bf-group"><label>Trash Pickup Day *</label>
-            <select id="bf-day">
-              <option value="">Select day...</option>
-              <option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option>
-            </select>
+          <div class="bf-group form-full-mobile">
+            <label>Trash Pickup Day * <span style="font-size:0.65rem;font-weight:400;color:#999">(select all that apply)</span></label>
+            <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.3rem" id="bf-days">
+              <label style="display:flex;align-items:center;gap:0.35rem;font-size:0.88rem;font-weight:400;cursor:pointer;background:#f5f5f5;border:1.5px solid #e0e0e0;border-radius:6px;padding:0.4rem 0.75rem;transition:all 0.15s" onclick="toggleDay(this,'Monday')"><input type="checkbox" value="Monday" style="display:none">Monday</label>
+              <label style="display:flex;align-items:center;gap:0.35rem;font-size:0.88rem;font-weight:400;cursor:pointer;background:#f5f5f5;border:1.5px solid #e0e0e0;border-radius:6px;padding:0.4rem 0.75rem;transition:all 0.15s" onclick="toggleDay(this,'Tuesday')"><input type="checkbox" value="Tuesday" style="display:none">Tuesday</label>
+              <label style="display:flex;align-items:center;gap:0.35rem;font-size:0.88rem;font-weight:400;cursor:pointer;background:#f5f5f5;border:1.5px solid #e0e0e0;border-radius:6px;padding:0.4rem 0.75rem;transition:all 0.15s" onclick="toggleDay(this,'Wednesday')"><input type="checkbox" value="Wednesday" style="display:none">Wednesday</label>
+              <label style="display:flex;align-items:center;gap:0.35rem;font-size:0.88rem;font-weight:400;cursor:pointer;background:#f5f5f5;border:1.5px solid #e0e0e0;border-radius:6px;padding:0.4rem 0.75rem;transition:all 0.15s" onclick="toggleDay(this,'Thursday')"><input type="checkbox" value="Thursday" style="display:none">Thursday</label>
+              <label style="display:flex;align-items:center;gap:0.35rem;font-size:0.88rem;font-weight:400;cursor:pointer;background:#f5f5f5;border:1.5px solid #e0e0e0;border-radius:6px;padding:0.4rem 0.75rem;transition:all 0.15s" onclick="toggleDay(this,'Friday')"><input type="checkbox" value="Friday" style="display:none">Friday</label>
+            </div>
+            <p id="bf-day-err" style="display:none;color:#D30000;font-size:0.75rem;margin-top:0.3rem">Please select at least one trash pickup day</p>
           </div>
           <div class="bf-group"><label>Number of Bins *</label>
             <select id="bf-bins">
