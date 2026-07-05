@@ -70,9 +70,17 @@
     .quote-btn { display: inline-block; background: #1a1a1a; color: #fff; font-weight: 700; font-size: 0.82rem; padding: 0.4rem 0.9rem; border-radius: 4px; margin-top: 0.7rem; cursor: pointer; border: none; font-family: 'Barlow', sans-serif; transition: background 0.2s; }
     .quote-btn:hover { background: #D30000; }
 
-    /* OUR WORK VIDEO CARDS */
-    .ba-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    /* OUR WORK CARDS */
+    .ba-grid-top { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem; }
+    .ba-grid-bottom { display: flex; justify-content: center; }
     .ba-card { border-radius: 10px; overflow: hidden; background: #1a1a1a; }
+    .ba-card-video { border-radius: 10px; overflow: hidden; background: #1a1a1a; width: 50%; }
+    .ba-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+    .ba-photo-wrap { position: relative; aspect-ratio: 1; overflow: hidden; }
+    .ba-photo-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .ba-photo-label { position: absolute; top: 0.4rem; left: 0.4rem; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em; padding: 0.15rem 0.45rem; border-radius: 3px; }
+    .ba-photo-label.before { background: rgba(0,0,0,0.75); color: #fff; }
+    .ba-photo-label.after { background: #D30000; color: #fff; }
     .ba-video-wrap { position: relative; aspect-ratio: 9/16; overflow: hidden; background: #0e0e0e; }
     .ba-video-wrap iframe { position: absolute; top: 50%; left: 50%; width: 200%; height: 200%; transform: translate(-50%, -50%); border: none; pointer-events: none; }
     .ba-caption { padding: 0.75rem; text-align: center; }
@@ -202,7 +210,8 @@
       nav { padding: 0.5rem 1rem; }
       .nav-links { display: none; }
       .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-      .ba-grid { grid-template-columns: 1fr; }
+      .ba-grid-top { grid-template-columns: 1fr; }
+      .ba-card-video { width: 100%; }
       .mf-row { grid-template-columns: 1fr; }
       .bf-row { grid-template-columns: 1fr; }
       .plan-options { grid-template-columns: 1fr; }
@@ -299,39 +308,58 @@
     <p class="section-sub">Watch Mart work — pressure washed &amp; hand cleaned at your curb</p>
     <div class="ba-grid">
 
-      <!-- Card 1 -->
-      <div class="ba-card">
-        <div class="ba-video-wrap">
-          <iframe src="https://www.youtube.com/embed/CUmxFdBpedE?autoplay=1&mute=1&loop=1&playlist=CUmxFdBpedE&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&disablekb=1&iv_load_policy=3&start=0"
-            allow="autoplay; encrypted-media" allowfullscreen title="Fresh by Mart cleaning video 1"></iframe>
-        </div>
-        <div class="ba-caption">
-          <h4>Black Bin</h4>
-          <p>Yes, those are maggots — we've seen it all.<br>Zero judgment — we clean it all.</p>
-        </div>
-      </div>
+      <!-- TOP ROW: 2 photo cards side by side -->
+      <div class="ba-grid-top">
 
-      <!-- Card 2 -->
-      <div class="ba-card">
-        <div class="ba-video-wrap">
-          <iframe src="https://www.youtube.com/embed/CUmxFdBpedE?autoplay=1&mute=1&loop=1&playlist=CUmxFdBpedE&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&disablekb=1&iv_load_policy=3&start=3"
-            allow="autoplay; encrypted-media" allowfullscreen title="Fresh by Mart cleaning video 2"></iframe>
+        <!-- Black Bin -->
+        <div class="ba-card">
+          <div class="ba-photos">
+            <div class="ba-photo-wrap">
+              <img src="https://i.ibb.co/6SN9BrS/5-F22-AAC1-0924-444-E-9536-854857440999.jpg" alt="Black bin before — maggots">
+              <span class="ba-photo-label before">BEFORE</span>
+            </div>
+            <div class="ba-photo-wrap">
+              <img src="https://i.ibb.co/Rks8DVDh/78-A5826-C-8-ED9-4-FFB-B131-D2-B7635-F0851.jpg" alt="Black bin after cleaning">
+              <span class="ba-photo-label after">AFTER</span>
+            </div>
+          </div>
+          <div class="ba-caption">
+            <h4>Black Bin</h4>
+            <p>Yes, those are maggots on the left.<br>Zero judgment — we clean it all.</p>
+          </div>
         </div>
-        <div class="ba-caption">
-          <h4>Green Bin</h4>
-          <p>Built-up grime, gone in one visit.<br>Smells fresh too.</p>
-        </div>
-      </div>
 
-      <!-- Card 3 -->
-      <div class="ba-card">
-        <div class="ba-video-wrap">
-          <iframe src="https://www.youtube.com/embed/CUmxFdBpedE?autoplay=1&mute=1&loop=1&playlist=CUmxFdBpedE&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&disablekb=1&iv_load_policy=3&start=6"
-            allow="autoplay; encrypted-media" allowfullscreen title="Fresh by Mart cleaning video 3"></iframe>
+        <!-- Green Bin -->
+        <div class="ba-card">
+          <div class="ba-photos">
+            <div class="ba-photo-wrap">
+              <img src="https://i.ibb.co/HL2mnWLt/5-DBD6259-32-D9-4-C9-A-86-E5-CA56-F89-FD1-DD.jpg" alt="Green bin before cleaning">
+              <span class="ba-photo-label before">BEFORE</span>
+            </div>
+            <div class="ba-photo-wrap">
+              <img src="https://i.ibb.co/gbR0JzgZ/690-D2-C6-A-3187-44-E3-A9-CD-D74-C5-F32-F3-D3.jpg" alt="Green bin after cleaning">
+              <span class="ba-photo-label after">AFTER</span>
+            </div>
+          </div>
+          <div class="ba-caption">
+            <h4>Green Bin</h4>
+            <p>Built-up grime, gone in one visit.<br>Smells fresh too.</p>
+          </div>
         </div>
-        <div class="ba-caption">
-          <h4>Full Detail Clean</h4>
-          <p>Inside, outside, top to bottom.<br>Pressure washed &amp; hand cleaned.</p>
+
+      </div><!-- /ba-grid-top -->
+
+      <!-- BOTTOM ROW: single centered video card -->
+      <div class="ba-grid-bottom">
+        <div class="ba-card-video">
+          <div class="ba-video-wrap">
+            <iframe src="https://www.youtube.com/embed/CUmxFdBpedE?autoplay=1&mute=1&loop=1&playlist=CUmxFdBpedE&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&disablekb=1&iv_load_policy=3"
+              allow="autoplay; encrypted-media" allowfullscreen title="Fresh by Mart cleaning video"></iframe>
+          </div>
+          <div class="ba-caption">
+            <h4>Full Detail Clean</h4>
+            <p>Inside, outside, top to bottom.<br>Pressure washed &amp; hand cleaned.</p>
+          </div>
         </div>
       </div>
 
