@@ -48,25 +48,19 @@
     .page-header{margin-bottom:1.75rem;display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1rem}
     .page-header-text h1{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--dark);letter-spacing:0.04em}
     .page-header-text p{font-size:0.88rem;color:var(--muted);margin-top:0.2rem}
-
-    /* VIEWS */
-    .view{display:none}
-    .view.active{display:block}
+    .view{display:none}.view.active{display:block}
 
     /* SUMMARY */
     .summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-bottom:2rem}
     .summary-card{background:var(--card);border-radius:10px;padding:1.25rem 1.5rem;border:1.5px solid var(--border);border-top:4px solid var(--red)}
-    .summary-card.green{border-top-color:var(--green)}
-    .summary-card.blue{border-top-color:var(--blue)}
-    .summary-card.orange{border-top-color:var(--orange)}
+    .summary-card.green{border-top-color:var(--green)}.summary-card.blue{border-top-color:var(--blue)}.summary-card.orange{border-top-color:var(--orange)}
     .summary-num{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--dark);line-height:1}
     .summary-label{font-size:0.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;margin-top:0.25rem}
 
-    /* CARDS */
+    /* CARDS & TABLES */
     .card{background:var(--card);border-radius:10px;border:1.5px solid var(--border);overflow:hidden;margin-bottom:1.5rem}
     .card-header{padding:1rem 1.5rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
     .card-header h3{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:0.04em;color:var(--dark)}
-    .card-header .count{font-size:0.78rem;color:var(--muted)}
     .table-wrap{overflow-x:auto}
     table{width:100%;border-collapse:collapse;font-size:0.85rem;min-width:600px}
     th{padding:0.6rem 1rem;text-align:left;font-size:0.72rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);background:#fafafa;border-bottom:1px solid var(--border);white-space:nowrap}
@@ -74,24 +68,20 @@
     tr:last-child td{border-bottom:none}
     tr:hover td{background:#fafafa}
     .badge{display:inline-block;font-size:0.68rem;font-weight:700;padding:0.15rem 0.5rem;border-radius:3px;text-transform:uppercase;white-space:nowrap}
-    .badge-new{background:#fef3c7;color:#92400e}
-    .badge-confirmed{background:#dcfce7;color:#15803d}
-    .badge-completed{background:#dbeafe;color:#1d4ed8}
-    .badge-pending{background:#fee2e2;color:#991b1b}
-    .badge-done{background:#f3f4f6;color:#374151}
-    .badge-monthly{background:#ede9fe;color:#7c3aed}
-    .badge-quarterly{background:#e0f2fe;color:#0369a1}
-    .badge-one-time{background:#f3f4f6;color:#374151}
+    .badge-new{background:#fef3c7;color:#92400e}.badge-confirmed{background:#dcfce7;color:#15803d}
+    .badge-completed{background:#dbeafe;color:#1d4ed8}.badge-pending{background:#fee2e2;color:#991b1b}
+    .badge-done{background:#f3f4f6;color:#374151}.badge-monthly{background:#ede9fe;color:#7c3aed}
+    .badge-quarterly{background:#e0f2fe;color:#0369a1}.badge-one-time{background:#f3f4f6;color:#374151}
+    .badge-declined{background:#fee2e2;color:#991b1b}.badge-cancelled{background:#f3f4f6;color:#374151}
     .action-btn{background:none;border:1.5px solid var(--border);border-radius:5px;padding:0.3rem 0.7rem;font-size:0.75rem;font-family:'Barlow',sans-serif;font-weight:600;cursor:pointer;color:var(--text);transition:all 0.15s;white-space:nowrap}
     .action-btn:hover{border-color:var(--red);color:var(--red)}
     .action-btn.primary{background:var(--red);color:#fff;border-color:var(--red)}
     .action-btn.green{background:var(--green);color:#fff;border-color:var(--green)}
-    .action-btn.blue{background:var(--blue);color:#fff;border-color:var(--blue)}
     .action-btn.orange{background:var(--orange);color:#fff;border-color:var(--orange)}
+    .action-btn.blue{background:var(--blue);color:#fff;border-color:var(--blue)}
+    .action-btn.grey{background:#666;color:#fff;border-color:#666}
     .empty-state{text-align:center;padding:3rem;color:var(--muted);font-size:0.9rem}
     .error-state{text-align:center;padding:2rem;color:var(--red);font-size:0.88rem}
-
-    /* TABS */
     .tabs{display:flex;gap:0.5rem;margin-bottom:1.25rem;flex-wrap:wrap}
     .tab{padding:0.5rem 1.1rem;border-radius:6px;font-size:0.85rem;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:var(--card);color:var(--muted);transition:all 0.15s}
     .tab.active{background:var(--red);color:#fff;border-color:var(--red)}
@@ -105,21 +95,21 @@
     .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--red)}
     .form-group textarea{resize:vertical;min-height:80px}
     .form-full{grid-column:1/-1}
-    .form-submit{background:var(--red);color:#fff;border:none;border-radius:6px;padding:0.8rem 2rem;font-family:'Barlow',sans-serif;font-weight:700;font-size:0.95rem;cursor:pointer;margin-top:0.75rem;transition:opacity 0.2s}
-    .form-submit:hover{opacity:0.88}
+    .form-submit{background:var(--red);color:#fff;border:none;border-radius:6px;padding:0.8rem 2rem;font-family:'Barlow',sans-serif;font-weight:700;font-size:0.95rem;cursor:pointer;margin-top:0.75rem}
     .success-msg{display:none;background:#dcfce7;border:1px solid #86efac;color:#15803d;padding:0.75rem 1rem;border-radius:6px;font-size:0.88rem;margin-top:0.75rem}
     .error-msg{display:none;background:#fee2e2;border:1px solid #fca5a5;color:#991b1b;padding:0.75rem 1rem;border-radius:6px;font-size:0.88rem;margin-top:0.75rem}
     .form-section-title{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--dark);letter-spacing:0.04em;margin:1.25rem 0 0.75rem;padding-top:1.25rem;border-top:1px solid var(--border);grid-column:1/-1}
-    .checkbox-row{display:flex;align-items:center;gap:0.5rem;grid-column:1/-1}
-    .checkbox-row input[type=checkbox]{width:16px;height:16px;accent-color:var(--red);cursor:pointer}
-    .checkbox-row label{font-size:0.88rem;font-weight:600;color:var(--text);cursor:pointer;text-transform:none;letter-spacing:0}
+    .day-chips{display:flex;flex-wrap:wrap;gap:0.4rem}
+    .day-chip{border:1.5px solid var(--border);border-radius:6px;padding:0.35rem 0.75rem;font-size:0.85rem;font-weight:600;cursor:pointer;background:#f5f5f5;transition:all 0.15s;user-select:none}
+    .day-chip.selected{background:#fff5f5;border-color:var(--red);color:var(--red)}
 
-    /* MODAL */
+    /* MODALS */
     .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:500;align-items:center;justify-content:center;padding:1rem}
     .modal-overlay.active{display:flex}
-    .modal{background:#fff;border-radius:12px;padding:2rem;max-width:520px;width:100%;max-height:90vh;overflow-y:auto;position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.3)}
+    .modal{background:#fff;border-radius:12px;padding:2rem;max-width:540px;width:100%;max-height:92vh;overflow-y:auto;position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.3)}
+    .modal-wide{max-width:680px}
     .modal-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--dark);letter-spacing:0.04em;margin-bottom:0.25rem}
-    .modal-sub{font-size:0.82rem;color:var(--muted);margin-bottom:1.5rem}
+    .modal-sub{font-size:0.82rem;color:var(--muted);margin-bottom:1.25rem}
     .modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--muted);line-height:1}
     .modal-close:hover{color:var(--red)}
     .modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem}
@@ -129,27 +119,52 @@
     .modal-group input,.modal-group select,.modal-group textarea{border:1.5px solid var(--border);border-radius:6px;padding:0.6rem 0.75rem;font-size:0.9rem;font-family:'Barlow',sans-serif;outline:none;transition:border 0.2s;color:var(--text)}
     .modal-group input:focus,.modal-group select:focus,.modal-group textarea:focus{border-color:var(--red)}
     .modal-group textarea{resize:vertical;min-height:70px}
-    .modal-divider{grid-column:1/-1;border:none;border-top:1px solid var(--border);margin:0.5rem 0}
-    .modal-section{grid-column:1/-1;font-family:'Bebas Neue',sans-serif;font-size:1rem;color:var(--dark);letter-spacing:0.04em;margin-top:0.25rem}
+    .modal-divider{grid-column:1/-1;border:none;border-top:1px solid var(--border);margin:0.25rem 0}
+    .modal-section-label{grid-column:1/-1;font-family:'Bebas Neue',sans-serif;font-size:1rem;color:var(--dark);letter-spacing:0.04em}
     .modal-checkbox{display:flex;align-items:center;gap:0.5rem;grid-column:1/-1}
     .modal-checkbox input{width:16px;height:16px;accent-color:var(--red);cursor:pointer}
-    .modal-checkbox label{font-size:0.88rem;font-weight:600;cursor:pointer}
+    .modal-checkbox label{font-size:0.88rem;font-weight:600;cursor:pointer;text-transform:none}
     .modal-footer{display:flex;gap:0.75rem;justify-content:flex-end;margin-top:1.25rem;grid-column:1/-1;flex-wrap:wrap}
-    .followup-fields{display:none;grid-column:1/-1}
-    .followup-fields.visible{display:contents}
+    .followup-extra{display:none;grid-column:1/-1}
+    .followup-extra.show{display:contents}
+    .outcome-extra{display:none;grid-column:1/-1}
+    .outcome-extra.show{display:block}
 
-    /* REMINDER SEND BOX */
-    .reminder-box{background:var(--dark);border-radius:10px;padding:1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem}
-    .reminder-box p{color:#ccc;font-size:0.88rem;line-height:1.6}
-    .reminder-box strong{color:#fff}
+    /* 3-MONTH CALENDAR */
+    .quarter-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:1.5rem}
+    .cal-month{background:var(--card);border-radius:10px;border:1.5px solid var(--border);overflow:hidden}
+    .cal-month-header{background:var(--dark);color:#fff;padding:0.75rem 1rem;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:0.06em;display:flex;justify-content:space-between;align-items:center}
+    .cal-month-header span{color:var(--red)}
+    .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--border)}
+    .cal-dow{background:#fafafa;text-align:center;padding:0.35rem 0;font-size:0.65rem;font-weight:700;color:var(--muted);letter-spacing:0.05em}
+    .cal-day{background:var(--card);min-height:52px;padding:0.25rem;position:relative;cursor:default}
+    .cal-day.other-month{background:#fafafa}
+    .cal-day.today{background:#fff5f5}
+    .cal-day.today .cal-day-num{color:var(--red);font-weight:800}
+    .cal-day.has-events{cursor:pointer}
+    .cal-day.has-events:hover{background:#f0f7ff}
+    .cal-day-num{font-size:0.72rem;font-weight:600;color:#666;margin-bottom:0.15rem}
+    .cal-event{background:var(--red);color:#fff;border-radius:3px;padding:0.1rem 0.3rem;font-size:0.62rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:1px;cursor:pointer}
+    .cal-event:hover{background:#a00}
+    .cal-event.green-ev{background:var(--green)}
+    .cal-event.blue-ev{background:var(--blue)}
+
+    /* CUSTOMER DETAIL MODAL */
+    .cust-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:1rem}
+    .cust-info-item label{font-size:0.7rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;display:block;margin-bottom:0.1rem}
+    .cust-info-item p{font-size:0.9rem;color:var(--text);font-weight:600}
+    .cust-section{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:0.04em;color:var(--dark);margin:1rem 0 0.5rem;padding-top:1rem;border-top:1px solid var(--border)}
+    .cust-history{max-height:180px;overflow-y:auto}
+    .cust-history-item{display:flex;align-items:flex-start;gap:0.75rem;padding:0.5rem 0;border-bottom:1px solid var(--border);font-size:0.82rem}
+    .cust-history-item:last-child{border-bottom:none}
 
     /* QR */
     .qr-wrap{text-align:center;padding:2rem}
+
     .overdue{color:var(--red);font-weight:700}
+    .link-btn{background:none;border:none;color:var(--red);font-family:'Barlow',sans-serif;font-size:0.85rem;font-weight:700;cursor:pointer;text-decoration:underline;padding:0}
 
-    /* FOLLOW-UP OUTCOME BUTTONS */
-    .outcome-btns{display:flex;gap:0.4rem;flex-wrap:wrap}
-
+    @media(max-width:900px){.quarter-grid{grid-template-columns:1fr}}
     @media(max-width:768px){
       .sidebar{width:100%;height:56px;bottom:auto;flex-direction:row;overflow-x:auto;overflow-y:hidden}
       .sidebar-logo,.sidebar-user,.sidebar-footer{display:none}
@@ -157,10 +172,11 @@
       .nav-item{padding:0.4rem 0.75rem;flex-direction:column;gap:0.1rem;font-size:0.6rem;border-left:none;border-bottom:2px solid transparent;white-space:nowrap;min-width:60px;justify-content:center;align-items:center}
       .nav-item.active{border-bottom-color:var(--red);border-left:none;background:rgba(211,0,0,0.1)}
       .main{margin-left:0;margin-top:56px;padding:1rem}
-      .form-grid,.modal-grid{grid-template-columns:1fr}
+      .form-grid,.modal-grid,.cust-info-grid{grid-template-columns:1fr}
       .form-full,.modal-full{grid-column:1}
       .modal-footer{justify-content:stretch}
       .modal-footer button{flex:1}
+      .quarter-grid{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -181,39 +197,17 @@
 <!-- APP -->
 <div class="app" id="app">
   <div class="sidebar">
-    <div class="sidebar-logo">
-      <div class="brand">Fresh by Mart</div>
-      <div class="sub">Dashboard</div>
-    </div>
-    <div class="sidebar-user">
-      <p>Signed in as</p>
-      <strong id="sidebarUser">—</strong>
-    </div>
+    <div class="sidebar-logo"><div class="brand">Fresh by Mart</div><div class="sub">Dashboard</div></div>
+    <div class="sidebar-user"><p>Signed in as</p><strong id="sidebarUser">—</strong></div>
     <nav class="sidebar-nav">
-      <button class="nav-item active" onclick="showView('inbox')" id="nav-inbox">
-        <span class="icon">📥</span> Inbox
-        <span class="nav-badge" id="badge-inbox">0</span>
-      </button>
-      <button class="nav-item" onclick="showView('followups')" id="nav-followups">
-        <span class="icon">📞</span> Follow-Ups
-        <span class="nav-badge" id="badge-followups">0</span>
-      </button>
-      <button class="nav-item" onclick="showView('cleaning')" id="nav-cleaning">
-        <span class="icon">🗑️</span> Cleaning Schedule
-      </button>
-      <button class="nav-item" onclick="showView('customers')" id="nav-customers">
-        <span class="icon">👥</span> Customers
-      </button>
-      <button class="nav-item" onclick="showView('add-customer')" id="nav-add-customer">
-        <span class="icon">➕</span> Add Customer
-      </button>
-      <button class="nav-item" onclick="showView('qr')" id="nav-qr">
-        <span class="icon">📱</span> QR Code
-      </button>
+      <button class="nav-item active" onclick="showView('inbox')" id="nav-inbox"><span class="icon">📥</span> Inbox<span class="nav-badge" id="badge-inbox">0</span></button>
+      <button class="nav-item" onclick="showView('followups')" id="nav-followups"><span class="icon">📞</span> Follow-Ups<span class="nav-badge" id="badge-followups">0</span></button>
+      <button class="nav-item" onclick="showView('cleaning')" id="nav-cleaning"><span class="icon">🗑️</span> Cleaning Schedule</button>
+      <button class="nav-item" onclick="showView('customers')" id="nav-customers"><span class="icon">👥</span> Customers</button>
+      <button class="nav-item" onclick="showView('add-customer')" id="nav-add-customer"><span class="icon">➕</span> Add Customer</button>
+      <button class="nav-item" onclick="showView('qr')" id="nav-qr"><span class="icon">📱</span> QR Code</button>
     </nav>
-    <div class="sidebar-footer">
-      <button class="logout-btn" onclick="logout()">Sign Out</button>
-    </div>
+    <div class="sidebar-footer"><button class="logout-btn" onclick="logout()">Sign Out</button></div>
   </div>
 
   <div class="main">
@@ -235,7 +229,7 @@
       </div>
       <div id="bookings-tab">
         <div class="card">
-          <div class="card-header"><h3>Booking Requests</h3><span class="count" id="booking-count"></span></div>
+          <div class="card-header"><h3>Booking Requests</h3><span style="font-size:0.78rem;color:var(--muted)" id="booking-count"></span></div>
           <div class="table-wrap" id="bookings-table"><div class="empty-state">Loading...</div></div>
         </div>
       </div>
@@ -250,11 +244,14 @@
     <!-- FOLLOW-UPS -->
     <div class="view" id="view-followups">
       <div class="page-header">
-        <div class="page-header-text"><h1>Follow-Up Queue</h1><p>Customers to contact for scheduling & payment</p></div>
+        <div class="page-header-text"><h1>Follow-Up Queue</h1><p>3-month overview — click any name to view customer details</p></div>
         <button class="action-btn primary" onclick="sendReminders()">📧 Send This Week's Reminders</button>
       </div>
+      <!-- 3-MONTH CALENDAR -->
+      <div class="quarter-grid" id="quarter-calendar"></div>
+      <!-- LIST below calendar -->
       <div class="card">
-        <div class="card-header"><h3>Due This Week</h3></div>
+        <div class="card-header"><h3>All Pending Follow-Ups</h3><span style="font-size:0.78rem;color:var(--muted)" id="fu-count"></span></div>
         <div class="table-wrap" id="followups-table"><div class="empty-state">Loading...</div></div>
       </div>
     </div>
@@ -265,32 +262,28 @@
         <div class="page-header-text"><h1>Cleaning Schedule</h1><p>Confirmed jobs sorted by zip then address — Mart's daily route list</p></div>
       </div>
       <div class="card">
-        <div class="card-header"><h3>Upcoming Cleanings</h3><span class="count" id="cleaning-count"></span></div>
+        <div class="card-header"><h3>Upcoming Cleanings</h3><span style="font-size:0.78rem;color:var(--muted)" id="cleaning-count"></span></div>
         <div class="table-wrap" id="cleaning-table"><div class="empty-state">Loading...</div></div>
       </div>
     </div>
 
     <!-- CUSTOMERS -->
     <div class="view" id="view-customers">
-      <div class="page-header">
-        <div class="page-header-text"><h1>Customers</h1><p>All customers and their service plans</p></div>
-      </div>
+      <div class="page-header"><div class="page-header-text"><h1>Customers</h1><p>All customers — click a name to view full details</p></div></div>
       <div style="margin-bottom:1rem">
         <input type="text" id="customer-search" placeholder="Search by name, phone, or address..."
           style="width:100%;max-width:400px;border:1.5px solid var(--border);border-radius:6px;padding:0.6rem 1rem;font-size:0.88rem;font-family:Barlow,sans-serif;outline:none;color:var(--text)"
           oninput="filterCustomers(this.value)">
       </div>
       <div class="card">
-        <div class="card-header"><h3>All Customers</h3><span class="count" id="customer-count"></span></div>
+        <div class="card-header"><h3>All Customers</h3><span style="font-size:0.78rem;color:var(--muted)" id="customer-count"></span></div>
         <div class="table-wrap" id="customers-table"><div class="empty-state">Loading...</div></div>
       </div>
     </div>
 
     <!-- ADD CUSTOMER -->
     <div class="view" id="view-add-customer">
-      <div class="page-header">
-        <div class="page-header-text"><h1>Add Customer</h1><p>Manual entry for walk-up or door-to-door sales</p></div>
-      </div>
+      <div class="page-header"><div class="page-header-text"><h1>Add Customer</h1><p>Manual entry for walk-up or door-to-door sales</p></div></div>
       <div class="form-card">
         <div class="form-grid">
           <div class="form-group"><label>First Name *</label><input type="text" id="ac-fname" placeholder="Jane"></div>
@@ -298,19 +291,20 @@
           <div class="form-group"><label>Phone *</label><input type="tel" id="ac-phone" placeholder="(713) 555-0000"></div>
           <div class="form-group"><label>Email</label><input type="email" id="ac-email" placeholder="jane@email.com"></div>
           <div class="form-group form-full"><label>Service Address *</label><input type="text" id="ac-address" placeholder="123 Main St, Pearland TX 77581"></div>
-          <div class="form-group"><label>Trash Pickup Day</label>
-            <select id="ac-day">
-              <option value="">Select...</option>
-              <option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option>
-            </select>
+          <div class="form-group form-full">
+            <label>Trash Pickup Day * <span style="font-size:0.65rem;font-weight:400;color:#999">(select all that apply)</span></label>
+            <div class="day-chips" id="ac-days">
+              <span class="day-chip" onclick="toggleAcDay(this,'Monday')">Monday</span>
+              <span class="day-chip" onclick="toggleAcDay(this,'Tuesday')">Tuesday</span>
+              <span class="day-chip" onclick="toggleAcDay(this,'Wednesday')">Wednesday</span>
+              <span class="day-chip" onclick="toggleAcDay(this,'Thursday')">Thursday</span>
+              <span class="day-chip" onclick="toggleAcDay(this,'Friday')">Friday</span>
+            </div>
           </div>
           <div class="form-group"><label>Number of Bins</label>
-            <select id="ac-bins">
-              <option value="">Select...</option>
-              <option>1 bin</option><option>2 bins</option><option>3 bins</option><option>4+ bins</option>
-            </select>
+            <select id="ac-bins"><option value="">Select...</option><option>1 bin</option><option>2 bins</option><option>3 bins</option><option>4+ bins</option></select>
           </div>
-          <div class="form-group form-full"><label>Plan *</label>
+          <div class="form-group"><label>Plan *</label>
             <select id="ac-plan" onchange="updateFollowupType()">
               <option value="">Select plan...</option>
               <option value="one-time">One-Time ($20/bin)</option>
@@ -327,12 +321,8 @@
               <option value="recurring_schedule">Schedule Next Service</option>
             </select>
           </div>
-          <div class="form-group form-full"><label>Follow-Up Notes</label>
-            <input type="text" id="ac-followup-notes" placeholder="e.g. Prefers Tuesday mornings, call don't text">
-          </div>
-          <div class="form-group form-full"><label>General Notes</label>
-            <textarea id="ac-notes" placeholder="Any notes about this customer or their bins..."></textarea>
-          </div>
+          <div class="form-group form-full"><label>Follow-Up Notes</label><input type="text" id="ac-followup-notes" placeholder="e.g. Prefers Tuesday mornings, call don't text"></div>
+          <div class="form-group form-full"><label>General Notes</label><textarea id="ac-notes" placeholder="Any notes about this customer or their bins..."></textarea></div>
         </div>
         <button class="form-submit" onclick="addCustomer()">Save Customer & Add to Follow-Up Queue →</button>
         <div class="success-msg" id="ac-success">✅ Customer added and scheduled for follow-up!</div>
@@ -342,58 +332,54 @@
 
     <!-- QR CODE -->
     <div class="view" id="view-qr">
-      <div class="page-header">
-        <div class="page-header-text"><h1>QR Code</h1><p>Show this to customers — they scan and book instantly</p></div>
-      </div>
-      <div class="card">
-        <div class="qr-wrap">
-          <canvas id="qrCanvas"></canvas>
-          <p class="qr-url" style="margin-top:0.75rem;font-size:0.85rem;color:var(--muted)">freshbymart.com/book.html</p>
-          <div style="margin-top:1rem"><button class="action-btn primary" onclick="window.print()">🖨️ Print QR Code</button></div>
-        </div>
-      </div>
+      <div class="page-header"><div class="page-header-text"><h1>QR Code</h1><p>Show this to customers — they scan and book instantly</p></div></div>
+      <div class="card"><div class="qr-wrap">
+        <canvas id="qrCanvas"></canvas>
+        <p style="margin-top:0.75rem;font-size:0.85rem;color:var(--muted)">freshbymart.com/book.html</p>
+        <div style="margin-top:1rem"><button class="action-btn primary" onclick="window.print()">🖨️ Print QR Code</button></div>
+      </div></div>
     </div>
 
-  </div><!-- /main -->
-</div><!-- /app -->
+  </div>
+</div>
 
 <!-- CONFIRM BOOKING MODAL -->
 <div class="modal-overlay" id="confirmModal">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('confirmModal')">✕</button>
     <div class="modal-title">Confirm Booking</div>
-    <p class="modal-sub" id="confirm-customer-name">Setting service date and sending confirmation email</p>
+    <p class="modal-sub" id="confirm-customer-name"></p>
     <div class="modal-grid">
       <div class="modal-group">
         <label>Service Date *</label>
         <input type="date" id="confirm-date">
       </div>
       <div class="modal-group">
-        <label>Estimated Time Window</label>
+        <label>Time Window</label>
         <select id="confirm-time">
-          <option value="Late morning to afternoon">Late morning to afternoon</option>
-          <option value="Morning (before noon)">Morning (before noon)</option>
-          <option value="Afternoon (noon–5pm)">Afternoon (noon–5pm)</option>
-          <option value="Evening (5–7pm)">Evening (5–7pm)</option>
+          <option>Late morning to afternoon</option>
+          <option>Morning (before noon)</option>
+          <option>Afternoon (noon–5pm)</option>
+          <option>Evening (5–7pm)</option>
         </select>
       </div>
       <div class="modal-group modal-full">
-        <label>Notes (internal only)</label>
-        <textarea id="confirm-notes" placeholder="Internal notes about this booking..."></textarea>
+        <label>Internal Notes</label>
+        <textarea id="confirm-notes" placeholder="Notes only visible on dashboard..."></textarea>
       </div>
       <hr class="modal-divider">
-      <div class="modal-section">Follow-Up Schedule</div>
+      <div class="modal-section-label">Follow-Up After This Cleaning</div>
       <div class="modal-checkbox">
-        <input type="checkbox" id="confirm-followup-check" onchange="toggleConfirmFollowup()">
+        <input type="checkbox" id="confirm-followup-check" onchange="document.getElementById('confirm-followup-extra').classList.toggle('show',this.checked)">
         <label for="confirm-followup-check">Schedule a follow-up after this cleaning</label>
       </div>
-      <div class="followup-fields" id="confirm-followup-fields">
+      <div class="followup-extra" id="confirm-followup-extra">
         <div class="modal-group">
           <label>Follow-Up Date</label>
           <input type="date" id="confirm-followup-date">
         </div>
         <div class="modal-group">
-          <label>Follow-Up Type</label>
+          <label>Type</label>
           <select id="confirm-followup-type">
             <option value="recurring_schedule">Schedule Next Service</option>
             <option value="collect_payment">Collect Payment</option>
@@ -401,12 +387,13 @@
           </select>
         </div>
         <div class="modal-group modal-full">
-          <label>Follow-Up Notes</label>
-          <input type="text" id="confirm-followup-notes" placeholder="Remind to ask about additional bins, etc.">
+          <label>Notes</label>
+          <input type="text" id="confirm-followup-notes" placeholder="e.g. Ask about adding recycling bin">
         </div>
       </div>
       <div class="modal-footer">
-        <button class="action-btn" onclick="closeModal('confirmModal')">Cancel</button>
+        <button class="action-btn grey" onclick="declineBooking()">❌ Decline Request</button>
+        <button class="action-btn orange" onclick="snoozeBooking()">🗓️ Follow Up Later</button>
         <button class="action-btn primary" onclick="submitConfirm()">✓ Confirm & Send Email</button>
       </div>
     </div>
@@ -417,12 +404,12 @@
 <div class="modal-overlay" id="outcomeModal">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('outcomeModal')">✕</button>
-    <div class="modal-title" id="outcome-title">Log Follow-Up Outcome</div>
-    <p class="modal-sub" id="outcome-customer"></p>
+    <div class="modal-title">Log Follow-Up Outcome</div>
+    <p class="modal-sub" id="outcome-customer-name"></p>
     <div class="modal-grid">
       <div class="modal-group modal-full">
-        <label>What happened?</label>
-        <select id="outcome-result" onchange="toggleOutcomeFields()">
+        <label>Outcome *</label>
+        <select id="outcome-result" onchange="handleOutcomeChange()">
           <option value="">Select outcome...</option>
           <option value="confirmed">✅ Confirmed — set cleaning date</option>
           <option value="declined">❌ Declined — reschedule follow-up</option>
@@ -434,34 +421,22 @@
         <label>Notes</label>
         <textarea id="outcome-notes" placeholder="What did they say? Any special requests?"></textarea>
       </div>
-
-      <!-- Confirmed fields -->
-      <div id="outcome-confirmed-fields" style="display:none;grid-column:1/-1">
+      <div class="outcome-extra" id="outcome-confirmed-section">
         <div class="modal-grid">
-          <div class="modal-group">
-            <label>Cleaning Date *</label>
-            <input type="date" id="outcome-cleaning-date">
-          </div>
-          <div class="modal-group">
-            <label>Time Window</label>
+          <div class="modal-group"><label>Cleaning Date *</label><input type="date" id="outcome-cleaning-date"></div>
+          <div class="modal-group"><label>Time Window</label>
             <select id="outcome-time">
-              <option value="Late morning to afternoon">Late morning to afternoon</option>
-              <option value="Morning (before noon)">Morning (before noon)</option>
-              <option value="Afternoon (noon–5pm)">Afternoon (noon–5pm)</option>
+              <option>Late morning to afternoon</option>
+              <option>Morning (before noon)</option>
+              <option>Afternoon (noon–5pm)</option>
             </select>
           </div>
         </div>
       </div>
-
-      <!-- Reschedule fields -->
-      <div id="outcome-reschedule-fields" style="display:none;grid-column:1/-1">
+      <div class="outcome-extra" id="outcome-reschedule-section">
         <div class="modal-grid">
-          <div class="modal-group">
-            <label>Next Follow-Up Date *</label>
-            <input type="date" id="outcome-next-date">
-          </div>
-          <div class="modal-group">
-            <label>Follow-Up Type</label>
+          <div class="modal-group"><label>Next Follow-Up Date *</label><input type="date" id="outcome-next-date"></div>
+          <div class="modal-group"><label>Follow-Up Type</label>
             <select id="outcome-next-type">
               <option value="recurring_schedule">Schedule Next Service</option>
               <option value="collect_payment">Collect Payment</option>
@@ -470,10 +445,85 @@
           </div>
         </div>
       </div>
-
       <div class="modal-footer">
         <button class="action-btn" onclick="closeModal('outcomeModal')">Cancel</button>
         <button class="action-btn primary" onclick="submitOutcome()">Save Outcome →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CUSTOMER DETAIL MODAL -->
+<div class="modal-overlay" id="customerModal">
+  <div class="modal modal-wide">
+    <button class="modal-close" onclick="closeModal('customerModal')">✕</button>
+    <div class="modal-title" id="cust-modal-name">Customer Details</div>
+    <p class="modal-sub" id="cust-modal-plan"></p>
+    <div class="cust-info-grid" id="cust-modal-info"></div>
+    <div class="modal-group modal-full" style="margin-bottom:0.75rem">
+      <label style="font-size:0.75rem;font-weight:700;color:#444;text-transform:uppercase;letter-spacing:0.03em">Notes</label>
+      <textarea id="cust-modal-notes" style="border:1.5px solid var(--border);border-radius:6px;padding:0.6rem 0.75rem;font-size:0.88rem;font-family:Barlow,sans-serif;outline:none;width:100%;resize:vertical;min-height:70px;color:var(--text)"></textarea>
+    </div>
+    <div class="cust-section">Upcoming Follow-Ups</div>
+    <div id="cust-modal-followups"><div style="font-size:0.85rem;color:var(--muted)">Loading...</div></div>
+    <div class="cust-section">Booking History</div>
+    <div class="cust-history" id="cust-modal-history"></div>
+    <div class="modal-footer">
+      <button class="action-btn" onclick="closeModal('customerModal')">Close</button>
+      <button class="action-btn orange" onclick="openNewFollowupForCustomer()">➕ Add Follow-Up</button>
+      <button class="action-btn primary" onclick="saveCustomerNotes(); bookForCustomer()">📅 Book Cleaning</button>
+      <button class="action-btn green" onclick="saveCustomerNotes()">💾 Save Notes</button>
+    </div>
+  </div>
+</div>
+
+<!-- NEW FOLLOWUP FOR CUSTOMER MODAL -->
+<div class="modal-overlay" id="newFollowupModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('newFollowupModal')">✕</button>
+    <div class="modal-title">Add Follow-Up</div>
+    <p class="modal-sub" id="new-fu-customer-name"></p>
+    <div class="modal-grid">
+      <div class="modal-group"><label>Follow-Up Date *</label><input type="date" id="new-fu-date"></div>
+      <div class="modal-group"><label>Type</label>
+        <select id="new-fu-type">
+          <option value="recurring_schedule">Schedule Next Service</option>
+          <option value="collect_payment">Collect Payment</option>
+          <option value="confirm_schedule">Confirm Schedule</option>
+        </select>
+      </div>
+      <div class="modal-group modal-full"><label>Notes</label><input type="text" id="new-fu-notes" placeholder="What's the goal of this follow-up?"></div>
+      <div class="modal-footer">
+        <button class="action-btn" onclick="closeModal('newFollowupModal')">Cancel</button>
+        <button class="action-btn primary" onclick="saveNewFollowup()">Add to Queue →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BOOK FOR CUSTOMER MODAL -->
+<div class="modal-overlay" id="bookCustomerModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('bookCustomerModal')">✕</button>
+    <div class="modal-title">Book a Cleaning</div>
+    <p class="modal-sub" id="book-cust-name"></p>
+    <div class="modal-grid">
+      <div class="modal-group"><label>Cleaning Date *</label><input type="date" id="book-cust-date"></div>
+      <div class="modal-group"><label>Time Window</label>
+        <select id="book-cust-time">
+          <option>Late morning to afternoon</option>
+          <option>Morning (before noon)</option>
+          <option>Afternoon (noon–5pm)</option>
+        </select>
+      </div>
+      <div class="modal-group modal-full"><label>Notes</label><textarea id="book-cust-notes" placeholder="Any notes for this cleaning..."></textarea></div>
+      <div class="modal-checkbox">
+        <input type="checkbox" id="book-cust-email" checked>
+        <label for="book-cust-email">Send confirmation email to customer</label>
+      </div>
+      <div class="modal-footer">
+        <button class="action-btn" onclick="closeModal('bookCustomerModal')">Cancel</button>
+        <button class="action-btn primary" onclick="submitBookForCustomer()">Confirm & Schedule →</button>
       </div>
     </div>
   </div>
@@ -483,20 +533,23 @@
 const API = 'https://trendmonkey-production-production.up.railway.app/api/fbm';
 let authToken = null;
 let allCustomers = [];
+let allFollowups = [];
 let currentBookingId = null;
+let currentBookingPlan = null;
 let currentFollowupId = null;
-let currentFollowupCustomer = null;
+let currentCustomerId = null;
+let selectedAcDays = new Set();
 
 // ── HELPERS ──
 function hdr() { return {'Authorization':'Bearer '+authToken,'Content-Type':'application/json'}; }
 function planBadge(p) {
-  const m = {'one-time':'badge-one-time','monthly':'badge-monthly','quarterly':'badge-quarterly'};
-  const l = {'one-time':'One-Time','monthly':'Monthly','quarterly':'Quarterly'};
+  const m={'one-time':'badge-one-time','monthly':'badge-monthly','quarterly':'badge-quarterly'};
+  const l={'one-time':'One-Time','monthly':'Monthly','quarterly':'Quarterly'};
   return `<span class="badge ${m[p]||'badge-one-time'}">${l[p]||p}</span>`;
 }
 function statusBadge(s) {
-  const m = {'new':'badge-new','confirmed':'badge-confirmed','completed':'badge-completed','pending':'badge-pending','done':'badge-done','in-progress':'badge-confirmed'};
-  const l = {'new':'New','confirmed':'Confirmed','completed':'Completed','pending':'Pending','done':'Done','in-progress':'In Progress'};
+  const m={'new':'badge-new','confirmed':'badge-confirmed','completed':'badge-completed','pending':'badge-pending','done':'badge-done','in-progress':'badge-confirmed','declined':'badge-declined','cancelled':'badge-cancelled'};
+  const l={'new':'New','confirmed':'Confirmed','completed':'Completed','pending':'Pending','done':'Done','in-progress':'In Progress','declined':'Declined','cancelled':'Cancelled'};
   return `<span class="badge ${m[s]||'badge-new'}">${l[s]||s}</span>`;
 }
 function fmtDate(d) { return d ? new Date(d).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '—'; }
@@ -513,19 +566,19 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function doLogin() {
-  const u = document.getElementById('loginUser').value.trim();
-  const p = document.getElementById('loginPass').value;
-  const err = document.getElementById('loginErr');
+  const u=document.getElementById('loginUser').value.trim();
+  const p=document.getElementById('loginPass').value;
+  const err=document.getElementById('loginErr');
   err.style.display='none';
   try {
-    const r = await fetch(API+'/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:u,password:p})});
-    const d = await r.json();
-    if (!r.ok||!d.token) { err.textContent=d.error||'Invalid credentials'; err.style.display='block'; return; }
+    const r=await fetch(API+'/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:u,password:p})});
+    const d=await r.json();
+    if(!r.ok||!d.token){err.textContent=d.error||'Invalid credentials';err.style.display='block';return;}
     authToken=d.token;
     sessionStorage.setItem('fbm_token',d.token);
     sessionStorage.setItem('fbm_name',d.user.full_name);
     startApp(d.user.full_name);
-  } catch(e) { err.textContent='Connection error. Try again.'; err.style.display='block'; }
+  } catch(e){err.textContent='Connection error. Try again.';err.style.display='block';}
 }
 
 function startApp(name) {
@@ -534,7 +587,6 @@ function startApp(name) {
   document.getElementById('sidebarUser').textContent=name||'—';
   loadSummary(); loadInbox(); generateQR();
 }
-
 function logout() { authToken=null; sessionStorage.clear(); location.reload(); }
 
 // ── NAVIGATION ──
@@ -548,10 +600,9 @@ function showView(name) {
   if(name==='customers') loadCustomers();
   if(name==='qr') setTimeout(generateQR,100);
 }
-
-function switchTab(showId,hideId,el) {
-  document.getElementById(showId).style.display='block';
-  document.getElementById(hideId).style.display='none';
+function switchTab(s,h,el) {
+  document.getElementById(s).style.display='block';
+  document.getElementById(h).style.display='none';
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   el.classList.add('active');
 }
@@ -559,19 +610,19 @@ function switchTab(showId,hideId,el) {
 // ── MODALS ──
 function openModal(id) { document.getElementById(id).classList.add('active'); document.body.style.overflow='hidden'; }
 function closeModal(id) { document.getElementById(id).classList.remove('active'); document.body.style.overflow=''; }
-document.addEventListener('keydown', e=>{ if(e.key==='Escape') { closeModal('confirmModal'); closeModal('outcomeModal'); } });
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') ['confirmModal','outcomeModal','customerModal','newFollowupModal','bookCustomerModal'].forEach(closeModal); });
 
 // ── SUMMARY ──
 async function loadSummary() {
   try {
-    const r = await fetch(API+'/dashboard/summary',{headers:hdr()});
-    const d = await r.json();
+    const r=await fetch(API+'/dashboard/summary',{headers:hdr()});
+    const d=await r.json();
     document.getElementById('sum-bookings').textContent=d.new_bookings??0;
     document.getElementById('sum-quotes').textContent=d.new_quotes??0;
     document.getElementById('sum-followups').textContent=d.followups_this_week??0;
     document.getElementById('sum-customers').textContent=d.total_customers??0;
-    const total = (d.new_bookings||0)+(d.new_quotes||0);
-    if(total>0){const b=document.getElementById('badge-inbox');b.textContent=total;b.style.display='inline';}
+    const tot=(d.new_bookings||0)+(d.new_quotes||0);
+    if(tot>0){const b=document.getElementById('badge-inbox');b.textContent=tot;b.style.display='inline';}
     if(d.followups_this_week>0){const b=document.getElementById('badge-followups');b.textContent=d.followups_this_week;b.style.display='inline';}
   } catch(e){console.error(e);}
 }
@@ -579,19 +630,19 @@ async function loadSummary() {
 // ── INBOX ──
 async function loadInbox() {
   try {
-    const r = await fetch(API+'/inbox',{headers:hdr()});
+    const r=await fetch(API+'/inbox',{headers:hdr()});
     if(!r.ok) throw new Error('Failed '+r.status);
-    const d = await r.json();
+    const d=await r.json();
     renderBookings(d.bookings||[]);
     renderQuotes(d.quotes||[]);
     document.getElementById('booking-count').textContent=(d.bookings||[]).length+' total';
   } catch(e) {
-    document.getElementById('bookings-table').innerHTML=`<div class="error-state">Error: ${e.message}</div>`;
+    document.getElementById('bookings-table').innerHTML=`<div class="error-state">Error loading: ${e.message}</div>`;
   }
 }
 
 function renderBookings(items) {
-  const el = document.getElementById('bookings-table');
+  const el=document.getElementById('bookings-table');
   if(!items.length){el.innerHTML='<div class="empty-state">No bookings yet — they\'ll appear here when someone books online.</div>';return;}
   el.innerHTML=`<table>
     <thead><tr><th>Customer</th><th>Phone</th><th>Address</th><th>Trash Day</th><th>Bins</th><th>Plan</th><th>Status</th><th>Received</th><th>Actions</th></tr></thead>
@@ -599,7 +650,7 @@ function renderBookings(items) {
       <td><strong>${b.first_name} ${b.last_name}</strong></td>
       <td><a href="tel:${b.phone}" style="color:var(--red);text-decoration:none">${b.phone}</a></td>
       <td style="font-size:0.78rem;color:var(--muted);max-width:160px">${b.address}</td>
-      <td>${b.trash_day||'—'}</td>
+      <td style="font-size:0.82rem">${b.trash_day||'—'}</td>
       <td>${b.bin_count||'—'}</td>
       <td>${planBadge(b.plan)}</td>
       <td>${statusBadge(b.status)}</td>
@@ -607,168 +658,217 @@ function renderBookings(items) {
       <td style="white-space:nowrap">
         ${b.status==='new'?`<button class="action-btn primary" onclick="openConfirmModal(${b.id},'${b.first_name} ${b.last_name}','${b.plan}')">✓ Confirm</button>`:''}
         ${b.status==='confirmed'?`<button class="action-btn green" onclick="markDone(${b.id})">✓ Done</button>`:''}
+        ${b.status==='declined'||b.status==='cancelled'?`<span style="font-size:0.78rem;color:var(--muted)">Closed</span>`:''}
       </td>
     </tr>`).join('')}</tbody></table>`;
 }
 
 function renderQuotes(items) {
-  const el = document.getElementById('quotes-table');
+  const el=document.getElementById('quotes-table');
   if(!items.length){el.innerHTML='<div class="empty-state">No quote requests yet.</div>';return;}
   el.innerHTML=`<table>
     <thead><tr><th>Name</th><th>Phone</th><th>Business</th><th>Bins</th><th>Frequency</th><th>Status</th><th>Received</th><th>Actions</th></tr></thead>
     <tbody>${items.map(q=>`<tr>
       <td><strong>${q.first_name} ${q.last_name}</strong></td>
       <td><a href="tel:${q.phone}" style="color:var(--red);text-decoration:none">${q.phone}</a></td>
-      <td>${q.business_name||'—'}</td>
-      <td>${q.bin_count||'—'}</td>
-      <td>${q.frequency||'—'}</td>
+      <td>${q.business_name||'—'}</td><td>${q.bin_count||'—'}</td><td>${q.frequency||'—'}</td>
       <td>${statusBadge(q.status)}</td>
       <td style="font-size:0.78rem;color:var(--muted);white-space:nowrap">${fmtTime(q.created_at)}</td>
       <td>${q.status==='new'?`<button class="action-btn primary" onclick="updateQuote(${q.id},'in-progress')">In Progress</button>`:''}
-          ${q.status==='in-progress'?`<button class="action-btn green" onclick="updateQuote(${q.id},'completed')">✓ Done</button>`:''}
-      </td>
+          ${q.status==='in-progress'?`<button class="action-btn green" onclick="updateQuote(${q.id},'completed')">✓ Done</button>`:''}</td>
     </tr>`).join('')}</tbody></table>`;
 }
 
 // ── CONFIRM MODAL ──
 function openConfirmModal(id, name, plan) {
-  currentBookingId = id;
-  document.getElementById('confirm-customer-name').textContent = name + ' — ' + plan + ' plan';
-  // Auto-set follow-up date based on plan
-  const days = plan==='monthly'?30:plan==='quarterly'?90:14;
-  document.getElementById('confirm-followup-date').value = daysFromNow(days);
-  document.getElementById('confirm-followup-type').value = plan==='one-time'?'collect_payment':'recurring_schedule';
-  document.getElementById('confirm-followup-check').checked = false;
-  document.getElementById('confirm-followup-fields').classList.remove('visible');
-  document.getElementById('confirm-notes').value = '';
-  document.getElementById('confirm-date').value = '';
+  currentBookingId=id; currentBookingPlan=plan;
+  document.getElementById('confirm-customer-name').textContent=name+' — '+plan+' plan';
+  const days=plan==='monthly'?30:plan==='quarterly'?90:14;
+  document.getElementById('confirm-followup-date').value=daysFromNow(days);
+  document.getElementById('confirm-followup-type').value=plan==='one-time'?'collect_payment':'recurring_schedule';
+  document.getElementById('confirm-followup-check').checked=false;
+  document.getElementById('confirm-followup-extra').classList.remove('show');
+  document.getElementById('confirm-notes').value='';
+  document.getElementById('confirm-date').value='';
   openModal('confirmModal');
 }
 
-function toggleConfirmFollowup() {
-  const checked = document.getElementById('confirm-followup-check').checked;
-  document.getElementById('confirm-followup-fields').classList.toggle('visible', checked);
-}
-
 async function submitConfirm() {
-  const date = document.getElementById('confirm-date').value;
+  const date=document.getElementById('confirm-date').value;
   if(!date){alert('Please select a service date.');return;}
-  const notes = document.getElementById('confirm-notes').value.trim();
-  const hasFollowup = document.getElementById('confirm-followup-check').checked;
-  const followupDate = document.getElementById('confirm-followup-date').value;
-  const followupType = document.getElementById('confirm-followup-type').value;
-  const followupNotes = document.getElementById('confirm-followup-notes').value.trim();
-
+  const hasFollowup=document.getElementById('confirm-followup-check').checked;
   try {
     await fetch(API+'/bookings/'+currentBookingId+'/status',{
-      method:'PATCH', headers:hdr(),
+      method:'PATCH',headers:hdr(),
       body:JSON.stringify({
-        status:'confirmed', service_date:date, notes,
+        status:'confirmed',service_date:date,
+        notes:document.getElementById('confirm-notes').value.trim(),
         send_confirmation:true,
-        followup_date: hasFollowup?followupDate:null,
-        followup_type: hasFollowup?followupType:null,
-        followup_notes: hasFollowup?followupNotes:null
+        followup_date:hasFollowup?document.getElementById('confirm-followup-date').value:null,
+        followup_type:hasFollowup?document.getElementById('confirm-followup-type').value:null,
+        followup_notes:hasFollowup?document.getElementById('confirm-followup-notes').value.trim():null
       })
     });
-    closeModal('confirmModal');
-    loadInbox(); loadSummary();
+    closeModal('confirmModal'); loadInbox(); loadSummary();
   } catch(e){alert('Error confirming. Try again.');}
+}
+
+async function declineBooking() {
+  if(!confirm('Decline this booking request? It will be removed from the active queue.')) return;
+  await fetch(API+'/bookings/'+currentBookingId+'/status',{method:'PATCH',headers:hdr(),body:JSON.stringify({status:'declined',notes:'Declined by staff'})});
+  closeModal('confirmModal'); loadInbox(); loadSummary();
+}
+
+async function snoozeBooking() {
+  const date=prompt('Enter a follow-up date (YYYY-MM-DD) to circle back on this booking:',daysFromNow(3));
+  if(!date) return;
+  // Keep status as new but add a followup reminder
+  await fetch(API+'/followups',{method:'POST',headers:hdr(),body:JSON.stringify({
+    customer_id:null, type:'confirm_schedule', due_date:date,
+    notes:'Circle back on unconfirmed booking #'+currentBookingId
+  })});
+  closeModal('confirmModal');
+  alert('Follow-up added for '+date+'!');
 }
 
 async function markDone(id) {
   await fetch(API+'/bookings/'+id+'/status',{method:'PATCH',headers:hdr(),body:JSON.stringify({status:'completed'})});
   loadInbox(); loadSummary();
 }
-
 async function updateQuote(id,status) {
   await fetch(API+'/quotes/'+id+'/status',{method:'PATCH',headers:hdr(),body:JSON.stringify({status})});
   loadInbox(); loadSummary();
 }
 
-// ── FOLLOW-UPS ──
+// ── FOLLOW-UPS + CALENDAR ──
 async function loadFollowups() {
   try {
-    const r = await fetch(API+'/followups',{headers:hdr()});
+    const r=await fetch(API+'/followups/all',{headers:hdr()});
     if(!r.ok) throw new Error('Failed '+r.status);
-    const items = await r.json();
-    const el = document.getElementById('followups-table');
-    if(!items.length){el.innerHTML='<div class="empty-state">🎉 No follow-ups due! Check back later.</div>';return;}
-    el.innerHTML=`<table>
-      <thead><tr><th>Customer</th><th>Phone</th><th>Plan</th><th>Type</th><th>Due Date</th><th>Notes</th><th>Outcome</th></tr></thead>
-      <tbody>${items.map(f=>`<tr>
-        <td><strong>${f.first_name} ${f.last_name}</strong><br><span style="font-size:0.75rem;color:var(--muted)">${f.address||''}</span></td>
-        <td><a href="tel:${f.phone}" style="color:var(--red);text-decoration:none">${f.phone}</a>${f.email?`<br><a href="mailto:${f.email}" style="font-size:0.75rem;color:var(--muted);text-decoration:none">${f.email}</a>`:''}</td>
-        <td>${planBadge(f.plan)}</td>
-        <td style="font-size:0.82rem">${(f.type||'').replace(/_/g,' ')}</td>
-        <td class="${isOverdue(f.due_date)?'overdue':''}" style="white-space:nowrap">${fmtDate(f.due_date)}${isOverdue(f.due_date)?' ⚠️':''}</td>
-        <td style="font-size:0.78rem;color:var(--muted);max-width:150px">${f.notes||'—'}</td>
-        <td>
-          <div class="outcome-btns">
-            <button class="action-btn green" onclick="openOutcomeModal(${f.id},'${f.first_name} ${f.last_name}','${f.customer_id}','${f.plan}')">Log Outcome</button>
-          </div>
-        </td>
-      </tr>`).join('')}</tbody></table>`;
-  } catch(e){document.getElementById('followups-table').innerHTML=`<div class="error-state">Error: ${e.message}</div>`;}
+    allFollowups=await r.json();
+    renderFollowupCalendar(allFollowups);
+    renderFollowupList(allFollowups);
+    document.getElementById('fu-count').textContent=allFollowups.length+' total';
+  } catch(e){
+    document.getElementById('followups-table').innerHTML=`<div class="error-state">Error: ${e.message}</div>`;
+  }
+}
+
+function renderFollowupCalendar(followups) {
+  const now=new Date();
+  const container=document.getElementById('quarter-calendar');
+  container.innerHTML='';
+  // Build 3 months starting from current month
+  for(let m=0;m<3;m++) {
+    const year=now.getFullYear()+(now.getMonth()+m>11?1:0);
+    const month=(now.getMonth()+m)%12;
+    const firstDay=new Date(year,month,1);
+    const lastDay=new Date(year,month+1,0);
+    const monthName=firstDay.toLocaleString('en-US',{month:'long'});
+
+    // Group followups by date for this month
+    const byDate={};
+    followups.forEach(f=>{
+      if(!f.due_date) return;
+      const d=new Date(f.due_date);
+      if(d.getFullYear()===year&&d.getMonth()===month) {
+        const key=d.getDate();
+        if(!byDate[key]) byDate[key]=[];
+        byDate[key].push(f);
+      }
+    });
+
+    let html=`<div class="cal-month">
+      <div class="cal-month-header"><span>${monthName}</span> ${year}</div>
+      <div class="cal-grid">
+        <div class="cal-dow">Sun</div><div class="cal-dow">Mon</div><div class="cal-dow">Tue</div>
+        <div class="cal-dow">Wed</div><div class="cal-dow">Thu</div><div class="cal-dow">Fri</div><div class="cal-dow">Sat</div>`;
+
+    // Empty cells before first day
+    for(let i=0;i<firstDay.getDay();i++) html+=`<div class="cal-day other-month"></div>`;
+
+    // Days
+    for(let day=1;day<=lastDay.getDate();day++) {
+      const isToday=day===now.getDate()&&month===now.getMonth()&&year===now.getFullYear();
+      const events=byDate[day]||[];
+      const hasEv=events.length>0;
+      html+=`<div class="cal-day${isToday?' today':''}${hasEv?' has-events':''}">
+        <div class="cal-day-num">${day}</div>
+        ${events.slice(0,2).map(f=>`<div class="cal-event${isOverdue(f.due_date)?' ':' blue-ev'}" onclick="openCustomerModal(${f.customer_id})">${f.first_name} ${f.last_name[0]}.</div>`).join('')}
+        ${events.length>2?`<div style="font-size:0.6rem;color:var(--muted);padding:0 0.15rem">+${events.length-2} more</div>`:''}
+      </div>`;
+    }
+    // Fill remaining
+    const remaining=(7-((firstDay.getDay()+lastDay.getDate())%7))%7;
+    for(let i=0;i<remaining;i++) html+=`<div class="cal-day other-month"></div>`;
+    html+=`</div></div>`;
+    container.innerHTML+=html;
+  }
+}
+
+function renderFollowupList(items) {
+  const el=document.getElementById('followups-table');
+  if(!items.length){el.innerHTML='<div class="empty-state">🎉 No follow-ups scheduled! Add customers to build your queue.</div>';return;}
+  el.innerHTML=`<table>
+    <thead><tr><th>Customer</th><th>Phone</th><th>Plan</th><th>Type</th><th>Due Date</th><th>Notes</th><th>Action</th></tr></thead>
+    <tbody>${items.map(f=>`<tr>
+      <td><button class="link-btn" onclick="openCustomerModal(${f.customer_id})">${f.first_name} ${f.last_name}</button></td>
+      <td><a href="tel:${f.phone}" style="color:var(--red);text-decoration:none">${f.phone}</a></td>
+      <td>${planBadge(f.plan)}</td>
+      <td style="font-size:0.82rem">${(f.type||'').replace(/_/g,' ')}</td>
+      <td class="${isOverdue(f.due_date)?'overdue':''}" style="white-space:nowrap">${fmtDate(f.due_date)}${isOverdue(f.due_date)?' ⚠️':''}</td>
+      <td style="font-size:0.78rem;color:var(--muted);max-width:150px">${f.notes||'—'}</td>
+      <td><button class="action-btn green" onclick="openOutcomeModal(${f.id},'${f.first_name} ${f.last_name}',${f.customer_id},'${f.plan}')">Log Outcome</button></td>
+    </tr>`).join('')}</tbody></table>`;
 }
 
 // ── OUTCOME MODAL ──
-function openOutcomeModal(id, name, customerId, plan) {
-  currentFollowupId = id;
-  currentFollowupCustomer = {id:customerId, name, plan};
-  document.getElementById('outcome-title').textContent = 'Log Outcome — ' + name;
-  document.getElementById('outcome-customer').textContent = plan + ' plan';
-  document.getElementById('outcome-result').value = '';
-  document.getElementById('outcome-notes').value = '';
-  document.getElementById('outcome-cleaning-date').value = '';
-  document.getElementById('outcome-next-date').value = daysFromNow(7);
-  document.getElementById('outcome-confirmed-fields').style.display='none';
-  document.getElementById('outcome-reschedule-fields').style.display='none';
+function openOutcomeModal(id, name, custId, plan) {
+  currentFollowupId=id; currentCustomerId=custId;
+  document.getElementById('outcome-customer-name').textContent=name+' — '+plan+' plan';
+  document.getElementById('outcome-result').value='';
+  document.getElementById('outcome-notes').value='';
+  document.getElementById('outcome-cleaning-date').value='';
+  document.getElementById('outcome-next-date').value=daysFromNow(7);
+  document.getElementById('outcome-confirmed-section').classList.remove('show');
+  document.getElementById('outcome-reschedule-section').classList.remove('show');
   openModal('outcomeModal');
 }
 
-function toggleOutcomeFields() {
-  const val = document.getElementById('outcome-result').value;
-  document.getElementById('outcome-confirmed-fields').style.display = val==='confirmed'?'block':'none';
-  document.getElementById('outcome-reschedule-fields').style.display = (val&&val!=='confirmed')?'block':'none';
+function handleOutcomeChange() {
+  const v=document.getElementById('outcome-result').value;
+  document.getElementById('outcome-confirmed-section').classList.toggle('show',v==='confirmed');
+  document.getElementById('outcome-reschedule-section').classList.toggle('show',v&&v!=='confirmed');
 }
 
 async function submitOutcome() {
-  const result = document.getElementById('outcome-result').value;
+  const result=document.getElementById('outcome-result').value;
   if(!result){alert('Please select an outcome.');return;}
-  const notes = document.getElementById('outcome-notes').value.trim();
-
+  const notes=document.getElementById('outcome-notes').value.trim();
   try {
-    // Mark current follow-up done
     await fetch(API+'/followups/'+currentFollowupId+'/complete',{method:'PATCH',headers:hdr(),body:JSON.stringify({notes,outcome:result})});
-
     if(result==='confirmed') {
-      const cleaningDate = document.getElementById('outcome-cleaning-date').value;
+      const cleaningDate=document.getElementById('outcome-cleaning-date').value;
       if(!cleaningDate){alert('Please enter the cleaning date.');return;}
-      // Create confirmed booking + send email
       await fetch(API+'/followups/'+currentFollowupId+'/confirm-cleaning',{
-        method:'POST', headers:hdr(),
-        body:JSON.stringify({cleaning_date:cleaningDate, notes, customer_id:currentFollowupCustomer.id})
+        method:'POST',headers:hdr(),
+        body:JSON.stringify({cleaning_date:cleaningDate,notes,customer_id:currentCustomerId})
       });
     } else {
-      // Schedule next follow-up
-      const nextDate = document.getElementById('outcome-next-date').value;
-      const nextType = document.getElementById('outcome-next-type').value;
+      const nextDate=document.getElementById('outcome-next-date').value;
+      const nextType=document.getElementById('outcome-next-type').value;
       if(!nextDate){alert('Please enter a follow-up date.');return;}
-      await fetch(API+'/followups',{
-        method:'POST', headers:hdr(),
-        body:JSON.stringify({customer_id:currentFollowupCustomer.id, type:nextType, due_date:nextDate, notes:'Rescheduled: '+result})
-      });
+      await fetch(API+'/followups',{method:'POST',headers:hdr(),body:JSON.stringify({customer_id:currentCustomerId,type:nextType,due_date:nextDate,notes:'Rescheduled: '+result})});
     }
-    closeModal('outcomeModal');
-    loadFollowups(); loadSummary();
-  } catch(e){alert('Error saving outcome. Try again.');}
+    closeModal('outcomeModal'); loadFollowups(); loadSummary();
+  } catch(e){alert('Error saving outcome.');}
 }
 
 async function sendReminders() {
-  if(!confirm('Send follow-up reminder emails to all customers due this week?')) return;
+  if(!confirm('Send reminder emails to all customers with follow-ups due this week?')) return;
   try {
-    const r = await fetch(API+'/followups/send-reminders',{method:'POST',headers:hdr()});
-    const d = await r.json();
+    const r=await fetch(API+'/followups/send-reminders',{method:'POST',headers:hdr()});
+    const d=await r.json();
     alert(`✅ Sent ${d.sent||0} reminder emails!`);
   } catch(e){alert('Error sending reminders.');}
 }
@@ -776,19 +876,19 @@ async function sendReminders() {
 // ── CLEANING SCHEDULE ──
 async function loadCleaning() {
   try {
-    const r = await fetch(API+'/schedule',{headers:hdr()});
+    const r=await fetch(API+'/schedule',{headers:hdr()});
     if(!r.ok) throw new Error('Failed '+r.status);
-    const items = await r.json();
-    const el = document.getElementById('cleaning-table');
+    const items=await r.json();
+    const el=document.getElementById('cleaning-table');
     document.getElementById('cleaning-count').textContent=items.length+' jobs';
     if(!items.length){el.innerHTML='<div class="empty-state">No confirmed cleanings yet. Confirm bookings from the Inbox to add them here.</div>';return;}
     el.innerHTML=`<table>
       <thead><tr><th>Date</th><th>Customer</th><th>Phone</th><th>Address</th><th>Zip</th><th>Trash Day</th><th>Bins</th><th>Plan</th><th>Notes</th></tr></thead>
       <tbody>${items.map(j=>`<tr>
         <td style="white-space:nowrap"><strong>${fmtDate(j.service_date)}</strong></td>
-        <td>${j.first_name} ${j.last_name}</td>
+        <td><button class="link-btn" onclick="openCustomerModal(${j.customer_id})">${j.first_name} ${j.last_name}</button></td>
         <td><a href="tel:${j.phone}" style="color:var(--red);text-decoration:none">${j.phone}</a></td>
-        <td>${j.address}</td>
+        <td style="font-size:0.78rem;color:var(--muted)">${j.address}</td>
         <td style="font-weight:700">${extractZip(j.address)}</td>
         <td>${j.trash_day||'—'}</td>
         <td>${j.bin_count||'—'}</td>
@@ -797,30 +897,26 @@ async function loadCleaning() {
       </tr>`).join('')}</tbody></table>`;
   } catch(e){document.getElementById('cleaning-table').innerHTML=`<div class="error-state">Error: ${e.message}</div>`;}
 }
-
-function extractZip(address) {
-  const m = address && address.match(/\b\d{5}\b/);
-  return m ? m[0] : '—';
-}
+function extractZip(a) { const m=a&&a.match(/\b\d{5}\b/); return m?m[0]:'—'; }
 
 // ── CUSTOMERS ──
 async function loadCustomers() {
   try {
-    const r = await fetch(API+'/customers',{headers:hdr()});
+    const r=await fetch(API+'/customers',{headers:hdr()});
     if(!r.ok) throw new Error('Failed '+r.status);
-    allCustomers = await r.json();
+    allCustomers=await r.json();
     document.getElementById('customer-count').textContent=allCustomers.length+' total';
     renderCustomers(allCustomers);
   } catch(e){document.getElementById('customers-table').innerHTML=`<div class="error-state">Error: ${e.message}</div>`;}
 }
 
 function renderCustomers(items) {
-  const el = document.getElementById('customers-table');
+  const el=document.getElementById('customers-table');
   if(!items.length){el.innerHTML='<div class="empty-state">No customers yet.</div>';return;}
   el.innerHTML=`<table>
     <thead><tr><th>Name</th><th>Phone</th><th>Address</th><th>Trash Day</th><th>Plan</th><th>Source</th><th>Bookings</th><th>Since</th></tr></thead>
     <tbody>${items.map(c=>`<tr>
-      <td><strong>${c.first_name} ${c.last_name}</strong></td>
+      <td><button class="link-btn" onclick="openCustomerModal(${c.id})">${c.first_name} ${c.last_name}</button></td>
       <td><a href="tel:${c.phone}" style="color:var(--red);text-decoration:none">${c.phone}</a></td>
       <td style="font-size:0.78rem;color:var(--muted);max-width:160px">${c.address}</td>
       <td>${c.trash_day||'—'}</td>
@@ -830,24 +926,136 @@ function renderCustomers(items) {
       <td style="font-size:0.78rem;color:var(--muted);white-space:nowrap">${fmtDate(c.created_at)}</td>
     </tr>`).join('')}</tbody></table>`;
 }
-
 function filterCustomers(q) {
   if(!q){renderCustomers(allCustomers);return;}
   renderCustomers(allCustomers.filter(c=>(c.first_name+' '+c.last_name+c.phone+c.address).toLowerCase().includes(q.toLowerCase())));
 }
 
+// ── CUSTOMER DETAIL MODAL ──
+async function openCustomerModal(customerId) {
+  currentCustomerId=customerId;
+  const cust=allCustomers.find(c=>c.id==customerId);
+  if(!cust){
+    // Load if not in cache
+    try {
+      const r=await fetch(API+'/customers',{headers:hdr()});
+      allCustomers=await r.json();
+    } catch(e){}
+  }
+  const c=allCustomers.find(c=>c.id==customerId);
+  if(!c){alert('Customer not found.');return;}
+
+  document.getElementById('cust-modal-name').textContent=c.first_name+' '+c.last_name;
+  document.getElementById('cust-modal-plan').textContent=c.plan+' plan · '+c.address;
+  document.getElementById('cust-modal-notes').value=c.notes||'';
+
+  document.getElementById('cust-modal-info').innerHTML=`
+    <div class="cust-info-item"><label>Phone</label><p><a href="tel:${c.phone}" style="color:var(--red)">${c.phone}</a></p></div>
+    <div class="cust-info-item"><label>Email</label><p>${c.email||'Not provided'}</p></div>
+    <div class="cust-info-item"><label>Trash Day</label><p>${c.trash_day||'Not set'}</p></div>
+    <div class="cust-info-item"><label>Bins</label><p>${c.bin_count||'Not set'}</p></div>
+    <div class="cust-info-item"><label>Plan</label><p>${c.plan}</p></div>
+    <div class="cust-info-item"><label>Source</label><p>${c.source||'website'}</p></div>
+    <div class="cust-info-item"><label>Customer Since</label><p>${fmtDate(c.created_at)}</p></div>
+    <div class="cust-info-item"><label>Total Bookings</label><p>${c.booking_count||0}</p></div>`;
+
+  // Load followups for this customer
+  const custFollowups=allFollowups.filter(f=>f.customer_id==customerId&&f.status==='pending');
+  document.getElementById('cust-modal-followups').innerHTML=custFollowups.length
+    ?`<div class="cust-history">${custFollowups.map(f=>`
+        <div class="cust-history-item">
+          <div style="flex:1"><strong>${(f.type||'').replace(/_/g,' ')}</strong><br><span style="color:var(--muted)">${fmtDate(f.due_date)}${isOverdue(f.due_date)?' ⚠️ Overdue':''}</span>${f.notes?`<br><em>${f.notes}</em>`:''}</div>
+          <button class="action-btn green" onclick="openOutcomeModal(${f.id},'${f.first_name} ${f.last_name}',${f.customer_id},'${c.plan}');closeModal('customerModal')">Log</button>
+        </div>`).join('')}</div>`
+    :`<p style="font-size:0.85rem;color:var(--muted);padding:0.5rem 0">No pending follow-ups.</p>`;
+
+  document.getElementById('cust-modal-history').innerHTML=`<div style="font-size:0.85rem;color:var(--muted);padding:0.5rem 0">Loading history...</div>`;
+  openModal('customerModal');
+
+  // Load booking history
+  try {
+    const r=await fetch(API+'/inbox',{headers:hdr()});
+    const d=await r.json();
+    const custBookings=(d.bookings||[]).filter(b=>b.customer_id==customerId);
+    document.getElementById('cust-modal-history').innerHTML=custBookings.length
+      ?`<div class="cust-history">${custBookings.map(b=>`
+          <div class="cust-history-item">
+            <div style="flex:1">${statusBadge(b.status)} ${b.service_date?`<strong>${fmtDate(b.service_date)}</strong>`:'No date set'}<br>
+            <span style="color:var(--muted);font-size:0.78rem">${planBadge(b.plan)} · ${b.bin_count||'?'} · Received ${fmtTime(b.created_at)}</span>
+            ${b.notes?`<br><em style="font-size:0.78rem;color:var(--muted)">${b.notes}</em>`:''}</div>
+          </div>`).join('')}</div>`
+      :`<p style="font-size:0.85rem;color:var(--muted);padding:0.5rem 0">No booking history yet.</p>`;
+  } catch(e){}
+}
+
+function openNewFollowupForCustomer() {
+  const c=allCustomers.find(c=>c.id==currentCustomerId);
+  document.getElementById('new-fu-customer-name').textContent=c?c.first_name+' '+c.last_name:'Customer';
+  document.getElementById('new-fu-date').value=daysFromNow(7);
+  document.getElementById('new-fu-notes').value='';
+  closeModal('customerModal');
+  openModal('newFollowupModal');
+}
+
+async function saveNewFollowup() {
+  const date=document.getElementById('new-fu-date').value;
+  const type=document.getElementById('new-fu-type').value;
+  const notes=document.getElementById('new-fu-notes').value.trim();
+  if(!date){alert('Please select a date.');return;}
+  await fetch(API+'/followups',{method:'POST',headers:hdr(),body:JSON.stringify({customer_id:currentCustomerId,type,due_date:date,notes})});
+  closeModal('newFollowupModal');
+  loadFollowups();
+  alert('Follow-up added!');
+}
+
+function bookForCustomer() {
+  const c=allCustomers.find(c=>c.id==currentCustomerId);
+  document.getElementById('book-cust-name').textContent=c?c.first_name+' '+c.last_name:'Customer';
+  document.getElementById('book-cust-date').value='';
+  document.getElementById('book-cust-notes').value='';
+  closeModal('customerModal');
+  openModal('bookCustomerModal');
+}
+
+async function submitBookForCustomer() {
+  const date=document.getElementById('book-cust-date').value;
+  if(!date){alert('Please select a cleaning date.');return;}
+  const notes=document.getElementById('book-cust-notes').value.trim();
+  const sendEmail=document.getElementById('book-cust-email').checked;
+  try {
+    await fetch(API+'/followups/0/confirm-cleaning',{
+      method:'POST',headers:hdr(),
+      body:JSON.stringify({cleaning_date:date,notes,customer_id:currentCustomerId,send_email:sendEmail})
+    });
+    closeModal('bookCustomerModal');
+    loadCleaning(); loadSummary();
+    alert('Cleaning scheduled!'+( sendEmail?' Confirmation email sent!':''));
+  } catch(e){alert('Error booking. Try again.');}
+}
+
+async function saveCustomerNotes() {
+  const notes=document.getElementById('cust-modal-notes').value.trim();
+  await fetch(API+'/customers/'+currentCustomerId+'/notes',{method:'PATCH',headers:hdr(),body:JSON.stringify({notes})});
+  const c=allCustomers.find(c=>c.id==currentCustomerId);
+  if(c) c.notes=notes;
+}
+
 // ── ADD CUSTOMER ──
+function toggleAcDay(el, day) {
+  if(selectedAcDays.has(day)){selectedAcDays.delete(day);el.classList.remove('selected');}
+  else{selectedAcDays.add(day);el.classList.add('selected');}
+}
+
 function setDefaultDates() {
-  const el = document.getElementById('ac-followup-date');
-  if(el) el.value = daysFromNow(7);
+  const el=document.getElementById('ac-followup-date');
+  if(el) el.value=daysFromNow(7);
 }
 
 function updateFollowupType() {
-  const plan = document.getElementById('ac-plan').value;
-  const days = plan==='monthly'?30:plan==='quarterly'?90:7;
-  document.getElementById('ac-followup-date').value = daysFromNow(days);
-  const typeEl = document.getElementById('ac-followup-type');
-  typeEl.value = plan==='one-time'?'confirm_schedule':'recurring_schedule';
+  const plan=document.getElementById('ac-plan').value;
+  const days=plan==='monthly'?30:plan==='quarterly'?90:7;
+  document.getElementById('ac-followup-date').value=daysFromNow(days);
+  document.getElementById('ac-followup-type').value=plan==='one-time'?'confirm_schedule':'recurring_schedule';
 }
 
 async function addCustomer() {
@@ -860,20 +1068,17 @@ async function addCustomer() {
   const successEl=document.getElementById('ac-success');
   const errorEl=document.getElementById('ac-error');
   successEl.style.display='none'; errorEl.style.display='none';
-
-  if(!fname||!lname||!phone||!address||!plan||!followupDate){
-    errorEl.textContent='❌ Please fill in all required fields including the follow-up date.';
+  if(!fname||!lname||!phone||!address||!plan||!followupDate||selectedAcDays.size===0){
+    errorEl.textContent='❌ Please fill in all required fields and select at least one trash pickup day.';
     errorEl.style.display='block'; return;
   }
   try {
-    const r = await fetch(API+'/customers',{method:'POST',headers:hdr(),body:JSON.stringify({
+    const r=await fetch(API+'/customers',{method:'POST',headers:hdr(),body:JSON.stringify({
       first_name:fname,last_name:lname,phone,
       email:document.getElementById('ac-email').value.trim(),
-      address,
-      trash_day:document.getElementById('ac-day').value,
+      address,trash_day:Array.from(selectedAcDays).join(', '),
       bin_count:document.getElementById('ac-bins').value,
-      plan,
-      notes:document.getElementById('ac-notes').value.trim(),
+      plan,notes:document.getElementById('ac-notes').value.trim(),
       followup_date:followupDate,
       followup_type:document.getElementById('ac-followup-type').value,
       followup_notes:document.getElementById('ac-followup-notes').value.trim()
@@ -881,9 +1086,10 @@ async function addCustomer() {
     if(!r.ok){const e=await r.json();throw new Error(e.error||'Failed');}
     successEl.style.display='block';
     ['ac-fname','ac-lname','ac-phone','ac-email','ac-address','ac-notes','ac-followup-notes'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
-    document.getElementById('ac-day').value='';
     document.getElementById('ac-bins').value='';
     document.getElementById('ac-plan').value='';
+    selectedAcDays.clear();
+    document.querySelectorAll('#ac-days .day-chip').forEach(c=>c.classList.remove('selected'));
     setDefaultDates();
     loadSummary();
     setTimeout(()=>successEl.style.display='none',5000);
@@ -893,7 +1099,7 @@ async function addCustomer() {
 // ── QR ──
 function generateQR() {
   const canvas=document.getElementById('qrCanvas');
-  if(!canvas)return;
+  if(!canvas) return;
   QRCode.toCanvas(canvas,'https://freshbymart.com/book.html',{width:280,margin:2,color:{dark:'#1a1a1a',light:'#ffffff'}});
 }
 </script>
