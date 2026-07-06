@@ -260,7 +260,7 @@
     <div class="view" id="view-cleaning">
       <div class="page-header">
         <div class="page-header-text"><h1>Cleaning Schedule</h1><p>Confirmed jobs sorted by zip then address — Mart's daily route list</p></div>
-        <button class="action-btn primary" onclick="sendCleaningReminders()">📧 Send This Week's Reminders</button>
+        <button class="action-btn primary" id="reminder-btn" onclick="sendCleaningReminders()">📧 Send This Week's Reminders</button>
       </div>
       <div class="tabs">
         <div class="tab active" onclick="switchCleaningTab('upcoming-tab','completed-tab',this)">Upcoming</div>
@@ -896,8 +896,9 @@ async function loadCleaning() {
     document.getElementById('cleaning-count').textContent=items.length+' jobs';
     if(!items.length){el.innerHTML='<div class="empty-state">No confirmed cleanings yet. Confirm bookings from the Inbox to add them here.</div>';return;}
     el.innerHTML=`<table>
-      <thead><tr><th>Date</th><th>Customer</th><th>Phone</th><th>Address</th><th>Zip</th><th>Trash Day</th><th>Bins</th><th>Plan</th><th>Notes</th><th>Action</th></tr></thead>
+      <thead><tr><th style="width:36px"><input type="checkbox" onchange="document.querySelectorAll('.cleaning-cb').forEach(cb=>{cb.checked=this.checked;toggleCleaningSelect(parseInt(cb.dataset.id),cb)})" title="Select all"></th><th>Date</th><th>Customer</th><th>Phone</th><th>Address</th><th>Zip</th><th>Trash Day</th><th>Bins</th><th>Plan</th><th>Notes</th><th>Action</th></tr></thead>
       <tbody>${items.map(j=>`<tr>
+        <td><input type="checkbox" class="cleaning-cb" data-id="${j.id}" onchange="toggleCleaningSelect(${j.id},this)" style="width:16px;height:16px;accent-color:var(--red);cursor:pointer"></td>
         <td style="white-space:nowrap"><strong>${fmtDate(j.service_date)}</strong></td>
         <td><button class="link-btn" onclick="openCustomerModal(${j.customer_id})">${j.first_name} ${j.last_name}</button></td>
         <td><a href="tel:${j.phone}" style="color:var(--red);text-decoration:none">${j.phone}</a></td>
@@ -907,7 +908,7 @@ async function loadCleaning() {
         <td>${j.bin_count||'—'}</td>
         <td>${planBadge(j.plan)}</td>
         <td style="font-size:0.78rem;color:var(--muted)">${j.notes||'—'}</td>
-        <td style="white-space:nowrap"><button class="action-btn primary" onclick="openCleaningModal(${j.id},${j.customer_id},'${j.first_name} ${j.last_name}','${j.address}')">⚡ Action</button></td>
+        <td style="white-space:nowrap"><button class="action-btn primary" onclick="openCleaningModal(${j.id},${j.customer_id},'${j.first_name} ${j.last_name}','${j.address}','${fmtDate(j.service_date)}')">⚡ Action</button></td>
       </tr>`).join('')}</tbody></table>`;
   } catch(e){document.getElementById('cleaning-table').innerHTML=`<div class="error-state">Error: ${e.message}</div>`;}
 }
@@ -1108,6 +1109,126 @@ async function addCustomer() {
     loadSummary();
     setTimeout(()=>successEl.style.display='none',5000);
   } catch(e){errorEl.textContent='❌ Error: '+e.message;errorEl.style.display='block';}
+}
+
+
+// ── CLEANING SCHEDULE EXTRAS ──────────────────────────────────────────────
+let currentCleaningBookingId = null;
+let currentCleaningCustomerId = null;
+let selectedCleaningIds = new Set();
+
+function switchCleaningTab(showId, hideId, el) {
+  document.getElementById(showId).style.display = 'block';
+  document.getElementById(hideId).style.display = 'none';
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  if (showId === 'completed-tab') loadCompleted();
+}
+
+async function sendCleaningReminders() {
+  // If checkboxes selected, send only to those; else send to all this week
+  if (selectedCleaningIds.size > 0) {
+    if (!confirm(`Send reminder emails to ${selectedCleaningIds.size} selected customer(s)?`)) return;
+    try {
+      const r = await fetch(API + '/schedule/send-reminders-selected', {
+        method: 'POST', headers: hdr(),
+        body: JSON.stringify({ booking_ids: Array.from(selectedCleaningIds) })
+      });
+      const d = await r.json();
+      alert(`✅ Sent ${d.sent || 0} reminder emails!`);
+      selectedCleaningIds.clear();
+      loadCleaning();
+    } catch(e) { alert('Error: ' + e.message); }
+  } else {
+    if (!confirm('Send reminder emails to ALL customers with cleanings scheduled this week?')) return;
+    try {
+      const r = await fetch(API + '/schedule/send-reminders', { method: 'POST', headers: hdr() });
+      const d = await r.json();
+      alert(`✅ Sent ${d.sent || 0} reminder emails!`);
+    } catch(e) { alert('Error: ' + e.message); }
+  }
+}
+
+function toggleCleaningSelect(id, el) {
+  if (selectedCleaningIds.has(id)) { selectedCleaningIds.delete(id); el.checked = false; }
+  else { selectedCleaningIds.add(id); el.checked = true; }
+  const btn = document.getElementById('reminder-btn');
+  if (btn) btn.textContent = selectedCleaningIds.size > 0
+    ? `📧 Send Reminders (${selectedCleaningIds.size} selected)`
+    : '📧 Send This Week's Reminders';
+}
+
+function openCleaningModal(bookingId, customerId, name, address, serviceDate) {
+  currentCleaningBookingId = bookingId;
+  currentCleaningCustomerId = customerId;
+  document.getElementById('cm-title').textContent = 'Cleaning — ' + (serviceDate || '');
+  document.getElementById('cm-customer').textContent = name + ' · ' + address;
+  document.getElementById('cm-complete-section').style.display = 'none';
+  document.getElementById('cm-reschedule-section').style.display = 'none';
+  document.getElementById('cm-complete-notes').value = '';
+  document.getElementById('cm-reason').value = '';
+  document.getElementById('cm-reschedule-notes').value = '';
+  document.getElementById('cm-new-date').value = daysFromNow(7);
+  openModal('cleaningModal');
+}
+
+function showCmSection(type) {
+  document.getElementById('cm-complete-section').style.display = type === 'complete' ? 'block' : 'none';
+  document.getElementById('cm-reschedule-section').style.display = type === 'reschedule' ? 'block' : 'none';
+}
+
+async function submitComplete() {
+  if (!confirm('Mark this cleaning as complete and send the customer a thank-you + referral email?')) return;
+  try {
+    await fetch(API + '/bookings/' + currentCleaningBookingId + '/complete', {
+      method: 'POST', headers: hdr(),
+      body: JSON.stringify({
+        notes: document.getElementById('cm-complete-notes').value.trim(),
+        referral_link: 'https://forms.gle/9g4dXAjKA2X5T8hh8'
+      })
+    });
+    closeModal('cleaningModal');
+    loadCleaning(); loadSummary();
+    alert('✅ Marked complete! Thank-you + referral email sent to customer.');
+  } catch(e) { alert('Error: ' + e.message); }
+}
+
+async function submitReschedule() {
+  const reason = document.getElementById('cm-reason').value;
+  const newDate = document.getElementById('cm-new-date').value;
+  if (!reason) { alert('Please select a reason.'); return; }
+  if (!newDate) { alert('Please select a new cleaning date.'); return; }
+  try {
+    await fetch(API + '/bookings/' + currentCleaningBookingId + '/reschedule', {
+      method: 'POST', headers: hdr(),
+      body: JSON.stringify({ reason, new_date: newDate, notes: document.getElementById('cm-reschedule-notes').value.trim() })
+    });
+    closeModal('cleaningModal');
+    loadCleaning(); loadSummary();
+    alert('🔄 Rescheduled! Sorry-we-missed-you email sent to customer.');
+  } catch(e) { alert('Error: ' + e.message); }
+}
+
+async function loadCompleted() {
+  try {
+    const r = await fetch(API + '/schedule/completed', { headers: hdr() });
+    if (!r.ok) throw new Error('Failed ' + r.status);
+    const items = await r.json();
+    const el = document.getElementById('completed-table');
+    document.getElementById('completed-count').textContent = items.length + ' completed';
+    if (!items.length) { el.innerHTML = '<div class="empty-state">No completed cleanings yet.</div>'; return; }
+    el.innerHTML = `<table>
+      <thead><tr><th>Completed</th><th>Customer</th><th>Phone</th><th>Address</th><th>Zip</th><th>Bins</th><th>Plan</th></tr></thead>
+      <tbody>${items.map(j => `<tr>
+        <td style="white-space:nowrap"><strong>${fmtTime(j.completed_at)}</strong></td>
+        <td><button class="link-btn" onclick="openCustomerModal(${j.customer_id})">${j.first_name} ${j.last_name}</button></td>
+        <td><a href="tel:${j.phone}" style="color:var(--red);text-decoration:none">${j.phone}</a></td>
+        <td style="font-size:0.78rem;color:var(--muted)">${j.address}</td>
+        <td style="font-weight:700">${extractZip(j.address)}</td>
+        <td>${j.bin_count || '—'}</td>
+        <td>${planBadge(j.plan)}</td>
+      </tr>`).join('')}</tbody></table>`;
+  } catch(e) { document.getElementById('completed-table').innerHTML = `<div class="error-state">Error: ${e.message}</div>`; }
 }
 
 // ── QR ──
