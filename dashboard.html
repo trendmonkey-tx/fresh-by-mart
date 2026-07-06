@@ -1140,7 +1140,7 @@ async function sendCleaningReminders() {
       loadCleaning();
     } catch(e) { alert('Error: ' + e.message); }
   } else {
-    if (!confirm('Send reminder emails to ALL customers with cleanings scheduled this week?')) return;
+    if (!confirm("Send reminder emails to ALL customers with cleanings scheduled this week?")) return;
     try {
       const r = await fetch(API + '/schedule/send-reminders', { method: 'POST', headers: hdr() });
       const d = await r.json();
@@ -1155,7 +1155,7 @@ function toggleCleaningSelect(id, el) {
   const btn = document.getElementById('reminder-btn');
   if (btn) btn.textContent = selectedCleaningIds.size > 0
     ? `📧 Send Reminders (${selectedCleaningIds.size} selected)`
-    : '📧 Send This Week's Reminders';
+    : "📧 Send This Week's Reminders";
 }
 
 function openCleaningModal(bookingId, customerId, name, address, serviceDate) {
