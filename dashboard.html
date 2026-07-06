@@ -260,10 +260,23 @@
     <div class="view" id="view-cleaning">
       <div class="page-header">
         <div class="page-header-text"><h1>Cleaning Schedule</h1><p>Confirmed jobs sorted by zip then address — Mart's daily route list</p></div>
+        <button class="action-btn primary" onclick="sendCleaningReminders()">📧 Send This Week's Reminders</button>
       </div>
-      <div class="card">
-        <div class="card-header"><h3>Upcoming Cleanings</h3><span style="font-size:0.78rem;color:var(--muted)" id="cleaning-count"></span></div>
-        <div class="table-wrap" id="cleaning-table"><div class="empty-state">Loading...</div></div>
+      <div class="tabs">
+        <div class="tab active" onclick="switchCleaningTab('upcoming-tab','completed-tab',this)">Upcoming</div>
+        <div class="tab" onclick="switchCleaningTab('completed-tab','upcoming-tab',this)">Completed Orders</div>
+      </div>
+      <div id="upcoming-tab">
+        <div class="card">
+          <div class="card-header"><h3>Upcoming Cleanings</h3><span style="font-size:0.78rem;color:var(--muted)" id="cleaning-count"></span></div>
+          <div class="table-wrap" id="cleaning-table"><div class="empty-state">Loading...</div></div>
+        </div>
+      </div>
+      <div id="completed-tab" style="display:none">
+        <div class="card">
+          <div class="card-header"><h3>Completed Cleanings</h3><span style="font-size:0.78rem;color:var(--muted)" id="completed-count"></span></div>
+          <div class="table-wrap" id="completed-table"><div class="empty-state">Loading...</div></div>
+        </div>
       </div>
     </div>
 
@@ -883,7 +896,7 @@ async function loadCleaning() {
     document.getElementById('cleaning-count').textContent=items.length+' jobs';
     if(!items.length){el.innerHTML='<div class="empty-state">No confirmed cleanings yet. Confirm bookings from the Inbox to add them here.</div>';return;}
     el.innerHTML=`<table>
-      <thead><tr><th>Date</th><th>Customer</th><th>Phone</th><th>Address</th><th>Zip</th><th>Trash Day</th><th>Bins</th><th>Plan</th><th>Notes</th></tr></thead>
+      <thead><tr><th>Date</th><th>Customer</th><th>Phone</th><th>Address</th><th>Zip</th><th>Trash Day</th><th>Bins</th><th>Plan</th><th>Notes</th><th>Action</th></tr></thead>
       <tbody>${items.map(j=>`<tr>
         <td style="white-space:nowrap"><strong>${fmtDate(j.service_date)}</strong></td>
         <td><button class="link-btn" onclick="openCustomerModal(${j.customer_id})">${j.first_name} ${j.last_name}</button></td>
@@ -894,6 +907,7 @@ async function loadCleaning() {
         <td>${j.bin_count||'—'}</td>
         <td>${planBadge(j.plan)}</td>
         <td style="font-size:0.78rem;color:var(--muted)">${j.notes||'—'}</td>
+        <td style="white-space:nowrap"><button class="action-btn primary" onclick="openCleaningModal(${j.id},${j.customer_id},'${j.first_name} ${j.last_name}','${j.address}')">⚡ Action</button></td>
       </tr>`).join('')}</tbody></table>`;
   } catch(e){document.getElementById('cleaning-table').innerHTML=`<div class="error-state">Error: ${e.message}</div>`;}
 }
@@ -1103,5 +1117,68 @@ function generateQR() {
   QRCode.toCanvas(canvas,'https://freshbymart.com/book.html',{width:280,margin:2,color:{dark:'#1a1a1a',light:'#ffffff'}});
 }
 </script>
+
+<!-- CLEANING ACTION MODAL -->
+<div class="modal-overlay" id="cleaningModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('cleaningModal')">✕</button>
+    <div class="modal-title" id="cm-title">Cleaning Action</div>
+    <p class="modal-sub" id="cm-customer"></p>
+    <div style="display:flex;gap:0.75rem;margin-bottom:1.5rem;flex-wrap:wrap">
+      <button class="action-btn green" style="flex:1;padding:0.75rem" onclick="showCmSection('complete')">✅ Mark Complete</button>
+      <button class="action-btn orange" style="flex:1;padding:0.75rem" onclick="showCmSection('reschedule')">🔄 Reschedule</button>
+      <button class="action-btn" style="flex:1;padding:0.75rem" onclick="openCustomerModal(currentCleaningCustomerId);closeModal('cleaningModal')">👤 View Customer</button>
+    </div>
+
+    <!-- COMPLETE SECTION -->
+    <div id="cm-complete-section" style="display:none">
+      <div style="background:#dcfce7;border:1px solid #86efac;border-radius:8px;padding:1rem;margin-bottom:1rem;font-size:0.88rem;color:#15803d">
+        <strong>This will:</strong> Mark the booking complete, send the customer a thank-you + referral email, and move it to Completed Orders.
+      </div>
+      <div class="modal-group modal-full" style="margin-bottom:1rem">
+        <label>Internal Notes (optional)</label>
+        <textarea id="cm-complete-notes" placeholder="Any notes about this cleaning..." style="border:1.5px solid var(--border);border-radius:6px;padding:0.6rem;font-size:0.88rem;font-family:Barlow,sans-serif;outline:none;width:100%;resize:vertical;min-height:60px"></textarea>
+      </div>
+      <button class="action-btn green" style="width:100%;padding:0.8rem" onclick="submitComplete()">✅ Confirm Complete & Send Email</button>
+    </div>
+
+    <!-- RESCHEDULE SECTION -->
+    <div id="cm-reschedule-section" style="display:none">
+      <div style="background:#fff3cd;border:1px solid #ffc107;border-radius:8px;padding:1rem;margin-bottom:1rem;font-size:0.88rem;color:#856404">
+        <strong>This will:</strong> Send the customer a "sorry we missed you" email with the reason and new date, and create a new confirmed booking.
+      </div>
+      <div class="modal-grid">
+        <div class="modal-group modal-full">
+          <label>Reason *</label>
+          <select id="cm-reason">
+            <option value="">Select reason...</option>
+            <option value="full_bins">Trash bins still full / not collected yet</option>
+            <option value="weather">Weather not permitting</option>
+            <option value="time">Time constraints on our route</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="modal-group">
+          <label>New Cleaning Date *</label>
+          <input type="date" id="cm-new-date">
+        </div>
+        <div class="modal-group">
+          <label>Time Window</label>
+          <select id="cm-time">
+            <option>Late morning to afternoon</option>
+            <option>Morning (before noon)</option>
+            <option>Afternoon (noon–5pm)</option>
+          </select>
+        </div>
+        <div class="modal-group modal-full">
+          <label>Internal Notes</label>
+          <textarea id="cm-reschedule-notes" placeholder="Internal notes about the reschedule..." style="border:1.5px solid var(--border);border-radius:6px;padding:0.6rem;font-size:0.88rem;font-family:Barlow,sans-serif;outline:none;width:100%;resize:vertical;min-height:60px"></textarea>
+        </div>
+      </div>
+      <button class="action-btn orange" style="width:100%;padding:0.8rem;margin-top:0.5rem" onclick="submitReschedule()">🔄 Reschedule & Send Email</button>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
